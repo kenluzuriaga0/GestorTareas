@@ -20,8 +20,9 @@ public class BeanMateria implements Serializable{
     private Materia materia;
 
     
-    public void guardar(){
-        materiaFacade.create(materia);
+    public String guardar(){
+        return "horarios.xhtml";
+        //materiaFacade.create(materia);
     }
     
     public MateriaFacadeLocal getMateriaFacade() {

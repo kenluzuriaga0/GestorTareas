@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Login G1</title>
     </h:head>
     <h:body>
         <f:facet name="last">
@@ -15,15 +15,15 @@
 
         <h:form>  
             <p:menubar>
-                <p:menuitem value="G1 HACKERMAN"  icon="pi pi-times" />
+                <p:menuitem value="G1 HACKERMAN"  icon="pi pi-desktop" />
 
                 <f:facet name="options">
                     <p:sidebar widgetVar="sidebar4" position="bottom" baseZIndex="10000">
-                        <h1 >G1 HACKERMAN <img src="resources/images/UGlogo.png" width="60px" /></h1>
+                        <h1 >G1 PROYECTO INTEGRADOR <img src="resources/images/UGlogo.png" width="60px" /></h1>
                         <h5>Ken Luzuriaga - Luis Rodriguez - Nicole Vera - Freya Lopez - Anthony Galarza</h5>
 
                     </p:sidebar>
-                    <p:commandButton styleClass="GreenButton" value="Acerca De" icon="pi pi-home" oncomplete="PF('sidebar4').show()" />
+                    <p:commandButton styleClass="GreenButton" value="Acerca De" icon="pi pi-info-circle" oncomplete="PF('sidebar4').show()" />
                 </f:facet>
             </p:menubar>
         </h:form>
@@ -47,7 +47,7 @@
                         </p:column>
                     </p:row>
                     <p:row>
-                        <p:column > <p:commandButton value="Iniciar" actionListener="#{beanMateria.guardar()}" /></p:column >
+                        <p:column > <p:commandButton value="Iniciar" icon="pi pi-sign-in" action="#{beanMateria.guardar}" ajax="false" /></p:column >
                         <p:column > <p:link value="olvidé mi contraseña" /> </p:column> 
                     </p:row>
 
@@ -55,7 +55,7 @@
                         <p:column colspan="2" ><p:separator/> </p:column>
                     </p:row>
                     <p:row>
-                        <p:column colspan="2"><p:link value="¿No tienes cuenta? Registrate Aqui" />
+                        <p:column colspan="2"><p:link outcome="horarios" value="¿No tienes cuenta? Registrate Aqui" />
                         </p:column>
                     </p:row>
 
