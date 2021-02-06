@@ -1,6 +1,7 @@
 body{
     /*width: 75%;*/
     margin: 0 auto;
+    
     /* background: gray;*/
 }		
 
@@ -63,4 +64,13 @@ body{
 }
 .sub{
     background: gray;
+}
+.jumbotron{
+    background: #f0efeb;
+    padding-bottom: 20px;
+}
+.container {
+    
+    	width: 92%;
+	margin: 0 auto;
 }

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/bienvenida.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:head>
+            <title>Resultados</title>
+        </h:head>
+        <h:body>
+
+            <f:facet name="last">
+                <h:outputStylesheet library="css" name="styles.css" />
+            </f:facet>
+
+            <div class="titulo">
+                <p:outputLabel> <h1>Resultados</h1> </p:outputLabel>  
+            </div>
+
+            <div class="titulo" style="color: black">
+                <p:outputLabel>
+                    Pantalla donde se muestra el <b>avance  </b> del tiempo invertido versus el horario ocupado por mes
+                </p:outputLabel>
+            </div>
+            <h:form>
+                <p:outputLabel style="margin-left: 60px">Horas Ocupadas en el dia</p:outputLabel>
+
+
+                    <div style="height: 150px"></div>
+                    <p:outputLabel style="margin-left: 60px">Avance actividades productivas</p:outputLabel>
+
+
+
+            </h:form>
+        </h:body>
+    </ui:define>
+
+
+</ui:composition>

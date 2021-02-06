@@ -11,19 +11,23 @@
         <h:head>
             <title>Horarios</title>
         </h:head>
-        <h:body class="fondo">
+        <h:body>
+            <div class="container">
             <f:facet name="last">
                 <h:outputStylesheet library="css" name="styles.css" />
             </f:facet>
+            <div class="jumbotron">
+                <div class="titulo">
+                    <p:outputLabel> <h1>HORARIOS</h1> </p:outputLabel>  
+                </div>
 
-            <div class="titulo">
-                <p:outputLabel> <h1>HORARIOS</h1> </p:outputLabel>  
+                <div class="titulo" style="color: black">
+                    <p:outputLabel>
+                        Llene el siguiente <b>formulario</b> para saber que actividades son las que usted realiza 
+                    </p:outputLabel> 
+                </div>
+
             </div>
-
-            <div class="titulo" style="color: black">
-                <p:outputLabel>
-                    Llene el siguiente <b>formulario</b> para saber que actividades son las que usted realiza 
-                </p:outputLabel> </div>
             <h:form>
                 <p:panelGrid  style="margin:  10px 30px" >
                     <p:row >
@@ -131,7 +135,7 @@
                     <p:commandButton type="button" value="Definir Horarios" />
                 </div>
             </h:form>  
-
+</div>
 
         </h:body>  
 
