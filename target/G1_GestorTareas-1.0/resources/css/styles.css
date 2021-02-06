@@ -1,0 +1,63 @@
+body{
+    /*width: 75%;*/
+    margin: 0 auto;
+    /* background: gray;*/
+}		
+
+.ola{
+    padding: 5px;
+}
+
+.ui-panelgrid-cell{
+
+    border: 1px solid #F1FAEE !important;
+    padding: 15px !important;
+    background: #F1FAEE;
+}
+
+#cuadroLogin{
+    display: flex;
+
+    place-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #457B9D;
+
+}
+
+.ui-button-text-only{
+    background-color:  red;
+}
+.ui-menubar  {
+
+    background:  #14213D;
+    color: white;
+
+}
+
+.ui-menuitem-text{
+
+    color: white ;
+}
+.ui-button  {
+    background: #E63946 !important;
+
+}
+.ui-button-text{
+    color:white;
+
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+
+    margin: 12px;
+    color:#457B9D;
+}
+.boton-exito{
+     display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+}

@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/bienvenida.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:head>
+            <title>Horarios</title>
+        </h:head>
+        <h:body class="fondo">
+            <f:facet name="last">
+                <h:outputStylesheet library="css" name="styles.css" />
+            </f:facet>
+
+            <div class="titulo">
+                <p:outputLabel> <h1>HORARIOS</h1> </p:outputLabel>  
+            </div>
+
+            <div class="titulo" style="color: black">
+                <p:outputLabel>
+                    Llene el siguiente <b>formulario</b> para saber que actividades son las que usted realiza 
+                </p:outputLabel> </div>
+            <h:form>
+                <p:panelGrid  style="margin:  10px 30px" >
+                    <p:row >
+                        <p:column colspan="1">
+                            <h2>Actividad Principal</h2>
+                        </p:column>
+
+                        <p:column colspan="1">
+                            <p:selectManyCheckbox >
+
+                                <f:selectItem itemLabel="Trabajar" itemValue="Trabajar"/>
+                                <f:selectItem itemLabel="Estudiar" itemValue="Estudiar"/>
+
+                            </p:selectManyCheckbox>
+
+                        </p:column>
+                        <p:column>
+                            <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
+                                Puede elegir mas de una actividad principal que desempeñe <b>diariamente</b>
+                            </div>
+                        </p:column>
+                    </p:row>
+                    <p:row >
+                        <p:column >
+                            <h2>Horas de Sueño</h2>
+                        </p:column>
+                        <p:column >
+                            <p:spinner min="1" max="12"/>
+
+                        </p:column>
+                        <p:column>
+                            <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
+                                Se recomienda dormir de <b>7 a 8 horas</b> todos los dias para tener energia
+                            </div>
+                        </p:column>
+
+                    </p:row>
+                    <p:row >
+                        <p:column >
+                            <h2>Tiempo de Transporte</h2>
+                        </p:column>
+                        <p:column >
+                            <p:spinner min="0"/>
+
+                        </p:column>
+                        <p:column>
+                            <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
+                                Tiempo en <b>minutos</b> el cual se demora en transportarse de un lugar a otro para realizar su actividad principal
+                            </div>
+                        </p:column>
+
+                    </p:row>
+                </p:panelGrid>
+                <p:separator/>
+                <div class="titulo">
+                    <p:outputLabel> <h2>Detalle</h2> </p:outputLabel>  
+                </div>
+                <p:panelGrid columns="3"  style="margin:  10px 30px" >
+                    <p:row>
+                        <p:column >
+                            <h3>Hora Entrada de Trabajo</h3>
+                        </p:column>
+
+
+                        <p:column >
+                            <p:datePicker id="timeonly" timeOnly="true" pattern="HH:mm"/>
+
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column >
+                            <h3>Hora Salida de Trabajo</h3>
+                        </p:column>
+
+                        <p:column >
+                            <p:datePicker id="timeonlyf" timeOnly="true" pattern="HH:mm"/>
+
+                        </p:column>
+
+                    </p:row>
+                    <p:row>                       
+                        <p:column>
+                            <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
+                                Horario <b>laboral</b> detallando Entrada y Salida  
+                            </div>
+                        </p:column>
+                    </p:row>
+
+                    <p:row>
+                        <p:column colspan="1" >
+                            <h3>Importe Horario de Clases</h3>
+                        </p:column>
+                        <p:column colspan="1">
+                            <p:fileUpload mode="simple" skinSimple="true"/>
+                        </p:column>
+                        <p:column>
+                            <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
+                                Descargue la <p:link><b>plantilla de ejemplo</b></p:link> en formato de excel
+                            </div>
+                        </p:column>
+                    </p:row>
+
+                </p:panelGrid>
+                <div class="boton-exito">
+                    <p:commandButton type="button" value="Definir Horarios" />
+                </div>
+            </h:form>  
+
+
+        </h:body>  
+
+
+
+    </ui:define> 
+
+
+</ui:composition>
+
