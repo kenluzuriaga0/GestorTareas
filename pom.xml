@@ -38,7 +38,15 @@
             <artifactId>primefaces</artifactId>
             <version>10.0.0-RC1</version>
         </dependency>
+            <!-- https://mvnrepository.com/artifact/net.bootsfaces/bootsfaces -->
+    <dependency>
+        <groupId>net.bootsfaces</groupId>
+        <artifactId>bootsfaces</artifactId>
+        <version>1.5.0</version>
+    </dependency>
     </dependencies>
+
+
 
     <build>
         <plugins>
