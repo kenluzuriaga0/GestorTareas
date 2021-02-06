@@ -5,8 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      template="/template/bienvenida.xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
     <ui:composition template="/template/bienvenida.xhtml">
 
         <ui:define name="content">
@@ -23,10 +23,10 @@
                             <p:outputLabel> <h1>HORARIOS</h1> </p:outputLabel>  
                         </div>
 
-                        <div class="titulo" style="color: black">
+                        <div class="titulo" style="color: black;">
                             <p:outputLabel>
-                                Llene el siguiente <b>formulario</b> para saber que actividades son las que usted realiza 
-                            </p:outputLabel> 
+                                <h4>Llene el siguiente <b>formulario</b> para saber que actividades son las que usted realiza 
+                                </h4    ></p:outputLabel> 
                         </div>
 
                     </div>
@@ -34,11 +34,11 @@
                         <p:panelGrid  style="margin:  10px 30px" >
                             <p:row >
                                 <p:column colspan="1">
-                                    <h2>Actividad Principal</h2>
+                                    <h3>Actividad Principal</h3>
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:selectManyCheckbox >
+                                    <p:selectManyCheckbox style="font-size: 17px;" >
 
                                         <f:selectItem itemLabel="Trabajar" itemValue="Trabajar"/>
                                         <f:selectItem itemLabel="Estudiar" itemValue="Estudiar"/>
@@ -54,10 +54,10 @@
                             </p:row>
                             <p:row >
                                 <p:column >
-                                    <h2>Horas de Sueño</h2>
+                                    <h3>Horas de Sueño</h3 >
                                 </p:column>
                                 <p:column >
-                                    <p:spinner min="1" max="12"/>
+                                    <p:spinner  min="1" max="12"/>
 
                                 </p:column>
                                 <p:column>
@@ -69,7 +69,7 @@
                             </p:row>
                             <p:row >
                                 <p:column >
-                                    <h2>Tiempo de Transporte</h2>
+                                    <h3>Tiempo de Transporte</h3>
                                 </p:column>
                                 <p:column >
                                     <p:spinner min="0"/>
