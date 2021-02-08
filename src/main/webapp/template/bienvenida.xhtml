@@ -17,12 +17,12 @@
 
         <div >
             <h:form>
-                <b:navBar>
+                <b:navBar inverse="true">
                     <b:navbarLinks>
-                        <b:navLink href="./index.xhtml"> G1 _ H A C K E R M A N</b:navLink>
-                        <b:navLink value="Horarios" iconAwesome="fa-hospital-o" href="./horarios.xhtml"></b:navLink>  
-                        <b:navLink value="Resultados" iconAwesome="fa-book" href="./resultados.xhtml" ></b:navLink>  
-                        <b:navLink value="Perfil" href="./perfil.xhtml"></b:navLink>  
+                        <b:navLink  style="color:white" href="./index.xhtml"> G1 _ H A C K E R M A N</b:navLink>
+                        <b:navLink  style="color:white" value="Horarios" iconAwesome="fa-hospital-o" href="./horarios.xhtml"></b:navLink>  
+                        <b:navLink  style="color:white" value="Resultados" iconAwesome="fa-book" href="./resultados.xhtml" ></b:navLink>  
+                        <b:navLink  style="color:white" value="Perfil" href="./perfil.xhtml"></b:navLink>  
                     </b:navbarLinks>
                     <b:navbarLinks pull="right">
 
@@ -49,7 +49,15 @@
 
         <ui:insert name="content"> </ui:insert>
 
-
+        <div class="footer">
+            <div class="titulo" style="color: black;">
+                <p:outputLabel>
+                    <h5>Derechos Reservados @Grupo1_UG</h5>
+                </p:outputLabel> 
+            
+            </div>
+            
+        </div>
     </h:body>
 </html>
 

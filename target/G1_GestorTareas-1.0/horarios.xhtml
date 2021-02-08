@@ -5,19 +5,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/template/bienvenida.xhtml">
 
         <ui:define name="content">
             <h:head>
                 <title>Horarios</title>
             </h:head>
+
             <h:body>
-                <div class="container">
-                    <f:facet name="last">
-                        <h:outputStylesheet library="css" name="styles.css" />
-                    </f:facet>
+                <div class="contenedor">
+
                     <div class="jumbotron">
                         <div class="titulo">
                             <p:outputLabel> <h1>HORARIOS</h1> </p:outputLabel>  
@@ -25,15 +23,15 @@
 
                         <div class="titulo" style="color: black;">
                             <p:outputLabel>
-                                <h4>Llene el siguiente <b>formulario</b> para saber que actividades son las que usted realiza 
-                                </h4    ></p:outputLabel> 
+                                <h4>Llene el siguiente <b>formulario</b> para saber que actividades son las que usted realiza </h4>
+                            </p:outputLabel> 
                         </div>
 
                     </div>
                     <h:form>
-                        <p:panelGrid  style="margin:  10px 30px" >
+                        <p:panelGrid  style="margin: 0 auto;" >
                             <p:row >
-                                <p:column colspan="1">
+                                <p:column colspan="1" >
                                     <h3>Actividad Principal</h3>
                                 </p:column>
 
@@ -47,7 +45,7 @@
 
                                 </p:column>
                                 <p:column>
-                                    <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
+                                    <div class="observaciones">
                                         Puede elegir mas de una actividad principal que desempeñe <b>diariamente</b>
                                     </div>
                                 </p:column>
@@ -56,12 +54,12 @@
                                 <p:column >
                                     <h3>Horas de Sueño</h3 >
                                 </p:column>
-                                <p:column >
-                                    <p:spinner  min="1" max="12"/>
+                                <p:column  >
+                                    <p:spinner style="font-size: 14px !important;" min="1" max="12"/>
 
                                 </p:column>
                                 <p:column>
-                                    <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
+                                    <div class="observaciones" >
                                         Se recomienda dormir de <b>7 a 8 horas</b> todos los dias para tener energia
                                     </div>
                                 </p:column>
@@ -76,7 +74,7 @@
 
                                 </p:column>
                                 <p:column>
-                                    <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
+                                    <div class="observaciones">
                                         Tiempo en <b>minutos</b> el cual se demora en transportarse de un lugar a otro para realizar su actividad principal
                                     </div>
                                 </p:column>
@@ -87,7 +85,7 @@
                         <div class="titulo">
                             <p:outputLabel> <h2>Detalle</h2> </p:outputLabel>  
                         </div>
-                        <p:panelGrid columns="3"  style="margin:  10px 30px" >
+                        <p:panelGrid columns="3"  style="margin: 0 auto" >
                             <p:row>
                                 <p:column >
                                     <h3>Hora Entrada de Trabajo</h3>
@@ -112,7 +110,7 @@
                             </p:row>
                             <p:row>                       
                                 <p:column>
-                                    <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
+                                    <div class="observaciones" >
                                         Horario <b>laboral</b> detallando Entrada y Salida  
                                     </div>
                                 </p:column>
@@ -123,17 +121,17 @@
                                     <h3>Importe Horario de Clases</h3>
                                 </p:column>
                                 <p:column colspan="1">
-                                    <p:fileUpload mode="simple" skinSimple="true"/>
+                                    <p:fileUpload styleClass="boton" label="Subir Excel" mode="simple" skinSimple="true"/>
                                 </p:column>
                                 <p:column>
-                                    <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
-                                        Descargue la <p:link><b>plantilla de ejemplo</b></p:link> en formato de excel
+                                    <div class="observaciones" >
+                                        Descargue la <p:link style="font-size: 15px;"><b>plantilla de ejemplo</b></p:link> en formato de excel
                                     </div>
                                 </p:column>
                             </p:row>
 
                         </p:panelGrid>
-                        <div class="boton-exito">
+                        <div class="boton-definirHorario">
                             <p:commandButton type="button" value="Definir Horarios" />
                         </div>
                     </h:form>  
