@@ -1,0 +1,51 @@
+body{
+    /*width: 75%;*/
+    margin: 0 ;
+    padding: 0;
+
+    /* background: gray;*/
+}		
+.ola{
+    padding: 5px;
+}
+
+.ui-panelgrid-cell{
+
+    border: 1px solid #F1FAEE !important;
+    padding: 15px !important;
+    background: #F1FAEE;
+}
+
+#cuadroLogin{
+    display: flex;
+
+    place-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #457B9D;
+
+}
+
+.ui-button-text-only{
+    background-color:  red;
+}
+.ui-menubar  {
+
+    background:  #14213D;
+    color: white;
+
+}
+
+.ui-menuitem-text{
+
+    color: white ;
+}
+.ui-button  {
+    background: #E63946 !important;
+
+}
+.ui-button-text{
+    color:white;
+    font-size: 17px;
+
+}

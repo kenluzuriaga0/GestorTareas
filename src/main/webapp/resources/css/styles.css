@@ -87,7 +87,7 @@ body{
 }
 .observaciones{
     font-size: 14px; 
-    ;width: 28rem;
+    width: 28rem;
     color: #457B9D;
 }
 
@@ -100,4 +100,15 @@ body{
     justify-content: center;    
     height: 60px;
     background: #EEEEEE;
+}
+.textArea{
+    font-size: 15px !Important;
+} 
+
+.panelcito{
+    margin: 0 auto;
+}
+
+.ui-inputfield{
+    font-size: 17px !Important;
 }
