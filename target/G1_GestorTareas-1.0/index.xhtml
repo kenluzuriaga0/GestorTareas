@@ -7,6 +7,7 @@
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <title>Login G1</title>
+         <link rel="shortcut icon" href="/favicon.ico" />
     </h:head>
     <h:body>
         <f:facet name="last">
@@ -46,8 +47,8 @@
                         </p:column>
                     </p:row>
                     <p:row>
-                        <p:column > <p:commandButton value="Iniciar" icon="pi pi-sign-in" action="#{beanSueno.guardar()}" ajax="false" /></p:column >
-                        <p:column > <p:link value="olvidé mi contraseña" /> </p:column> 
+                        <p:column > <p:commandButton value="Iniciar" icon="pi pi-sign-in"  ajax="false" /></p:column >
+                        <p:column > <p:link value="olvidé mi contraseña" outcome="inversion.xhtml" /> </p:column> 
                     </p:row>
 
                     <p:row>
