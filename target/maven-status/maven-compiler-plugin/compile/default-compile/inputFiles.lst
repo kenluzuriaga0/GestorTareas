@@ -1,20 +1,29 @@
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\entities\Actividad.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\TipoHorarioFacadeLocal.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\ActividadFacadeLocal.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\HorarioFacade.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\AbstractFacade.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\HorarioInvertidoFacadeLocal.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\entities\Materia.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\UsuarioFacade.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\ActividadFacade.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\HorarioFacadeLocal.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\MateriaFacade.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\UsuarioFacadeLocal.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\entities\TipoHorario.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\entities\Usuario.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\entities\Horario.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\HorarioInvertidoFacade.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\controlador\BeanMateria.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\MateriaFacadeLocal.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\sessions\TipoHorarioFacade.java
-C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\JAVA\PIS IV\G1_GestorTareas\src\main\java\entities\HorarioInvertido.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\VariosFacade.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\entities\HorariosInver.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\ClasesFacade.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\entities\Trabajos.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\HorariosOcupFacade.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\UsuariosFacade.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\controlador\BeanSueno.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\CursosFacadeLocal.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\HorariosOcupFacadeLocal.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\HorariosInverFacade.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\VariosFacadeLocal.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\SuenoFacade.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\entities\Varios.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\entities\Sueno.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\UsuariosFacadeLocal.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\CursosFacade.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\SuenoFacadeLocal.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\entities\Libros.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\entities\Clases.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\LibrosFacade.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\HorariosInverFacadeLocal.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\entities\Cursos.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\TrabajosFacade.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\entities\HorariosOcup.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\entities\Usuarios.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\ClasesFacadeLocal.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\LibrosFacadeLocal.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\TrabajosFacadeLocal.java
+C:\Users\kenlu\Documents\MEGAsync\SISTEMAS\Programacion\Universidad Proyectos\PIS IV\G1_GestorTareas\src\main\java\sessions\AbstractFacade.java

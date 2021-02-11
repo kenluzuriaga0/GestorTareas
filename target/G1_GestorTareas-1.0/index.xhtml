@@ -13,7 +13,6 @@
             <h:outputStylesheet library="css" name="styles.css" />
         </f:facet>
 
-
         <h:form>  
             <p:menubar>
                 <p:menuitem value="G1 HACKERMAN"  icon="pi pi-desktop" />
@@ -38,16 +37,16 @@
 
                     <p:row>
                         <p:column styleClass="columna" colspan="2">
-                            <p:inputText styleClass="GreenButton" id="inputsazo" value="#{beanMateria.materia.id}" placeholder="Correo Electrónico"/>
+                            <p:inputText styleClass="GreenButton" id="inputsazo" value="#{beanSueno.sueno.id}" placeholder="Correo Electrónico"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column colspan="2">
-                            <p:password styleClass="inputsazo" value="#{beanMateria.materia.nombre}" placeholder="Contraseña"/>
+                            <p:password styleClass="inputsazo" value="#{beanSueno.sueno.horasSueno}" placeholder="Contraseña"/>
                         </p:column>
                     </p:row>
                     <p:row>
-                        <p:column > <p:commandButton value="Iniciar" icon="pi pi-sign-in" action="#{beanMateria.guardar}" ajax="false" /></p:column >
+                        <p:column > <p:commandButton value="Iniciar" icon="pi pi-sign-in" action="#{beanSueno.guardar()}" ajax="false" /></p:column >
                         <p:column > <p:link value="olvidé mi contraseña" /> </p:column> 
                     </p:row>
 
