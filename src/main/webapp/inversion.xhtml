@@ -14,103 +14,119 @@
             </h:head>
             <h:body>
 
-                <f:facet name="last">
-                    <h:outputStylesheet library="css" name="styles.css" />
-                </f:facet>
+                <div class="contenedor">
+                    <div class="jumbotron">
+                        <div class="titulo">
+                            <p:outputLabel> <h1>Inversion de Tiempo</h1> </p:outputLabel>  
+                        </div>
 
-                <div class="titulo">
-                    <p:outputLabel> <h1>Inversion de Tiempo</h1> </p:outputLabel>  
-                </div>
-
-                <div class="titulo" style="color: black">
-                    <p:outputLabel>
-                        Selecciones las actividades que desea <b>invertirle tiempo</b> por este mes
-                    </p:outputLabel>
-                </div>
-                <h:form>
-                    <p:panelGrid  style="margin:  10px 30px" >
-                        <p:row >
-                            <p:column colspan="1">
-                                <h2>Actividad productiva</h2>
-                            </p:column>
-
-                            <p:column colspan="1">
-                                <p:selectManyCheckbox >
-
-                                    <f:selectItem itemLabel="Leer un libro" itemValue="Lectura"/>
-                                    <f:selectItem itemLabel="Estudiar cursos online" itemValue="Cursos"/>
-                                    <f:selectItem itemLabel="Hacer ejercicio" itemValue="Ejercicio"/>
-
-                                </p:selectManyCheckbox>
-
-                            </p:column>
-                            <p:column>
-                                <div class="p-mb-3 demo-container" style="width: 20rem;color: #457B9D;">
-                                    Puede elegir mas de una actividad productiva que quisiera hacer <b>diariamente</b>
-                                </div>
-                            </p:column>
-                        </p:row>
-                        <p:row >
-                            <p:column colspan="1">
-                                <h2>Buscar Libro a leer</h2>
-                            </p:column>
-
-                            <p:column colspan="1">
-                                <p:commandButton value="Buscar" type="button" onclick="PF('dlg3').show()" icon="pi pi-search"/>
-                            </p:column>
-
-                        </p:row> 
-                        <p:row >
-                            <p:column colspan="1">
-                                <h2>Digite el curso online a realizar</h2>
-                            </p:column>
-
-                            <p:column colspan="1">
-                                <p:inputTextarea cols="50" placeholder="Nombre del Curso"/>
-                            </p:column>
-
-                        </p:row> 
-                        <p:row >
-                            <p:column colspan="1">
-                                <h2>Detalle que ejercicios realizará</h2>
-                            </p:column>
-
-                            <p:column colspan="1">
-                                <p:inputTextarea cols="50" placeholder="Detalle"/>
-                            </p:column>
-
-                        </p:row> 
-                    </p:panelGrid>
-                    <div class="boton-exito">
-                        <p:commandButton type="button" value="Definir Inversion" />
+                        <div class="titulo" style="color: black;">
+                            <p:outputLabel>
+                                <h4>Selecciones las actividades que desea <b>invertirle tiempo</b> por este mes</h4>
+                            </p:outputLabel> 
+                        </div>
                     </div>
+                    <h:form>
+                        <p:panelGrid  style="margin: 0 auto;"  >
+                            <p:row >
+                                <p:column colspan="1">
+                                    <h2>Actividad productiva</h2>
+                                </p:column>
 
-                </h:form>
-                <p:dialog header="Google Books API" widgetVar="dlg3" minHeight="60" width="500" showEffect="fade">
-                    <p:inputText/>
-                    <p:dataTable var="product" value="">
-                        <p:column headerText="Nombre">
-                            <h:outputText value="" />
-                        </p:column>
+                                <p:column colspan="1">
+                                    <p:selectManyCheckbox style="font-size: 17px;" >
 
-                        <p:column headerText="Autor">
-                            <h:outputText value="" />
-                        </p:column>
+                                        <f:selectItem itemLabel="Leer un libro" itemValue="Lectura"/>
+                                        <f:selectItem itemLabel="Estudiar cursos online" itemValue="Cursos"/>
+                                        <f:selectItem itemLabel="Hacer ejercicio" itemValue="Ejercicio"/>
 
-                        <p:column headerText="Genero">
-                            <h:outputText value="" />
-                        </p:column>
+                                    </p:selectManyCheckbox>
 
-                        <p:column headerText="Paginas">
-                            <h:outputText value="" />
-                        </p:column>
-                    </p:dataTable>
-                    <f:facet name="footer">
-                        <p:commandButton type="button" value="No"  styleClass="ui-button-flat p-mr-2" style="width: 6rem" />
-                        <p:commandButton type="button" value="Yes" style="width: 5rem" />
-                    </f:facet>
-                </p:dialog>
+                                </p:column>
+                                <p:column>
+                                    <div class="p-mb-3 demo-container" style="width: 30 rem;color: #457B9D;">
+                                        <h5>Puede elegir mas de una actividad productiva que quisiera hacer <b>diariamente</b>
+                                        </h5>
+                                    </div>
+                                </p:column>
+                            </p:row>
+                            <p:row >
+                                <p:column colspan="1">
+                                    <h2>Buscar Libro a leer</h2>
+                                </p:column>
 
+                                <p:column colspan="1">
+                                    <p:commandButton value="Buscar" type="button" onclick="PF('dlg3').show()" icon="pi pi-search"/>
+                                </p:column>
+                                <p:column colspan="1">
+                                    <div class="p-mb-3 demo-container" style="width: 30 rem;color: #457B9D;">
+                                        <h5> Elija el libro desde la <b>biblioteca de Google </b></h5>
+                                    </div>
+                                </p:column>
+                            </p:row> 
+                            <p:row >
+                                <p:column colspan="1">
+                                    <h2>Digite el curso online a realizar</h2>
+                                </p:column>
+
+                                <p:column colspan="1">
+                                    <p:inputTextarea cols="50" placeholder="Nombre del Curso"/>
+                                </p:column>
+                                <p:column colspan="1">
+                                    <div class="p-mb-3 demo-container" style="width: 30 rem;color: #457B9D;">
+                                        <h5> Digite el detalle del <b>curso online</b> que desea seguir </h5>
+                                    </div>
+                                </p:column>
+
+                            </p:row> 
+                            <p:row >
+                                <p:column colspan="1">
+                                    <h2>Detalle alguna otra actividad</h2>
+                                </p:column>
+
+                                <p:column colspan="1">
+                                    <p:inputTextarea cols="50" placeholder="Detalle"/>
+                                </p:column>
+                                <p:column colspan="1">
+                                    <div class="p-mb-3 demo-container" style="width: 30 rem;color: #457B9D;">
+                                        <h5> Campo para uso <b>libre </b></h5>
+                                    </div>
+                                </p:column>
+
+                            </p:row> 
+                        </p:panelGrid>
+                        <div class="boton-definirHorario">
+                            <p:commandButton type="button" value="Definir Inversion" />
+                        </div>
+
+                        <div style="height: 80px;"></div>
+
+                    </h:form>
+                    <p:dialog header="Google Books API" widgetVar="dlg3" minHeight="60" width="500" showEffect="fade">
+                        <p:inputText/>
+                        <p:dataTable var="product" value="">
+                            <p:column headerText="Nombre">
+                                <h:outputText value="" />
+                            </p:column>
+
+                            <p:column headerText="Autor">
+                                <h:outputText value="" />
+                            </p:column>
+
+                            <p:column headerText="Genero">
+                                <h:outputText value="" />
+                            </p:column>
+
+                            <p:column headerText="Paginas">
+                                <h:outputText value="" />
+                            </p:column>
+                        </p:dataTable>
+                        <f:facet name="footer">
+                            <p:commandButton type="button" value="No"  styleClass="ui-button-flat p-mr-2" style="width: 6rem" />
+                            <p:commandButton type="button" value="Yes" style="width: 5rem" />
+                        </f:facet>
+                    </p:dialog>
+                </div>
             </h:body>
 
 
