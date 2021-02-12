@@ -9,6 +9,7 @@ sessions\UsuariosFacade.class
 entities\Cursos.class
 sessions\TrabajosFacadeLocal.class
 sessions\VariosFacadeLocal.class
+controlador\beanTemplate.class
 entities\Usuarios.class
 entities\Varios_.class
 entities\Clases.class

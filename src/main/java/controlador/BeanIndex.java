@@ -51,6 +51,10 @@ public class BeanIndex implements Serializable{
             user = usuariosFacade.iniciarSesion(usuarios);
 
             if (user != null) {
+                
+                //la sesion activa
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("loggeado", user);
+                
                 pagina = "horarios?faces-redirect=true"; //convertir navegacion explicita
             } else {
                 FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Datos ingresados son incorrectos"));
