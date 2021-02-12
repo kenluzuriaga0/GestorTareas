@@ -58,4 +58,5 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> implements Usuarios
     }
     
     
+    
 }

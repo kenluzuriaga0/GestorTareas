@@ -28,12 +28,22 @@
                     </b:navbarLinks>
                     <b:navbarLinks pull="right">
 
-                        <p:commandButton style="font-size: 14px; margin-top:5px; padding: 5px; " type="button"  value="Salir" icon="pi pi-home"/>
+                        <b:navLink update="gridlogout" oncomplete="PF('dlglogout').show()" value="Salir" iconAwesome="fa-sign-out" style="font-size:14px;margin-top:5px;padding:5px;color: white"/>
                     </b:navbarLinks>
 
                 </b:navBar>
             </h:form>
         </div>
+        <p:dialog header="Cerrar Sesión" widgetVar="dlglogout" resizable="false" draggable="false" responsive="true" modal="true" closable="false" closeOnEscape="false">
+            <p:panelGrid id="gridlogout" columns="1" layout="grid" columnClasses="ui-g-12 ui-md-12"> 
+                <p class="dialogos">Se Cerrará la Sesión</p>
+                <p class="dialogos"> ¿Desea continuar?</p>
+                <f:facet name="footer">
+                    <p:commandButton process="gridlogout" value="Aceptar"  actionListener="#{beanIndex.logOut()}" oncomplete="PF('dlglogout').hide()"/>
+                    <p:commandButton value="Cancelar" oncomplete="PF('dlglogout').hide()"/>
+                </f:facet>
+            </p:panelGrid>
+        </p:dialog>
 
         <ui:insert name="content"> </ui:insert>
 
@@ -42,9 +52,9 @@
                 <p:outputLabel>
                     <h5>Derechos Reservados @Grupo1_UG</h5>
                 </p:outputLabel> 
-            
+
             </div>
-            
+
         </div>
     </h:body>
 </html>
