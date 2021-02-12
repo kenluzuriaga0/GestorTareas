@@ -7,7 +7,7 @@
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <title>Login G1</title>
-         <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
     </h:head>
     <h:body>
         <f:facet name="last">
@@ -30,24 +30,27 @@
 
         <div id="cuadroLogin">
             <h:form >
-                <p:panelGrid id="cuadroLogin1" style="text-align: center"> 
 
+                <p:panelGrid id="cuadroLogin1" style="text-align: center"> 
+                    <p:growl id="growl"  showDetail="true">
+
+                    </p:growl>                   
                     <p:row>
                         <p:column style="" colspan="2"><h4> Inicio de sesion</h4></p:column>
                     </p:row>
 
                     <p:row>
                         <p:column styleClass="columna" colspan="2">
-                            <p:inputText styleClass="GreenButton" id="inputsazo" value="#{beanSueno.sueno.id}" placeholder="Correo Electrónico"/>
+                            <p:inputText styleClass="GreenButton" required="true" id="inputsazo" value="#{beanIndex.usuarios.username}" placeholder="Correo Electrónico"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column colspan="2">
-                            <p:password styleClass="inputsazo" value="#{beanSueno.sueno.horasSueno}" placeholder="Contraseña"/>
+                            <p:password styleClass="inputsazo" required="true" value="#{beanIndex.usuarios.password}" placeholder="Contraseña"/>
                         </p:column>
                     </p:row>
                     <p:row>
-                        <p:column > <p:commandButton value="Iniciar" icon="pi pi-sign-in"  ajax="false" /></p:column >
+                        <p:column > <p:commandButton update="growl" value="Iniciar" action="#{beanIndex.logearse()}" icon="pi pi-sign-in"  ajax="false" /></p:column >
                         <p:column > <p:link value="olvidé mi contraseña" outcome="inversion.xhtml" /> </p:column> 
                     </p:row>
 

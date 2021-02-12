@@ -6,9 +6,11 @@
 package sessions;
 
 import entities.Usuarios;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,32 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> implements Usuarios
     public UsuariosFacade() {
         super(Usuarios.class);
     }
+    
+    
+    @Override
+    public Usuarios iniciarSesion(Usuarios user){
+        Usuarios usuario = null;
+        
+        try {
+            System.out.println(user.getUsername()+" "+user.getPassword());
+            Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.username= ?1 AND u.password= ?2");
+            query.setParameter(1, user.getUsername());
+            query.setParameter(2, user.getPassword());
+            
+            List<Usuarios> lista = query.getResultList();
+            
+            if(!lista.isEmpty()){
+                usuario = lista.get(0);
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error Facade usuarios "+e.getMessage());
+            throw e;
+        }
+        return usuario;
+        
+        
+    }
+    
     
 }
