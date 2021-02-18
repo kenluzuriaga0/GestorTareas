@@ -3,26 +3,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:b="http://bootsfaces.net/ui">
-    <h:head>
-        <title>Acceso Denegado</title>
-    </h:head>
-    <h:body>
-        <div class="contenedor">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template/bienvenida.xhtml">
 
-            <div class="jumbotron">
-                <div class="titulo">
-                    <p:outputLabel> <h1>Acceso Denegado</h1> </p:outputLabel>  
+        <ui:define name="content">
+            <h:head>
+                <title>Acceso Denegado</title>
+            </h:head>
+            <h:body>
+                <div class="contenedor">
+
+                    <div class="jumbotron">
+                        <div class="titulo">
+                            <p:outputLabel> <h1>Acceso Denegado</h1> </p:outputLabel>  
+                        </div>
+
+                        <div class="titulo" style="color: black;">
+                            <p:outputLabel>
+                                <h4>No puede ingresar a esta pagina. <b>Permisos insuficientes</b></h4>
+                            </p:outputLabel> 
+                        </div>
+
+                    </div>
                 </div>
+            </h:body>
 
-                <div class="titulo" style="color: black;">
-                    <p:outputLabel>
-                        <h4>No puede ingresar a esta pagina. <b>Permisos insuficientes</b></h4>
-                    </p:outputLabel> 
-                </div>
+        </ui:define>
+    </ui:composition>
 
-            </div>
-        </div>
-    </h:body>
 </html>
 

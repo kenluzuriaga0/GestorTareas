@@ -11,7 +11,7 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-02-12T02:44:13")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-02-18T00:33:42")
 @StaticMetamodel(HorariosInver.class)
 public class HorariosInver_ { 
 

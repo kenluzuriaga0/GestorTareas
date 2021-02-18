@@ -7,7 +7,7 @@
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <title>Login G1</title>
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" href="resources/images/icono.png" />
     </h:head>
     <h:body>
         <f:facet name="last">
@@ -16,7 +16,7 @@
 
         <h:form>  
             <p:menubar>
-                <p:menuitem value="G1 HACKERMAN"  icon="pi pi-desktop" />
+                <p:menuitem value="G1 HACKERMAN" target="_BLANK" url="https://www.instagram.com/anthonyjosue66/" icon="pi pi-desktop" />
                 <f:facet name="options">
                     <p:sidebar widgetVar="sidebar4" position="bottom" baseZIndex="10000">
                         <h1 >G1 PROYECTO INTEGRADOR <img src="resources/images/UGlogo.png" width="60px" /></h1>
@@ -41,12 +41,12 @@
 
                     <p:row>
                         <p:column styleClass="columna" colspan="2">
-                            <p:inputText styleClass="GreenButton" required="true" id="inputsazo" value="#{beanIndex.usuarios.username}" placeholder="Correo Electrónico"/>
+                            <p:inputText styleClass="GreenButton" required="true" id="inputsazo" value="#{beanIndex.usuarios.username}" placeholder="username"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column colspan="2">
-                            <p:password styleClass="inputsazo" required="true" value="#{beanIndex.usuarios.password}" placeholder="Contraseña"/>
+                            <p:password styleClass="inputsazo" required="true" value="#{beanIndex.usuarios.password}" placeholder="contraseña"/>
                         </p:column>
                     </p:row>
                     <p:row>

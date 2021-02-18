@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
     
     <ui:composition template="/template/bienvenida.xhtml">
 
@@ -37,11 +38,12 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:selectManyCheckbox style="font-size: 17px;" >
+                                    <p:selectManyCheckbox  id="cajita" style="font-size: 17px;" value="#{beanHorarios.actividadPrincipal}">
 
-                                        <f:selectItem itemLabel="Trabajar" itemValue="Trabajar"/>
+                                        <f:selectItem  itemLabel="Trabajar"  itemValue="Trabajar"/>
+
                                         <f:selectItem itemLabel="Estudiar" itemValue="Estudiar"/>
-
+                                        
                                     </p:selectManyCheckbox>
 
                                 </p:column>
@@ -56,7 +58,7 @@
                                     <h2>Horas de Sueño</h2>
                                 </p:column>
                                 <p:column  >
-                                    <p:spinner  styleClass="spinnercisco" min="1" max="12"/>
+                                    <p:spinner suffix=" Horas" styleClass="spinnercisco" min="1" max="12"/>
                                     
                                 </p:column>
                                 <p:column>
@@ -71,7 +73,7 @@
                                     <h2>Tiempo de Transporte</h2>
                                 </p:column>
                                 <p:column >
-                                    <p:spinner min="0"/>
+                                    <p:spinner value="#{beanHorarios.usuario.tiempoTrans}" suffix=" Minutos" min="0"/>
 
                                 </p:column>
                                 <p:column>
@@ -89,22 +91,21 @@
                         <p:panelGrid columns="3"   styleClass="panelcito" >
                             <p:row>
                                 <p:column >
-                                    <h2>Hora Entrada de Trabajo</h2>
+                                    <h2>Razon Social </h2>
                                 </p:column>
 
 
                                 <p:column >
-                                    <p:datePicker id="timeonly" timeOnly="true" pattern="HH:mm"/>
-
+                                    <p:inputText placeholder="Empresa S.A"/>
                                 </p:column>
                             </p:row>
                             <p:row>
                                 <p:column >
-                                    <h2>Hora Salida de Trabajo</h2>
+                                    <h2>Jornada Laboral</h2>
                                 </p:column>
 
                                 <p:column >
-                                    <p:datePicker id="timeonlyf" timeOnly="true" pattern="HH:mm"/>
+                                    <p:spinner id="prefix" suffix=" Horas" min="0"/>
 
                                 </p:column>
 
@@ -112,7 +113,7 @@
                             <p:row>                       
                                 <p:column>
                                     <div class="observaciones" >
-                                        Horario <b>laboral</b> detallando Entrada y Salida  
+                                        Nombre de la Empresa y horario de <b>jornada laboral</b>
                                     </div>
                                 </p:column>
                             </p:row>
@@ -125,7 +126,7 @@
                                     <p:fileUpload styleClass="boton" label="Subir Excel" mode="simple" skinSimple="true"/>
                                 </p:column>
                                 <p:column>
-                                    <div class="observaciones" >
+                                    <div class="observaciones" style="margin-top: 10px;" >
                                         Descargue la <p:link style="font-size: 15px;"><b>plantilla de ejemplo</b></p:link> en formato de excel
                                     </div>
                                 </p:column>
@@ -133,7 +134,7 @@
 
                         </p:panelGrid>
                         <div class="boton-definirHorario">
-                            <p:commandButton type="button" value="Definir Horarios" />
+                            <p:commandButton  ajax="false" process="@this" action="#{beanHorarios.definirHorarios()}" value="Definir Horarios" />
                         </div>
                     </h:form>  
                 </div>

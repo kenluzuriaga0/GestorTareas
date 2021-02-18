@@ -37,4 +37,5 @@ controlador\BeanIndex.class
 entities\Sueno_.class
 entities\Varios.class
 entities\HorariosInver_.class
+controlador\BeanHorarios.class
 sessions\CursosFacade.class
