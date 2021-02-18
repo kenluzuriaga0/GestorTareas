@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Trabajos.findAll", query = "SELECT t FROM Trabajos t")
     , @NamedQuery(name = "Trabajos.findById", query = "SELECT t FROM Trabajos t WHERE t.id = :id")
     , @NamedQuery(name = "Trabajos.findByEmpresa", query = "SELECT t FROM Trabajos t WHERE t.empresa = :empresa")
-    , @NamedQuery(name = "Trabajos.findByCargo", query = "SELECT t FROM Trabajos t WHERE t.cargo = :cargo")
     , @NamedQuery(name = "Trabajos.findByHorasLaborales", query = "SELECT t FROM Trabajos t WHERE t.horasLaborales = :horasLaborales")
     , @NamedQuery(name = "Trabajos.findByEstado", query = "SELECT t FROM Trabajos t WHERE t.estado = :estado")})
 public class Trabajos implements Serializable {
@@ -48,9 +47,6 @@ public class Trabajos implements Serializable {
     @Size(max = 40)
     @Column(name = "EMPRESA")
     private String empresa;
-    @Size(max = 40)
-    @Column(name = "CARGO")
-    private String cargo;
     @Column(name = "HORAS_LABORALES")
     private BigInteger horasLaborales;
     @Size(max = 40)
@@ -80,14 +76,6 @@ public class Trabajos implements Serializable {
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
     }
 
     public BigInteger getHorasLaborales() {

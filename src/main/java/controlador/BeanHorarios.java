@@ -11,11 +11,14 @@ import entities.Sueno;
 import entities.Trabajos;
 import entities.Usuarios;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import sessions.SuenoFacadeLocal;
+import sessions.TrabajosFacadeLocal;
 import sessions.UsuariosFacadeLocal;
 
 /**
@@ -28,6 +31,10 @@ public class BeanHorarios implements Serializable {
 
     @EJB
     private UsuariosFacadeLocal usuariosFacade;
+    @EJB
+    private TrabajosFacadeLocal trabajosFacade;
+    @EJB
+    private SuenoFacadeLocal suenoFacade;
 
     private boolean checkboxito;
     private String[] actividadPrincipal; //para setear
@@ -39,25 +46,27 @@ public class BeanHorarios implements Serializable {
     private HorariosOcup horarioOcupado;
 
     public BeanHorarios() {
-
         usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
-
+        trabajos = new Trabajos();
+        suenito = new Sueno();
+        
+        
     }
 
     @PostConstruct
     public void init() {
-        Trabajos trabajos = new Trabajos();
-        Sueno suenito = new Sueno();
 
+        
+        
     }
 
     public void definirHorarios() {
-        System.out.println(usuario.toString());
 
-        setearActividad();
-        updateActivTrans();
-        System.out.println(usuario.toString());
-
+        setearActividad(); //array a String de tabla usuario
+        updateActivTrans(); //merge a usuario
+        
+        agregarSuenoYtrabajo();
+        System.out.println(BigDecimal.valueOf(10) + "ostiah");
     }
 
     private void updateActivTrans() {
@@ -75,7 +84,25 @@ public class BeanHorarios implements Serializable {
         usuario.setActivPrincipal(actividad);
 
     }
+    
+    private void agregarSuenoYtrabajo(){
+        suenito.setId(BigDecimal.valueOf(1));
+        suenoFacade.create(suenito);
+        
+        trabajos.setId(BigDecimal.valueOf(1));
+        trabajos.setEstado("activo");
+        trabajosFacade.create(trabajos);
+    }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public String[] getActividadPrincipal() {
         setCheckboxito(true);
         return actividadPrincipal;

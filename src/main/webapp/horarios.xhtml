@@ -55,10 +55,10 @@
                             </p:row>
                             <p:row >
                                 <p:column >
-                                    <h2>Horas de Sueño</h2>
+                                    <h2>Horas de Sueño *</h2>
                                 </p:column>
                                 <p:column  >
-                                    <p:spinner suffix=" Horas" styleClass="spinnercisco" min="1" max="12"/>
+                                    <p:spinner value="#{beanHorarios.suenito.horasSueno}" suffix=" Horas" styleClass="spinnercisco" min="1" max="12"/>
                                     
                                 </p:column>
                                 <p:column>
@@ -96,16 +96,16 @@
 
 
                                 <p:column >
-                                    <p:inputText placeholder="Empresa S.A"/>
+                                    <p:inputText placeholder="Empresa S.A" value="#{beanHorarios.trabajos.empresa}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
                                 <p:column >
-                                    <h2>Jornada Laboral</h2>
+                                    <h2>Jornada Laboral </h2>
                                 </p:column>
 
                                 <p:column >
-                                    <p:spinner id="prefix" suffix=" Horas" min="0"/>
+                                    <p:spinner id="prefix" value="#{beanHorarios.trabajos.horasLaborales}" suffix=" Horas" min="0"/>
 
                                 </p:column>
 
@@ -134,7 +134,7 @@
 
                         </p:panelGrid>
                         <div class="boton-definirHorario">
-                            <p:commandButton  ajax="false" process="@this" action="#{beanHorarios.definirHorarios()}" value="Definir Horarios" />
+                            <p:commandButton  ajax="false" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios" />
                         </div>
                     </h:form>  
                 </div>
