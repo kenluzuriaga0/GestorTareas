@@ -6,6 +6,7 @@
 package sessions;
 
 import entities.HorariosInver;
+import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class HorariosInverFacade extends AbstractFacade<HorariosInver> implement
 
     public HorariosInverFacade() {
         super(HorariosInver.class);
+    }
+        @Override
+    public int getMaxId() {
+        return (em.createQuery("SELECT MAX(h.id) FROM Horarios_inver h", BigDecimal.class).getSingleResult()).intValue();
     }
     
 }

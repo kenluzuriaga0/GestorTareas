@@ -6,6 +6,7 @@
 package sessions;
 
 import entities.Cursos;
+import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,9 @@ public class CursosFacade extends AbstractFacade<Cursos> implements CursosFacade
     public CursosFacade() {
         super(Cursos.class);
     }
-    
+
+    @Override
+    public int getMaxId() {
+        return (em.createQuery("SELECT MAX(c.id) FROM Cursos c", BigDecimal.class).getSingleResult()).intValue();
+    }
 }

@@ -30,6 +30,7 @@ public interface UsuariosFacadeLocal {
 
     int count();
     
+    public int getMaxId();
     Usuarios iniciarSesion(Usuarios user);
     
     

@@ -30,4 +30,6 @@ public interface HorariosOcupFacadeLocal {
 
     int count();
     
+     public int getMaxId();
+    
 }

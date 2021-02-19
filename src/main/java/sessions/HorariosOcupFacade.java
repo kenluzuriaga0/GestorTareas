@@ -6,6 +6,7 @@
 package sessions;
 
 import entities.HorariosOcup;
+import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,8 @@ public class HorariosOcupFacade extends AbstractFacade<HorariosOcup> implements 
     public HorariosOcupFacade() {
         super(HorariosOcup.class);
     }
-    
+        @Override
+    public int getMaxId() {
+        return (em.createQuery("SELECT MAX(o.id) FROM HORARIOS_OCUP o", BigDecimal.class).getSingleResult()).intValue();
+    }
 }

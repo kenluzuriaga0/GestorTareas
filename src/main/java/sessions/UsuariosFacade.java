@@ -6,6 +6,7 @@
 package sessions;
 
 import entities.Usuarios;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -54,9 +55,13 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> implements Usuarios
         }
         return usuario;
         
-        
     }
-    
+
+    @Override
+    public int getMaxId(){
+         return (em.createQuery("SELECT MAX(u.id) FROM Usuarios u",BigDecimal.class).getSingleResult()).intValue();
+         
+     }
     
     
 }

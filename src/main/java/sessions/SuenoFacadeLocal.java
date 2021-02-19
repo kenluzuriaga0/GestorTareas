@@ -30,4 +30,5 @@ public interface SuenoFacadeLocal {
 
     int count();
     
+    int getMaxId();
 }

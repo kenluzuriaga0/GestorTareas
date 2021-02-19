@@ -30,4 +30,6 @@ public interface TrabajosFacadeLocal {
 
     int count();
     
+    public int getMaxId();
+    
 }

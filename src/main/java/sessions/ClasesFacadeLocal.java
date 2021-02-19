@@ -29,5 +29,5 @@ public interface ClasesFacadeLocal {
     List<Clases> findRange(int[] range);
 
     int count();
-    
+    public int getMaxId();
 }

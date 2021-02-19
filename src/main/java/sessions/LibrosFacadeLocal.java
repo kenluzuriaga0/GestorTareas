@@ -29,5 +29,5 @@ public interface LibrosFacadeLocal {
     List<Libros> findRange(int[] range);
 
     int count();
-    
+    public int getMaxId();
 }

@@ -29,5 +29,5 @@ public interface HorariosInverFacadeLocal {
     List<HorariosInver> findRange(int[] range);
 
     int count();
-    
+    public int getMaxId();
 }

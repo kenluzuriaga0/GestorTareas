@@ -6,6 +6,7 @@
 package sessions;
 
 import entities.Sueno;
+import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,8 @@ public class SuenoFacade extends AbstractFacade<Sueno> implements SuenoFacadeLoc
     public SuenoFacade() {
         super(Sueno.class);
     }
-    
+    @Override
+    public int getMaxId(){
+        return (em.createQuery("SELECT MAX(s.id) FROM Sueno s", BigDecimal.class).getSingleResult()).intValue();
+    }
 }
