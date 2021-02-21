@@ -31,7 +31,7 @@
                         </div>
 
                     </div>
-                    <h:form>
+                    <h:form id="form">
                         <p:panelGrid   styleClass="panelcito" >
                             <p:row >
                                 <p:column colspan="1" >
@@ -39,8 +39,10 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:selectManyCheckbox  id="cajita" style="font-size: 17px;" value="#{beanHorarios.actividadPrincipal}">
-
+                                    <p:selectManyCheckbox  id="cajita" style="font-size: 17px;" value="#{beanHorarios.actividadPrincipal}" 
+                                                           valueChangeListener="#{beanHorarios.cambioEstadoCheck}" >
+                                        <f:ajax execute="@form" render="form"/>
+                                        
                                         <f:selectItem  itemLabel="Trabajar"  itemValue="Trabajar"/>
 
                                         <f:selectItem itemLabel="Estudiar" itemValue="Estudiar"/>
@@ -90,7 +92,8 @@
                             <p:outputLabel> <h2>Detalle</h2> </p:outputLabel>  
                         </div>
                         <p:panelGrid columns="3"   styleClass="panelcito" >
-                            <p:row>
+                                                  <!--AGREGADO POR EL CHAMO -->
+                            <p:row rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
                                 <p:column >
                                     <h2>Razon Social </h2>
                                 </p:column>
@@ -100,7 +103,8 @@
                                     <p:inputText placeholder="Empresa S.A" value="#{beanHorarios.trabajos.empresa}"/>
                                 </p:column>
                             </p:row>
-                            <p:row>
+                                                     <!--AGREGADO POR EL CHAMO -->
+                            <p:row rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
                                 <p:column >
                                     <h2>Jornada Laboral </h2>
                                 </p:column>
@@ -118,8 +122,8 @@
                                     </div>
                                 </p:column>
                             </p:row>
-
-                            <p:row>
+                                                         <!--AGREGADO POR EL CHAMO -->
+                            <p:row rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
                                 <p:column colspan="1" >
                                     <h3>Importe Horario de Clases</h3>
                                 </p:column>
@@ -135,7 +139,7 @@
 
                         </p:panelGrid>
                         <div class="boton-definirHorario">
-                            <p:commandButton  ajax="false" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios" />
+                            <p:commandButton  ajax="false" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios"/>
                         </div>
                     </h:form>  
                 </div>

@@ -12,6 +12,7 @@ import entities.Trabajos;
 import entities.Usuarios;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
@@ -52,7 +53,7 @@ public class BeanHorarios implements Serializable {
         usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
         trabajos = new Trabajos();
         suenito = new Sueno();
-        
+        actividadPrincipal=new String[0];
         
     }
 
@@ -98,8 +99,22 @@ public class BeanHorarios implements Serializable {
     }
 
     
-   
-    
+    //AGREGADO POR EL CHAMO
+       public void cambioEstadoCheck(ValueChangeEvent e) {
+        String[] check = (String[]) e.getNewValue();
+        this.setActividadPrincipal(check);
+    }
+  
+     //AGREGADO POR EL CHAMO
+    public boolean obtenerBoxSeleccionados(String texto) {
+        boolean seleccionado = false;
+        for (String e : this.actividadPrincipal) {
+            if (e.trim().equalsIgnoreCase(texto.trim()))seleccionado = true;
+            System.out.println(e);
+                   
+        }
+        return seleccionado;
+    }
     
     
     
