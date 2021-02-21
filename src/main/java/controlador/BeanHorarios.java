@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import sessions.SuenoFacadeLocal;
@@ -59,7 +60,7 @@ public class BeanHorarios implements Serializable {
     public void init() {
 
         
-        
+   
     }
 
     public void definirHorarios() {
@@ -97,7 +98,7 @@ public class BeanHorarios implements Serializable {
     }
 
     
-    
+   
     
     
     
