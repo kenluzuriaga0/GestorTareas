@@ -93,44 +93,69 @@
                         </div>
                         <p:panelGrid columns="3"   styleClass="panelcito" >
                                                   <!--AGREGADO POR EL CHAMO -->
-                            <p:row rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
-                                <p:column >
-                                    <h2>Razon Social </h2>
-                                </p:column>
+
+                                                  <p:row>
+
+                                                      <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
+                                                          <h2>Razon Social </h2>
+                                                      </p:column>
 
 
-                                <p:column >
-                                    <p:inputText placeholder="Empresa S.A" value="#{beanHorarios.trabajos.empresa}"/>
-                                </p:column>
-                            </p:row>
-                                                     <!--AGREGADO POR EL CHAMO -->
-                            <p:row rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
-                                <p:column >
-                                    <h2>Jornada Laboral </h2>
-                                </p:column>
+                                                      <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
+                                                          <p:inputText placeholder="Empresa S.A" value="#{beanHorarios.trabajos.empresa}"/>
+                                                     </p:column>
+                                                  </p:row>
+                                                  <p:row>
 
-                                <p:column >
-                                    <p:spinner id="prefix" value="#{beanHorarios.trabajos.horasLaborales}" suffix=" Horas" min="0"/>
-
-                                </p:column>
-
-                            </p:row>
-                            <p:row>                       
-                                <p:column>
+                                
+                                    <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
                                     <div class="observaciones" >
                                         Nombre de la Empresa y horario de <b>jornada laboral</b>
                                     </div>
                                 </p:column>
+                                
+                            </p:row>
+                                                     <!--AGREGADO POR EL CHAMO -->
+                            <p:row>
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
+                                    <h2>Jornada Laboral </h2>
+                                </p:column>
+
+                                
+                                
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
+                                    <p:spinner id="prefix" value="#{beanHorarios.trabajos.horasLaborales}" suffix=" Horas" min="0"/>
+
+                                </p:column>
+
+
+
+                            </p:row>
+
+                                           
+
+                            <p:row>     
+
+                                  <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
+                                    <div class="observaciones" >
+                                       Tiempo que dura en su <b>jornada laboral</b>
+                                    </div>
+                                </p:column>
+                                
+                                 
+                                
+                                
+                               
                             </p:row>
                                                          <!--AGREGADO POR EL CHAMO -->
-                            <p:row rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
-                                <p:column colspan="1" >
+                            <p:row >
+                                <p:column colspan="1" rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
                                     <h3>Importe Horario de Clases</h3>
                                 </p:column>
-                                <p:column colspan="1">
+                                <p:column colspan="1" rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
                                     <p:fileUpload styleClass="boton" label="Subir Excel" mode="simple" skinSimple="true"/>
                                 </p:column>
-                                <p:column>
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
                                     <div class="observaciones" style="margin-top: 10px;" >
                                         Descargue la <p:link style="font-size: 15px;"><b>plantilla de ejemplo</b></p:link> en formato de excel
                                     </div>
