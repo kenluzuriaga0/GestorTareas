@@ -84,15 +84,13 @@
                                 </p:column>
 
                             </p:row>
-                        
+                        </p:panelGrid>
                         <p:separator/>
-                        <p:row>
-                            <p:column>
+                        
                         <div class="titulo">
                             <p:outputLabel> <h2>Detalle</h2> </p:outputLabel>  
                         </div>
-                                </p:column>
-                           </p:row> 
+                        <p:panelGrid styleClass="panelcito">
                             <p:row>
                                 <p:column >
                                     <h2>Razon Social </h2>
@@ -109,7 +107,7 @@
                                 </p:column>
 
                                 <p:column >
-                                    <p:spinner id="prefix" value="#{beanHorarios.trabajos.horasLaborales}" suffix=" Horas" min="0"/>
+                                    <p:spinner id="prefix" value="#{beanHorarios.trabajos.horasLaborales}" suffix=" Horas" min="0" max="24"/>
 
                                 </p:column>
 
@@ -135,11 +133,11 @@
                                     </div>
                                 </p:column>
                             </p:row>
-
                         </p:panelGrid>
                         <div class="boton-definirHorario">
                             <p:commandButton  ajax="false" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios" />
                         </div>
+                           
                     </h:form>  
                 </div>
 
