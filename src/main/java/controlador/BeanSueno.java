@@ -11,7 +11,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import sessions.SuenoFacade;
-import sessions.SuenoFacadeLocal;
+import sessions.Local.SuenoFacadeLocal;
 
 /**
  *

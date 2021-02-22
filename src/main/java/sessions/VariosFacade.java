@@ -5,6 +5,8 @@
  */
 package sessions;
 
+import sessions.Local.AbstractFacade;
+import sessions.Local.VariosFacadeLocal;
 import entities.Varios;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

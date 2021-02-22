@@ -5,6 +5,8 @@
  */
 package sessions;
 
+import sessions.Local.CursosFacadeLocal;
+import sessions.Local.AbstractFacade;
 import entities.Cursos;
 import java.math.BigDecimal;
 import javax.ejb.Stateless;

@@ -5,6 +5,8 @@
  */
 package sessions;
 
+import sessions.Local.TrabajosFacadeLocal;
+import sessions.Local.AbstractFacade;
 import entities.Trabajos;
 import java.math.BigDecimal;
 import javax.ejb.Stateless;
@@ -31,7 +33,7 @@ public class TrabajosFacade extends AbstractFacade<Trabajos> implements Trabajos
     }
     
     @Override
-    public int getMaxId(){
+    public Integer getMaxId(){
         return (em.createQuery("SELECT MAX(t.id) FROM Trabajos t", BigDecimal.class).getSingleResult()).intValue();
     }
     

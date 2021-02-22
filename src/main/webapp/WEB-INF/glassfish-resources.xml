@@ -5,8 +5,8 @@
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="1521"/>
         <property name="databaseName" value="XE"/>
-        <property name="User" value="hr"/>
-        <property name="Password" value="hr"/>
+        <property name="User" value="nek"/>
+        <property name="Password" value="123"/>
         <property name="URL" value="jdbc:oracle:thin:@localhost:1521:XE"/>
         <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
     </jdbc-connection-pool>
@@ -15,8 +15,8 @@
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="1521"/>
         <property name="databaseName" value="XE"/>
-        <property name="User" value="hr"/>
-        <property name="Password" value="hr"/>
+        <property name="User" value="nek"/>
+        <property name="Password" value="123"/>
         <property name="URL" value="jdbc:oracle:thin:@localhost:1521:XE"/>
         <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
     </jdbc-connection-pool>

@@ -5,6 +5,8 @@
  */
 package sessions;
 
+import sessions.Local.AbstractFacade;
+import sessions.Local.SuenoFacadeLocal;
 import entities.Sueno;
 import java.math.BigDecimal;
 import javax.ejb.Stateless;
@@ -30,7 +32,7 @@ public class SuenoFacade extends AbstractFacade<Sueno> implements SuenoFacadeLoc
         super(Sueno.class);
     }
     @Override
-    public int getMaxId(){
+    public Integer getMaxId(){
         return (em.createQuery("SELECT MAX(s.id) FROM Sueno s", BigDecimal.class).getSingleResult()).intValue();
     }
 }

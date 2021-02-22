@@ -14,7 +14,7 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.servlet.http.HttpServletRequest;
 import sessions.UsuariosFacade;
-import sessions.UsuariosFacadeLocal;
+import sessions.Local.UsuariosFacadeLocal;
 
 /**
  *

@@ -5,6 +5,8 @@
  */
 package sessions;
 
+import sessions.Local.HorariosOcupFacadeLocal;
+import sessions.Local.AbstractFacade;
 import entities.HorariosOcup;
 import java.math.BigDecimal;
 import javax.ejb.Stateless;

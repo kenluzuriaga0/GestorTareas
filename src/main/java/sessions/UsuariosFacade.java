@@ -5,6 +5,8 @@
  */
 package sessions;
 
+import sessions.Local.AbstractFacade;
+import sessions.Local.UsuariosFacadeLocal;
 import entities.Usuarios;
 import java.math.BigDecimal;
 import java.util.List;

@@ -17,9 +17,9 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
-import sessions.SuenoFacadeLocal;
-import sessions.TrabajosFacadeLocal;
-import sessions.UsuariosFacadeLocal;
+import sessions.Local.SuenoFacadeLocal;
+import sessions.Local.TrabajosFacadeLocal;
+import sessions.Local.UsuariosFacadeLocal;
 
 /**
  *
@@ -88,10 +88,10 @@ public class BeanHorarios implements Serializable {
     }
     
     private void agregarSuenoYtrabajo(){
-        suenito.setId(BigDecimal.valueOf(suenoFacade.getMaxId()+1));
+        suenito.setId(BigDecimal.valueOf(1+suenoFacade.getMaxId()));
         suenoFacade.create(suenito);
         
-        trabajos.setId(BigDecimal.valueOf(trabajosFacade.getMaxId()+1));
+        trabajos.setId(BigDecimal.valueOf(1+trabajosFacade.getMaxId()));
         trabajos.setEstado("activo");
         trabajosFacade.create(trabajos);
     }
