@@ -29,5 +29,5 @@ public interface VariosFacadeLocal {
     List<Varios> findRange(int[] range);
 
     int count();
-    
+    Integer getMaxId();
 }

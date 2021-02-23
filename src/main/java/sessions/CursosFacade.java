@@ -33,7 +33,13 @@ public class CursosFacade extends AbstractFacade<Cursos> implements CursosFacade
     }
 
     @Override
-    public int getMaxId() {
+    public Integer getMaxId() {
+        try{
         return (em.createQuery("SELECT MAX(c.id) FROM Cursos c", BigDecimal.class).getSingleResult()).intValue();
+            
+        }catch(Exception ex){
+            System.out.println(ex.getMessage()+" Error en getMaxId de Cursos");
+            return 0;
+        }
     }
 }

@@ -9,21 +9,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -44,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuarios.findByCorreo", query = "SELECT u FROM Usuarios u WHERE u.correo = :correo")
     , @NamedQuery(name = "Usuarios.findByUsername", query = "SELECT u FROM Usuarios u WHERE u.username = :username")
     , @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password")
-    , @NamedQuery(name = "Usuarios.findByTiempoTrans", query = "SELECT u FROM Usuarios u WHERE u.tiempoTrans = :tiempoTrans")})
+    , @NamedQuery(name = "Usuarios.findByTiempoTrans", query = "SELECT u FROM Usuarios u WHERE u.tiempoTrans = :tiempoTrans")
+    , @NamedQuery(name = "Usuarios.findByActivProductiva", query = "SELECT u FROM Usuarios u WHERE u.activProductiva = :activProductiva")})
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -91,10 +89,9 @@ public class Usuarios implements Serializable {
     private String password;
     @Column(name = "TIEMPO_TRANS")
     private BigInteger tiempoTrans;
-    @OneToMany(mappedBy = "idUsuarios")
-    private List<HorariosInver> horariosInverList;
-    @OneToMany(mappedBy = "idUsuario")
-    private List<HorariosOcup> horariosOcupList;
+    @Size(max = 40)
+    @Column(name = "ACTIV_PRODUCTIVA")
+    private String activProductiva;
 
     public Usuarios() {
     }
@@ -199,22 +196,12 @@ public class Usuarios implements Serializable {
         this.tiempoTrans = tiempoTrans;
     }
 
-    @XmlTransient
-    public List<HorariosInver> getHorariosInverList() {
-        return horariosInverList;
+    public String getActivProductiva() {
+        return activProductiva;
     }
 
-    public void setHorariosInverList(List<HorariosInver> horariosInverList) {
-        this.horariosInverList = horariosInverList;
-    }
-
-    @XmlTransient
-    public List<HorariosOcup> getHorariosOcupList() {
-        return horariosOcupList;
-    }
-
-    public void setHorariosOcupList(List<HorariosOcup> horariosOcupList) {
-        this.horariosOcupList = horariosOcupList;
+    public void setActivProductiva(String activProductiva) {
+        this.activProductiva = activProductiva;
     }
 
     @Override

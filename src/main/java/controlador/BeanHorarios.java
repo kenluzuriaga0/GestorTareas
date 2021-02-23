@@ -37,7 +37,6 @@ public class BeanHorarios implements Serializable {
     private SuenoFacadeLocal suenoFacade;
 
     private boolean checkboxito;
-    private static int numMaximo;
     
     private String[] actividadPrincipal; //para setear
 
@@ -68,7 +67,6 @@ public class BeanHorarios implements Serializable {
         updateActivTrans(); //merge a usuario
         
         agregarSuenoYtrabajo();
-        System.out.println(BigDecimal.valueOf(10) + "ostiah");
     }
 
     private void updateActivTrans() {

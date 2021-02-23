@@ -1,30 +1,26 @@
 package entities;
 
-import entities.HorariosInver;
-import entities.HorariosOcup;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import javax.annotation.Generated;
-import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-02-22T08:48:49")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-02-23T02:15:53")
 @StaticMetamodel(Usuarios.class)
 public class Usuarios_ { 
 
+    public static volatile SingularAttribute<Usuarios, Date> fechaNac;
     public static volatile SingularAttribute<Usuarios, String> segundoNombre;
+    public static volatile SingularAttribute<Usuarios, String> password;
     public static volatile SingularAttribute<Usuarios, String> primerNombre;
     public static volatile SingularAttribute<Usuarios, String> primerApellido;
     public static volatile SingularAttribute<Usuarios, String> activPrincipal;
-    public static volatile SingularAttribute<Usuarios, String> segundoApellido;
-    public static volatile ListAttribute<Usuarios, HorariosInver> horariosInverList;
-    public static volatile SingularAttribute<Usuarios, Date> fechaNac;
-    public static volatile SingularAttribute<Usuarios, String> password;
     public static volatile SingularAttribute<Usuarios, BigInteger> tiempoTrans;
-    public static volatile ListAttribute<Usuarios, HorariosOcup> horariosOcupList;
     public static volatile SingularAttribute<Usuarios, String> correo;
+    public static volatile SingularAttribute<Usuarios, String> segundoApellido;
+    public static volatile SingularAttribute<Usuarios, String> activProductiva;
     public static volatile SingularAttribute<Usuarios, BigDecimal> id;
     public static volatile SingularAttribute<Usuarios, String> username;
 

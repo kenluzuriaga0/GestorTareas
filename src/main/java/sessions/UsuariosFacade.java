@@ -60,9 +60,13 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> implements Usuarios
     }
 
     @Override
-    public int getMaxId(){
+    public Integer getMaxId(){ 
+        try{
          return (em.createQuery("SELECT MAX(u.id) FROM Usuarios u",BigDecimal.class).getSingleResult()).intValue();
-         
+        }catch(Exception ex){
+            System.out.println(ex.getMessage()+" Error en getMaxId  de Usuarios");
+            return 0;
+        } 
      }
     
     

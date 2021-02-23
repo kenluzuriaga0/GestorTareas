@@ -34,7 +34,7 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:selectManyCheckbox  style="font-size: 17px;" >
+                                    <p:selectManyCheckbox value="#{beanInversion.actividadProductiva}" style="font-size: 17px;" >
 
                                         <f:selectItem itemLabel="Leer un libro" itemValue="Lectura"/>
                                         <f:selectItem itemLabel="Estudiar cursos online" itemValue="Cursos"/>
@@ -69,7 +69,7 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:inputTextarea styleClass="textArea" cols="50" placeholder="Nombre del Curso"/>
+                                    <p:inputTextarea value="#{beanInversion.curso.nombre}" styleClass="textArea" cols="50" placeholder="Nombre del Curso"/>
                                 </p:column>
                                 <p:column colspan="1">
                                     <div class="observaciones" >
@@ -84,7 +84,7 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:inputTextarea styleClass="textArea" cols="50" placeholder="Detalle"/>
+                                    <p:inputTextarea value="#{beanInversion.varios.nombre}" styleClass="textArea" cols="50" placeholder="Detalle"/>
                                 </p:column>
                                 <p:column colspan="1">
                                     <div class="observaciones" >
@@ -95,7 +95,7 @@
                             </p:row> 
                         </p:panelGrid>
                         <div class="boton-definirHorario">
-                            <p:commandButton type="button" value="Definir Inversion" />
+                            <p:commandButton styleClass="boton-definirHorario" value="Definir Inversion" actionListener="#{beanInversion.definirInversion()}" />
                         </div>
 
                         <div style="height: 80px;"></div>
