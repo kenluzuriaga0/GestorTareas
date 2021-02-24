@@ -4,7 +4,8 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template/bienvenida.xhtml">
 
@@ -26,7 +27,7 @@
                             </p:outputLabel> 
                         </div>
                     </div>
-                    <h:form>
+                    <h:form id="frmcontent">
                         <p:panelGrid  styleClass="panelcito" >
                             <p:row >
                                 <p:column colspan="1">
@@ -55,7 +56,9 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:commandButton value="Buscar" type="button" onclick="PF('dlg3').show()" icon="pi pi-search"/>
+                                    <b:commandButton iconAwesome="fa-search" value="Buscar" title="Buscar Libros " look="danger" 
+                                                     
+                                                     update="frmcontent:pnlbooks" oncomplete="$('.modalConfirmClass5').modal();"/>
                                 </p:column>
                                 <p:column colspan="1">
                                     <div class="observaciones" >
@@ -100,7 +103,47 @@
 
                         <div style="height: 80px;"></div>
 
+                        <b:modal title="Buscar Libros" styleClass="modalConfirmClass5" size="modal-lg">
+                            <b:panelGrid id="pnlbooks" colSpans="12" size="lg" >
+                                <b:panelGrid id="pnlcbooks2" colSpans="9,3" size="lg" >
+                                    <b:inputText label="Titulo" value="#{beanGoogleBooks.busqueda}" required="true"/>
+                                    <b:commandButton  icon="plus-sign" look="info" value="Añadir Libro Nuevo" />
+                                    <b:commandButton iconAwesome="fa-pencil" actionListener="#{beanGoogleBooks.verLibros()}"
+                                                     value="Buscar" process="pnlbooks" update="tblbooks" look="primary"/>
+
+                                </b:panelGrid>
+                                <p:spacer/>
+                                <b:dataTable id="tblbooks" caption="Libros de API Google books" var="json" value="#{beanGoogleBooks.arrayDeJson}" searching="true" paginated="true">
+                                    <b:dataTableColumn label="Titulo">
+                                        <p:dataList  var="volumen" value="#{json.volumeInfoObject}" itemType="none" type="none" style="font-size: 12px;  text-align: center;">
+                                            #{volumen.title} 
+                                        </p:dataList>
+                                    </b:dataTableColumn> 
+                                    <b:dataTableColumn label="Autor">
+                                        <p:dataList  var="volumen" value="#{json.volumeInfoObject}" itemType="none" type="none" style="font-size: 12px;  text-align: center;">
+                                            #{volumen.authors} 
+                                        </p:dataList>
+                                    </b:dataTableColumn> 
+                                    <b:dataTableColumn label="Paginas">
+                                        <p:dataList  var="volumen" value="#{json.volumeInfoObject}" itemType="none" type="none" style="font-size: 12px; text-align: center;">
+                                            #{volumen.pageCount} 
+                                        </p:dataList>
+                                    </b:dataTableColumn> 
+                                    <b:dataTableColumn label="Categorias">
+                                        <p:dataList  var="volumen" value="#{json.volumeInfoObject}" itemType="none" type="none" style="font-size: 12px; text-align: center;">
+                                            #{volumen.categories} 
+                                        </p:dataList>
+                                    </b:dataTableColumn> 
+                                    <b:dataTableColumn label="Seleccionar">
+                                        <b:commandButton iconAwesome="fa-check" actionListener="#{mbEmpresas.onSelectEmpresaCorreo(empcor)}"
+                                                         oncomplete="$('.modalConfirmClass6').modal();"/>
+                                    </b:dataTableColumn>
+                                </b:dataTable>
+
+                            </b:panelGrid>
+                        </b:modal>
                     </h:form>
+
                     <p:dialog header="Google Books API" widgetVar="dlg3" minHeight="60" width="500" showEffect="fade">
                         <p:inputText/>
                         <p:dataTable var="product" value="">
@@ -127,7 +170,6 @@
                     </p:dialog>
                 </div>
             </h:body>
-
 
         </ui:define>          
     </ui:composition>

@@ -46,7 +46,7 @@ public class BeanInversion implements Serializable {
 
     public BeanInversion() {
 
-       usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
+        usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
         curso = new Cursos();
         libro = new Libros();
         varios = new Varios();
