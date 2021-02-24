@@ -114,6 +114,7 @@
                                 </b:panelGrid>
                                 <p:spacer/>
                                 <b:dataTable id="tblbooks" caption="Libros de API Google books" var="json" value="#{beanGoogleBooks.arrayDeJson}" searching="true" paginated="true">
+                                    <b:dataTableColumn label="No" value="#{beanGoogleBooks.num}" style="text-align: center;"/>
                                     <b:dataTableColumn label="Titulo">
                                         <p:dataList  var="volumen" value="#{json.volumeInfoObject}" itemType="none" type="none" style="font-size: 12px;  text-align: center;">
                                             #{volumen.title} 
@@ -135,39 +136,13 @@
                                         </p:dataList>
                                     </b:dataTableColumn> 
                                     <b:dataTableColumn label="Seleccionar">
-                                        <b:commandButton iconAwesome="fa-check" actionListener="#{mbEmpresas.onSelectEmpresaCorreo(empcor)}"
-                                                         oncomplete="$('.modalConfirmClass6').modal();"/>
+                                        <b:commandButton iconAwesome="fa-check" actionListener="#{beanGoogleBooks.guardarLibro()}" process="tblbooks"/>
                                     </b:dataTableColumn>
                                 </b:dataTable>
 
                             </b:panelGrid>
                         </b:modal>
                     </h:form>
-
-                    <p:dialog header="Google Books API" widgetVar="dlg3" minHeight="60" width="500" showEffect="fade">
-                        <p:inputText/>
-                        <p:dataTable var="product" value="">
-                            <p:column headerText="Nombre">
-                                <h:outputText value="" />
-                            </p:column>
-
-                            <p:column headerText="Autor">
-                                <h:outputText value="" />
-                            </p:column>
-
-                            <p:column headerText="Genero">
-                                <h:outputText value="" />
-                            </p:column>
-
-                            <p:column headerText="Paginas">
-                                <h:outputText value="" />
-                            </p:column>
-                        </p:dataTable>
-                        <f:facet name="footer">
-                            <p:commandButton type="button" value="No"  styleClass="ui-button-flat p-mr-2" style="width: 6rem" />
-                            <p:commandButton type="button" value="Yes" style="width: 5rem" />
-                        </f:facet>
-                    </p:dialog>
                 </div>
             </h:body>
 

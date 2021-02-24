@@ -40,7 +40,16 @@ public class BeanGoogleBooks implements Serializable {
     private LibrosFacadeLocal librosFacade;
 
     Libros libro;
-    
+int num=0;
+
+    public int getNum() {
+        return num++;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
     //api
     String api_key = "AIzaSyCXFjrdW519DD6ESoHr8_BRSn-yif6SFPw";
     String busqueda;
@@ -49,13 +58,13 @@ public class BeanGoogleBooks implements Serializable {
     public BeanGoogleBooks() {
         arrayDeJson = new ArrayList<Items>();
         libro = new Libros();
-        
+
     }
 
     public void verLibros() throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("https://www.googleapis.com/books/v1/volumes?q="+this.getBusqueda()+"&maxResults=40&key=" + this.getApi_key())
+                .url("https://www.googleapis.com/books/v1/volumes?q=" + this.getBusqueda() + "&maxResults=40&key=" + this.getApi_key())
                 .get().build();
         Response response = client.newCall(request).execute();
 
@@ -70,20 +79,24 @@ public class BeanGoogleBooks implements Serializable {
         JsonElement array = jsonDatos.get("items"); //crear un nuevo json a partir el atributo "item" (array) 
 
         //Al querer leer un array de objetos, se usa un TypeTolken
-        Type listType = new TypeToken<List<Items>>() {
-        }.getType();
+        Type listType = new TypeToken<List<Items>>() {}.getType();
         arrayDeJson = gson.fromJson(String.valueOf(array), listType);
-
-        response.close();
-    }
-
-    public void guardarLibro(int index){
-        libro.setId(BigDecimal.valueOf(1+librosFacade.getMaxId()));
         
-        libro.setNombre(arrayDeJson.get(index).getVolumeInfoObject().getTitle());
-        libro.setAutor(arrayDeJson.get(index).getVolumeInfoObject().getAuthors().get(0));
-    }
+        response.close();
     
+        num=0;
+    }
+
+    public void guardarLibro() {
+//        libro.setId(BigDecimal.valueOf(1 + librosFacade.getMaxId()));
+//
+//        libro.setNombre(arrayDeJson.get(index).getVolumeInfoObject().getTitle());
+//        libro.setAutor(arrayDeJson.get(index).getVolumeInfoObject().getAuthors().get(0));
+        System.out.println("keeeeeeeeeeeeeeeeeeen");
+        
+System.out.println(libro.getNombre());
+    }
+
     public String getApi_key() {
         return api_key;
     }
@@ -95,7 +108,6 @@ public class BeanGoogleBooks implements Serializable {
     public void setBusqueda(String busqueda) {
         this.busqueda = busqueda;
     }
-
 
     public ArrayList<Items> getArrayDeJson() {
         return arrayDeJson;
