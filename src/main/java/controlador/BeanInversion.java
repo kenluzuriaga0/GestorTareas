@@ -50,6 +50,7 @@ public class BeanInversion implements Serializable {
         curso = new Cursos();
         libro = new Libros();
         varios = new Varios();
+        actividadProductiva = new String[2];
     }
 
     @PostConstruct

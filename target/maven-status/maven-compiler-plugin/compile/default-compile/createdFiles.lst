@@ -21,7 +21,6 @@ sessions\Local\ClasesFacadeLocal.class
 entities\Varios.class
 sessions\CursosFacade.class
 sessions\HorariosInverFacade.class
-entities\dto\Libro.class
 sessions\Local\HorariosOcupFacadeLocal.class
 sessions\Local\VariosFacadeLocal.class
 sessions\UsuariosFacade.class

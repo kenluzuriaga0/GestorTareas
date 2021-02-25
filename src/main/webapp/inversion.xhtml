@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <h:form id="frmcontent">
-                        <p:panelGrid  styleClass="panelcito" >
+                        <p:panelGrid id="panelboy" styleClass="panelcito" >
                             <p:row >
                                 <p:column colspan="1">
                                     <h2>Actividad productiva</h2>
@@ -57,8 +57,8 @@
 
                                 <p:column colspan="1">
                                     <b:commandButton iconAwesome="fa-search" value="Buscar" title="Buscar Libros " look="danger" 
-                                                     
                                                      update="frmcontent:pnlbooks" oncomplete="$('.modalConfirmClass5').modal();"/>
+                                    #{beanInversion.libro.nombre}
                                 </p:column>
                                 <p:column colspan="1">
                                     <div class="observaciones" >
@@ -87,7 +87,7 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:inputTextarea value="#{beanInversion.varios.nombre}" styleClass="textArea" cols="50" placeholder="Detalle"/>
+                                    <p:inputTextarea value="#{beanInversion.varios.nombre}"  styleClass="textArea" cols="50" placeholder="Detalle"/>
                                 </p:column>
                                 <p:column colspan="1">
                                     <div class="observaciones" >
@@ -97,17 +97,17 @@
 
                             </p:row> 
                         </p:panelGrid>
-                        <div class="boton-definirHorario">
-                            <p:commandButton styleClass="boton-definirHorario" value="Definir Inversion" actionListener="#{beanInversion.definirInversion()}" />
-                        </div>
 
+                        <div class="boton-definirHorario">
+                            <p:commandButton styleClass="boton-definirHorario" value="Definir Inversion" process="@this" actionListener="#{beanInversion.definirInversion()}" />
+                        </div>
                         <div style="height: 80px;"></div>
 
                         <b:modal title="Buscar Libros" styleClass="modalConfirmClass5" size="modal-lg">
                             <b:panelGrid id="pnlbooks" colSpans="12" size="lg" >
                                 <b:panelGrid id="pnlcbooks2" colSpans="9,3" size="lg" >
                                     <b:inputText label="Titulo" value="#{beanGoogleBooks.busqueda}" required="true"/>
-                                    <b:commandButton  icon="plus-sign" look="info" value="Añadir Libro Nuevo" />
+                                    <b:commandButton  icon="plus-sign" look="info" value="Añadir Libro Nuevo"  update="frmcontent:pnlbooks" oncomplete="$('.modalEscribirLibro').modal();"/>
                                     <b:commandButton iconAwesome="fa-pencil" actionListener="#{beanGoogleBooks.verLibros()}"
                                                      value="Buscar" process="pnlbooks" update="tblbooks" look="primary"/>
 
@@ -136,12 +136,26 @@
                                         </p:dataList>
                                     </b:dataTableColumn> 
                                     <b:dataTableColumn label="Seleccionar">
-                                        <b:commandButton iconAwesome="fa-check" actionListener="#{beanGoogleBooks.guardarLibro()}" process="tblbooks"/>
+                                        <b:commandButton iconAwesome="fa-check"  actionListener="#{beanGoogleBooks.guardarLibro()}" process="pnlbooks:tblbooks"/>
                                     </b:dataTableColumn>
                                 </b:dataTable>
 
                             </b:panelGrid>
                         </b:modal>
+                        
+                        <b:modal styleClass="modalEscribirLibro" size="modal-lg" title="Añadir un nuevo Libro">
+                            <b:panelGrid id="pnlbooksNew" colSpans="6,6" size="lg">
+                                <b:inputText label="Titulo" value="#{beanInversion.libro.nombre}" required="true"/>
+                                <b:inputText label="Autor" value="#{beanInversion.libro.autor}" />
+                                <b:inputText label="Categoria" value="#{beanInversion.libro.genero}" />
+                                <b:inputText label="Paginas" mask="numeric" value="#{beanInversion.libro.genero}" />
+                                
+                                <b:commandButton value="Guardar Libro" look="primary" oncomplete="$('.modalEscribirLibro').modal('hide')"/>
+                            </b:panelGrid>
+                            
+                        </b:modal>
+                            
+                        
                     </h:form>
                 </div>
             </h:body>
