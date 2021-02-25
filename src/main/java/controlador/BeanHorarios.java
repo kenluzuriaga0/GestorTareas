@@ -90,10 +90,10 @@ public class BeanHorarios implements Serializable {
     }
     
     private void agregarSuenoYtrabajo(){
-        suenito.setId(BigDecimal.valueOf(suenoFacade.getMaxId()+1));
+        suenito.setId(BigDecimal.valueOf(1));
         suenoFacade.create(suenito);
         
-        trabajos.setId(BigDecimal.valueOf(trabajosFacade.getMaxId()+1));
+        trabajos.setId(BigDecimal.valueOf(1));
         trabajos.setEstado("activo");
         trabajosFacade.create(trabajos);
     }
