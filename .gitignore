@@ -1,3 +1,17 @@
-## Archivos con datos de la base##
-glassfish-resources.xml
-persistence.xml
+## Archivos class ##
+*.class
+
+## Archivos Paquetes##
+*.jar
+*.war
+*.ear
+
+## Archivos Netbeans##
+nbproject/private/
+build/
+nbbuild/
+nbactions.xml
+nb-configuration.xml
+
+## Archivos Maven ##
+target/
