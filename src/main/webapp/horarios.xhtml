@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:b="http://bootsfaces.net/ui">
-    
+
     <ui:composition template="/template/bienvenida.xhtml">
 
         <ui:define name="content">
@@ -30,7 +30,7 @@
                         </div>
 
                     </div>
-                    <h:form>
+                    <h:form id="form">
                         <p:panelGrid   styleClass="panelcito" >
                             <p:row >
                                 <p:column colspan="1" >
@@ -38,12 +38,14 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:selectManyCheckbox  id="cajita" style="font-size: 17px;" value="#{beanHorarios.actividadPrincipal}">
+                                    <p:selectManyCheckbox  id="cajita" style="font-size: 17px;" value="#{beanHorarios.actividadPrincipal}" 
+                                                           valueChangeListener="#{beanHorarios.cambioEstadoCheck}" >
+                                        <f:ajax execute="@form" render="form"/>
 
                                         <f:selectItem  itemLabel="Trabajar"  itemValue="Trabajar"/>
 
                                         <f:selectItem itemLabel="Estudiar" itemValue="Estudiar"/>
-                                        
+
                                     </p:selectManyCheckbox>
 
                                 </p:column>
@@ -59,7 +61,7 @@
                                 </p:column>
                                 <p:column  >
                                     <p:spinner value="#{beanHorarios.suenito.horasSueno}" suffix=" Horas" styleClass="spinnercisco" min="1" max="12"/>
-                                    
+
                                 </p:column>
                                 <p:column>
                                     <div class="observaciones" >
@@ -81,52 +83,54 @@
                                         Tiempo en <b>minutos</b> el cual se demora en transportarse de un lugar a otro para realizar su actividad principal
                                     </div>
                                 </p:column>
-
                             </p:row>
                         </p:panelGrid>
                         <p:separator/>
-                        
+
                         <div class="titulo">
                             <p:outputLabel> <h2>Detalle</h2> </p:outputLabel>  
                         </div>
-                        <p:panelGrid styleClass="panelcito">
+                        <p:panelGrid columns="2"   styleClass="panelcito" >
                             <p:row>
-                                <p:column >
+
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
                                     <h2>Razon Social </h2>
                                 </p:column>
-
-
-                                <p:column >
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
                                     <p:inputText placeholder="Empresa S.A" value="#{beanHorarios.trabajos.empresa}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
-                                <p:column >
-                                    <h2>Jornada Laboral </h2>
-                                </p:column>
-
-                                <p:column >
-                                    <p:spinner id="prefix" value="#{beanHorarios.trabajos.horasLaborales}" suffix=" Horas" min="0" max="24"/>
-
-                                </p:column>
-
-                            </p:row>
-                            <p:row>                       
-                                <p:column>
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
                                     <div class="observaciones" >
                                         Nombre de la Empresa y horario de <b>jornada laboral</b>
                                     </div>
                                 </p:column>
                             </p:row>
-
                             <p:row>
-                                <p:column colspan="1" >
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
+                                    <h2>Jornada Laboral </h2>
+                                </p:column>
+
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
+                                    <p:spinner id="prefix" value="#{beanHorarios.trabajos.horasLaborales}" suffix=" Horas" min="0" max="24"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>     
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
+                                    <div class="observaciones" >
+                                        Tiempo que dura en su <b>jornada laboral</b>
+                                    </div>
+                                </p:column>
+                            </p:row>
+                            <p:row >
+                                <p:column colspan="1" rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
                                     <h3>Importe Horario de Clases</h3>
                                 </p:column>
-                                <p:column colspan="1">
+                                <p:column colspan="1" rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
                                     <p:fileUpload styleClass="boton" label="Subir Excel" mode="simple" skinSimple="true"/>
                                 </p:column>
-                                <p:column>
+                                <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
                                     <div class="observaciones" style="margin-top: 10px;" >
                                         Descargue la <p:link style="font-size: 15px;"><b>plantilla de ejemplo</b></p:link> en formato de excel
                                     </div>
@@ -134,19 +138,12 @@
                             </p:row>
                         </p:panelGrid>
                         <div class="boton-definirHorario">
-                            <p:commandButton  ajax="false" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios" />
+                            <p:commandButton  ajax="false" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios"/>
                         </div>
-                           
                     </h:form>  
                 </div>
-
             </h:body>  
-
-
-
         </ui:define> 
-
-
     </ui:composition>
 
 </html>

@@ -8,10 +8,10 @@ package controlador;
 import entities.Usuarios;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import javax.servlet.http.HttpServletRequest;
 import sessions.UsuariosFacade;
 import sessions.Local.UsuariosFacadeLocal;
@@ -21,7 +21,7 @@ import sessions.Local.UsuariosFacadeLocal;
  * @author kenlu
  */
 @Named(value = "beanIndex")
-@ViewScoped
+@RequestScoped
 public class BeanIndex implements Serializable {
 
     @EJB
