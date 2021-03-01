@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import sessions.Local.CursosFacadeLocal;
@@ -50,7 +51,7 @@ public class BeanInversion implements Serializable {
         curso = new Cursos();
         libro = new Libros();
         varios = new Varios();
-        actividadProductiva = new String[2];
+        actividadProductiva = new String[0];
     }
 
     @PostConstruct
@@ -88,6 +89,23 @@ public class BeanInversion implements Serializable {
         variosFacade.create(varios);
     }
 
+    
+    public void cambiarEstadoCheck(ValueChangeEvent e){
+        String [] ex = (String[]) e.getNewValue();
+        this.setActividadProductiva(ex);
+    }
+    
+    public boolean obtenerBoxSeleccionados(String texto){
+        boolean seleccionado = false;
+        for(String box : this.actividadProductiva){
+            if(box.trim().equalsIgnoreCase(texto.trim()))
+                seleccionado = true;
+        }
+            return seleccionado;
+    }
+    
+    
+    
     public String[] getActividadProductiva() {
         return actividadProductiva;
     }

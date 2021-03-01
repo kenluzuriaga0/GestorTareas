@@ -108,7 +108,6 @@ public class BeanHorarios implements Serializable {
         boolean seleccionado = false;
         for (String e : this.actividadPrincipal) {
             if (e.trim().equalsIgnoreCase(texto.trim()))seleccionado = true;
-            System.out.println(e);
                    
         }
         return seleccionado;

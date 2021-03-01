@@ -28,6 +28,8 @@
                         </div>
                     </div>
                     <h:form id="frmcontent">
+                         <p:growl id="growlcito" for="sticky-key" showDetail="true" sticky="true" />
+                        <b:panelGrid colSpans="12" id="contenido" >
                         <p:panelGrid id="panelboy" styleClass="panelcito" >
                             <p:row >
                                 <p:column colspan="1">
@@ -35,8 +37,8 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:selectManyCheckbox value="#{beanInversion.actividadProductiva}" style="font-size: 17px;" >
-
+                                    <p:selectManyCheckbox valueChangeListener="#{beanInversion.cambiarEstadoCheck}" value="#{beanInversion.actividadProductiva}" required="true" style="font-size: 17px;" >
+                                        <f:ajax execute="frmcontent:contenido" render="frmcontent:contenido"/>
                                         <f:selectItem itemLabel="Leer un libro" itemValue="Lectura"/>
                                         <f:selectItem itemLabel="Estudiar cursos online" itemValue="Cursos"/>
 
@@ -51,30 +53,30 @@
                                 </p:column>
                             </p:row>
                             <p:row >
-                                <p:column colspan="1">
+                                <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Lectura')}">
                                     <h2>Buscar Libro a leer</h2>
                                 </p:column>
 
-                                <p:column colspan="1">
-                                    <b:commandButton iconAwesome="fa-search" value="Buscar" title="Buscar Libros " look="danger" 
+                                <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Lectura')}" >
+                                    <b:commandButton  iconAwesome="fa-search" value="Buscar" title="Buscar Libros " look="danger" 
                                                      update="frmcontent:pnlbooks" oncomplete="$('.modalConfirmClass5').modal();"/>
-                                    #{beanInversion.libro.nombre}
+                                    #{beanInversion.libro.nombre} 
                                 </p:column>
-                                <p:column colspan="1">
+                                <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Lectura')}" >
                                     <div class="observaciones" >
                                         <h5> Elija el libro desde la <b>biblioteca de Google </b></h5>
                                     </div>
                                 </p:column>
                             </p:row> 
                             <p:row >
-                                <p:column colspan="1">
+                                <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Cursos')}" >
                                     <h2>Digite el curso online a realizar</h2>
                                 </p:column>
 
-                                <p:column colspan="1">
+                                <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Cursos')}" >
                                     <p:inputTextarea value="#{beanInversion.curso.nombre}" styleClass="textArea" cols="50" placeholder="Nombre del Curso"/>
                                 </p:column>
-                                <p:column colspan="1">
+                                <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Cursos')}">
                                     <div class="observaciones" >
                                         <h5> Digite el detalle del <b>curso online</b> que desea seguir </h5>
                                     </div>
@@ -99,10 +101,10 @@
                         </p:panelGrid>
 
                         <div class="boton-definirHorario">
-                            <p:commandButton styleClass="boton-definirHorario" value="Definir Inversion" process="@this" actionListener="#{beanInversion.definirInversion()}" />
+                            <p:commandButton update="growlcito" styleClass="boton-definirHorario" value="Definir Inversion" process="contenido" actionListener="#{beanInversion.definirInversion()}" />
                         </div>
                         <div style="height: 80px;"></div>
-
+                    </b:panelGrid>
                         <b:modal title="Buscar Libros" styleClass="modalConfirmClass5" size="modal-lg">
                             <b:panelGrid id="pnlbooks" colSpans="12" size="lg" >
                                 <b:panelGrid id="pnlcbooks2" colSpans="9,3" size="lg" >
@@ -136,7 +138,7 @@
                                         </p:dataList>
                                     </b:dataTableColumn> 
                                     <b:dataTableColumn label="Seleccionar">
-                                        <b:commandButton iconAwesome="fa-check"  actionListener="#{beanGoogleBooks.guardarLibro()}" process="pnlbooks:tblbooks"/>
+                                        <b:commandButton iconAwesome="fa-check"  actionListener="#{beanGoogleBooks.guardarLibro()}" process="frmcontent:contenido"/>
                                     </b:dataTableColumn>
                                 </b:dataTable>
 
@@ -155,6 +157,7 @@
                             
                         </b:modal>
                             
+                
                         
                     </h:form>
                 </div>

@@ -115,3 +115,13 @@ body{
 .dialogos{
     font-size: 14px;
 }
+
+.jumbotronix{
+    background-image:  url("/images/unnamade.jpg"); 
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}

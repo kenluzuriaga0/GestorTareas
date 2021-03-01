@@ -117,4 +117,12 @@ System.out.println(libro.getNombre());
         this.arrayDeJson = arrayDeJson;
     }
 
+    public Libros getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libros libro) {
+        this.libro = libro;
+    }
+
 }
