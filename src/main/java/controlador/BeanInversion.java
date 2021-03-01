@@ -16,6 +16,7 @@ import sessions.Local.CursosFacadeLocal;
 import sessions.Local.LibrosFacadeLocal;
 import sessions.Local.UsuariosFacadeLocal;
 import sessions.Local.VariosFacadeLocal;
+import util.GoogleBooks;
 
 /**
  *
@@ -45,18 +46,23 @@ public class BeanInversion implements Serializable {
     Varios varios;
     Usuarios usuario;
 
+     int num=0;
+     GoogleBooks google;
     public BeanInversion() {
 
         usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
         curso = new Cursos();
         libro = new Libros();
         varios = new Varios();
+        
+        google = new GoogleBooks();
+        num=0;
         actividadProductiva = new String[0];
     }
 
     @PostConstruct
     public void init() {
-
+num=0;
     }
 
     public void definirInversion() {
@@ -103,7 +109,32 @@ public class BeanInversion implements Serializable {
         }
             return seleccionado;
     }
+
+
+   
     
+    
+    
+    
+    
+    
+    
+    
+    public GoogleBooks getGoogle() {
+        return google;
+    }
+
+    public void setGoogle(GoogleBooks google) {
+        this.google = google;
+    }
+    public int getNum() {
+        
+        return num++;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
     
     
     public String[] getActividadProductiva() {

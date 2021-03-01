@@ -37,8 +37,8 @@
                                 </p:column>
 
                                 <p:column colspan="1">
-                                    <p:selectManyCheckbox valueChangeListener="#{beanInversion.cambiarEstadoCheck}" value="#{beanInversion.actividadProductiva}" required="true" style="font-size: 17px;" >
-                                        <f:ajax execute="frmcontent:contenido" render="frmcontent:contenido"/>
+                                    <p:selectManyCheckbox id="box" valueChangeListener="#{beanInversion.cambiarEstadoCheck}" value="#{beanInversion.actividadProductiva}" required="true" style="font-size: 17px;" >
+                                        <f:ajax execute="box" render="frmcontent"/>
                                         <f:selectItem itemLabel="Leer un libro" itemValue="Lectura"/>
                                         <f:selectItem itemLabel="Estudiar cursos online" itemValue="Cursos"/>
 
@@ -107,16 +107,16 @@
                     </b:panelGrid>
                         <b:modal title="Buscar Libros" styleClass="modalConfirmClass5" size="modal-lg">
                             <b:panelGrid id="pnlbooks" colSpans="12" size="lg" >
-                                <b:panelGrid id="pnlcbooks2" colSpans="9,3" size="lg" >
-                                    <b:inputText label="Titulo" value="#{beanGoogleBooks.busqueda}" required="true"/>
+                                <b:panelGrid  colSpans="9,3" size="lg" >
+                                    <b:inputText label="Titulo" value="#{beanInversion.google.busqueda}" required="true"/>
                                     <b:commandButton  icon="plus-sign" look="info" value="Añadir Libro Nuevo"  update="frmcontent:pnlbooks" oncomplete="$('.modalEscribirLibro').modal();"/>
-                                    <b:commandButton iconAwesome="fa-pencil" actionListener="#{beanGoogleBooks.verLibros()}"
+                                    <b:commandButton iconAwesome="fa-pencil" actionListener="#{beanInversion.google.verLibros()}"
                                                      value="Buscar" process="pnlbooks" update="tblbooks" look="primary"/>
 
                                 </b:panelGrid>
                                 <p:spacer/>
-                                <b:dataTable id="tblbooks" caption="Libros de API Google books" var="json" value="#{beanGoogleBooks.arrayDeJson}" searching="true" paginated="true">
-                                    <b:dataTableColumn label="No" value="#{beanGoogleBooks.num}" style="text-align: center;"/>
+                                <b:dataTable styleClass="tableBook" id="tblbooks" caption="Libros de API Google books" var="json" value="#{beanInversion.google.arrayDeJson}" searching="true" paginated="true">
+                                    <b:dataTableColumn label="No" value="#{beanInversion.num}" style="text-align: center;"/>
                                     <b:dataTableColumn label="Titulo">
                                         <p:dataList  var="volumen" value="#{json.volumeInfoObject}" itemType="none" type="none" style="font-size: 12px;  text-align: center;">
                                             #{volumen.title} 
@@ -138,7 +138,7 @@
                                         </p:dataList>
                                     </b:dataTableColumn> 
                                     <b:dataTableColumn label="Seleccionar">
-                                        <b:commandButton iconAwesome="fa-check"  actionListener="#{beanGoogleBooks.guardarLibro()}" process="frmcontent:contenido"/>
+                                        <b:commandButton iconAwesome="fa-check" update="@Form:panelboy" oncomplete="$('.tableBook').modal('hide')" actionListener="#{beanInversion.google.guardarLibro()}" />
                                     </b:dataTableColumn>
                                 </b:dataTable>
 
@@ -152,7 +152,7 @@
                                 <b:inputText label="Categoria" value="#{beanInversion.libro.genero}" />
                                 <b:inputText label="Paginas" mask="numeric" value="#{beanInversion.libro.genero}" />
                                 
-                                <b:commandButton value="Guardar Libro" look="primary" oncomplete="$('.modalEscribirLibro').modal('hide')"/>
+                                <b:commandButton  value="Guardar Libro" look="primary" oncomplete="$('.modalEscribirLibro').modal('hide')"/>
                             </b:panelGrid>
                             
                         </b:modal>

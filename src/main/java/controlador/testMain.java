@@ -15,9 +15,6 @@ public class testMain {
     
     
     public static void main(String[] args) throws IOException {
-        BeanGoogleBooks b = new BeanGoogleBooks();
-        System.out.println("ostia");
-        b.verLibros();
     }
     
 }

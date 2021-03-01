@@ -11,7 +11,9 @@ entities\Clases.class
 entities\dto\VolumeInfo$ImageLinks.class
 sessions\Local\LibrosFacadeLocal.class
 entities\dto\Items.class
+util\GoogleBooks.class
 sessions\LibrosFacade.class
+util\GoogleBooks$1.class
 entities\dto\VolumeInfo.class
 entities\Trabajos_.class
 sessions\SuenoFacade.class
@@ -25,7 +27,6 @@ sessions\Local\HorariosOcupFacadeLocal.class
 sessions\Local\VariosFacadeLocal.class
 sessions\UsuariosFacade.class
 entities\Cursos.class
-controlador\BeanGoogleBooks$1.class
 controlador\beanTemplate.class
 controlador\testMain.class
 sessions\ClasesFacade.class
