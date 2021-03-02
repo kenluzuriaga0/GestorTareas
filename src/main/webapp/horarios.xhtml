@@ -128,17 +128,21 @@
                                     <h3>Importe Horario de Clases</h3>
                                 </p:column>
                                 <p:column colspan="1" rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
-                                    <p:fileUpload styleClass="boton" label="Subir Excel" mode="simple" skinSimple="true"/>
+                                    <p:fileUpload styleClass="boton" label="Subir Excel" mode="simple" allowTypes="/(\.|\/)(xls|xlsx)$/"  dragDropSupport="false" fileLimit="1" skinSimple="true"/>
                                 </p:column>
                                 <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
-                                    <div class="observaciones" style="margin-top: 10px;" >
-                                        Descargue la <p:link style="font-size: 15px;"><b>plantilla de ejemplo</b></p:link> en formato de excel
+                                    <div class="observaciones" style="margin-top: 10px; width: 41rem;" >
+                                        Descargue la <b>plantilla de ejemplo</b> en formato de excel
+                                        <b:commandButton  style="background:  #EEEEEE;" process="@this"  title="Descarga la plantilla para cargar Horario de clases" 
+                                                          update="@none" ajax="false" icon-awesome="fa-file-excel-o">
+                                            <p:fileDownload  value="#{beanHorarios.platillaClase}" />
+                                        </b:commandButton>
                                     </div>
                                 </p:column>
                             </p:row>
                         </p:panelGrid>
                         <div class="boton-definirHorario">
-                            <p:commandButton  ajax="false" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios"/>
+                            <p:commandButton  style="margin: 5%;" ajax="false" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios"/>
                         </div>
                     </h:form>  
                 </div>

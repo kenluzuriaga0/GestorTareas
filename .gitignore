@@ -1,12 +1,12 @@
 ## Archivos class ##
 *.class
 
-## Archivos Paquetes##
+## Archivos Paquetes ##
 *.jar
 *.war
 *.ear
 
-## Archivos Netbeans##
+## Archivos Netbeans ##
 nbproject/private/
 build/
 nbbuild/

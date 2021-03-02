@@ -10,6 +10,8 @@ import entities.HorariosOcup;
 import entities.Sueno;
 import entities.Trabajos;
 import entities.Usuarios;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.annotation.PostConstruct;
@@ -18,6 +20,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.servlet.ServletContext;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import sessions.Local.SuenoFacadeLocal;
 import sessions.Local.TrabajosFacadeLocal;
 import sessions.Local.UsuariosFacadeLocal;
@@ -37,7 +42,7 @@ public class BeanHorarios implements Serializable {
     @EJB
     private SuenoFacadeLocal suenoFacade;
 
-    private boolean checkboxito;
+    private StreamedContent platillaClase;
     
     private String[] actividadPrincipal; //para setear
 
@@ -51,22 +56,20 @@ public class BeanHorarios implements Serializable {
         usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
         trabajos = new Trabajos();
         suenito = new Sueno();
-        actividadPrincipal=new String[0];
-        
+        actividadPrincipal = new String[0];
+
     }
 
     @PostConstruct
     public void init() {
 
-        
-   
     }
 
     public void definirHorarios() {
 
         setearActividad(); //array a String de tabla usuario
         updateActivTrans(); //merge a usuario
-        
+
         agregarSuenoYtrabajo();
     }
 
@@ -85,41 +88,58 @@ public class BeanHorarios implements Serializable {
         usuario.setActivPrincipal(actividad);
 
     }
-    
-    private void agregarSuenoYtrabajo(){
-        suenito.setId(BigDecimal.valueOf(1+suenoFacade.getMaxId()));
+
+    private void agregarSuenoYtrabajo() {
+        suenito.setId(BigDecimal.valueOf(1 + suenoFacade.getMaxId()));
         suenoFacade.create(suenito);
-        
-        trabajos.setId(BigDecimal.valueOf(1+trabajosFacade.getMaxId()));
+
+        trabajos.setId(BigDecimal.valueOf(1 + trabajosFacade.getMaxId()));
 
         trabajos.setEstado("activo");
         trabajosFacade.create(trabajos);
     }
 
-    
     //AGREGADO POR EL CHAMO
-       public void cambioEstadoCheck(ValueChangeEvent e) {
+    public void cambioEstadoCheck(ValueChangeEvent e) {
         String[] check = (String[]) e.getNewValue();
         this.setActividadPrincipal(check);
     }
-  
-     //AGREGADO POR EL CHAMO
+
+    //AGREGADO POR EL CHAMO
     public boolean obtenerBoxSeleccionados(String texto) {
         boolean seleccionado = false;
         for (String e : this.actividadPrincipal) {
-            if (e.trim().equalsIgnoreCase(texto.trim()))seleccionado = true;
-                   
+            if (e.trim().equalsIgnoreCase(texto.trim())) {
+                seleccionado = true;
+            }
+
         }
         return seleccionado;
     }
-    
-    
-    
-    
-    
-    
+
+    private String rootArchivos() {
+        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        return (String) servletContext.getRealPath("/resources/docs") + "/";
+    }
+
+    public void descargarArchivo(String nombre) throws Exception {
+        this.platillaClase = DefaultStreamedContent.builder()
+                .name(nombre)
+                .contentType("application/vnd.ms-excel")
+                .stream(() -> FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/docs/"+nombre))
+                .build();
+    }
+
+    public StreamedContent getPlatillaClase() throws Exception {
+        descargarArchivo("1.Plantilla H. Universidad.xlsx");
+        return platillaClase;
+    }
+
+    public void setPlatillaClase(StreamedContent platillaClase) {
+        this.platillaClase = platillaClase;
+    }
+
     public String[] getActividadPrincipal() {
-        setCheckboxito(true);
         return actividadPrincipal;
     }
 
@@ -133,14 +153,6 @@ public class BeanHorarios implements Serializable {
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
-    }
-
-    public boolean isNotCheckboxito() {
-        return !checkboxito;
-    }
-
-    public void setCheckboxito(boolean checkboxito) {
-        this.checkboxito = checkboxito;
     }
 
     public UsuariosFacadeLocal getUsuariosFacade() {
