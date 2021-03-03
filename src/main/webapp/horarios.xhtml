@@ -31,6 +31,8 @@
 
                     </div>
                     <h:form id="form">
+                        <p:growl id="messages" showDetail="true"></p:growl>
+
                         <p:panelGrid   styleClass="panelcito" >
                             <p:row >
                                 <p:column colspan="1" >
@@ -128,21 +130,21 @@
                                     <h3>Importe Horario de Clases</h3>
                                 </p:column>
                                 <p:column colspan="1" rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
-                                    <p:fileUpload styleClass="boton" label="Subir Excel" mode="simple" allowTypes="/(\.|\/)(xls|xlsx)$/"  dragDropSupport="false" fileLimit="1" skinSimple="true"/>
+                                    <p:fileUpload styleClass="boton"  listener="#{beanHorarios.handleFileUpload}" label="Subir Excel" process="@this"  auto="true" mode="simple" allowTypes="/(\.|\/)(xls|xlsx)$/"  dragDropSupport="false" fileLimit="1" skinSimple="true"/>
                                 </p:column>
                                 <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
                                     <div class="observaciones" style="margin-top: 10px; width: 41rem;" >
                                         Descargue la <b>plantilla de ejemplo</b> en formato de excel
-                                        <b:commandButton  style="background:  #EEEEEE;" process="@this"  title="Descarga la plantilla para cargar Horario de clases" 
-                                                          update="@none" ajax="false" icon-awesome="fa-file-excel-o">
-                                            <p:fileDownload  value="#{beanHorarios.platillaClase}" />
-                                        </b:commandButton>
+                                        <p:commandButton  style="background:black !Important;" process="@this"  title="Descarga ejemplo Horario de clases" 
+                                                          update="@none" ajax="false" icon="pi pi-file-excel">
+                                            <p:fileDownload  value="#{beanHorarios.platillaClase}"  />
+                                        </p:commandButton>
                                     </div>
                                 </p:column>
                             </p:row>
                         </p:panelGrid>
                         <div class="boton-definirHorario">
-                            <p:commandButton  style="margin: 5%;" ajax="false" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios"/>
+                            <p:commandButton icon="pi pi-calendar-plus" style="margin: 5%;" ajax="false" update="messages" process="@this" actionListener="#{beanHorarios.definirHorarios()}" value="Definir Horarios"/>
                         </div>
                     </h:form>  
                 </div>

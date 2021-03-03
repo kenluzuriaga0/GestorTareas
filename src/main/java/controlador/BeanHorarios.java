@@ -10,22 +10,35 @@ import entities.HorariosOcup;
 import entities.Sueno;
 import entities.Trabajos;
 import entities.Usuarios;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.servlet.ServletContext;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.primefaces.model.file.UploadedFile;
+import sessions.Local.ClasesFacadeLocal;
 import sessions.Local.SuenoFacadeLocal;
 import sessions.Local.TrabajosFacadeLocal;
 import sessions.Local.UsuariosFacadeLocal;
+import util.ManejoExcel;
 
 /**
  *
@@ -41,17 +54,31 @@ public class BeanHorarios implements Serializable {
     private TrabajosFacadeLocal trabajosFacade;
     @EJB
     private SuenoFacadeLocal suenoFacade;
-
-    private StreamedContent platillaClase;
+    @EJB
+    private ClasesFacadeLocal clasesFacade;
     
-    private String[] actividadPrincipal; //para setear
+    
 
+    private String[] actividadPrincipal; //para setear
+    private UploadedFile clasesFile;
+    private ManejoExcel excelControl;
+    
+    //entidades
     private Sueno suenito;
     private Usuarios usuario;
     private Trabajos trabajos;
     private Clases clases;
     private HorariosOcup horarioOcupado;
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public BeanHorarios() {
         usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
         trabajos = new Trabajos();
@@ -66,18 +93,31 @@ public class BeanHorarios implements Serializable {
     }
 
     public void definirHorarios() {
-
+        try{
         setearActividad(); //array a String de tabla usuario
         updateActivTrans(); //merge a usuario
 
         agregarSuenoYtrabajo();
+          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado y Actualizado","Guardado y Actualizado con exito"));
+         
+        }catch( Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar",e.getMessage()));
+        }
     }
 
     private void updateActivTrans() {
         usuariosFacade.edit(usuario);
 
     }
+private void agregarSuenoYtrabajo() {
+        suenito.setId(BigDecimal.valueOf(1 + suenoFacade.getMaxId()));
+        suenoFacade.create(suenito);
 
+        trabajos.setId(BigDecimal.valueOf(1 + trabajosFacade.getMaxId()));
+
+        trabajos.setEstado("activo");
+        trabajosFacade.create(trabajos);
+    }
     private void setearActividad() {
         String actividad = null;
         if (actividadPrincipal.length == 2) {
@@ -87,16 +127,6 @@ public class BeanHorarios implements Serializable {
         }
         usuario.setActivPrincipal(actividad);
 
-    }
-
-    private void agregarSuenoYtrabajo() {
-        suenito.setId(BigDecimal.valueOf(1 + suenoFacade.getMaxId()));
-        suenoFacade.create(suenito);
-
-        trabajos.setId(BigDecimal.valueOf(1 + trabajosFacade.getMaxId()));
-
-        trabajos.setEstado("activo");
-        trabajosFacade.create(trabajos);
     }
 
     //AGREGADO POR EL CHAMO
@@ -112,33 +142,83 @@ public class BeanHorarios implements Serializable {
             if (e.trim().equalsIgnoreCase(texto.trim())) {
                 seleccionado = true;
             }
-
         }
         return seleccionado;
     }
 
     private String rootArchivos() {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        System.out.println(FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/images/UGlogo.png"));
+                
         return (String) servletContext.getRealPath("/resources/docs") + "/";
     }
 
-    public void descargarArchivo(String nombre) throws Exception {
-        this.platillaClase = DefaultStreamedContent.builder()
-                .name(nombre)
-                .contentType("application/vnd.ms-excel")
-                .stream(() -> FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/docs/"+nombre))
+    public StreamedContent descargarArchivo() throws Exception {
+        return new DefaultStreamedContent().builder()
+                .name("Plantilla_Horario_Universidad.xlsx")
+                .contentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                .stream(() -> FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/docs/Plantilla_Horario_Universidad.xlsx"))
                 .build();
+
+    }
+       public StreamedContent getPlatillaClase() throws Exception {
+        return descargarArchivo();
     }
 
-    public StreamedContent getPlatillaClase() throws Exception {
-        descargarArchivo("1.Plantilla H. Universidad.xlsx");
-        return platillaClase;
+    
+  private Workbook wb;
+  private Sheet sh;
+  private InputStream fis;
+int i = 0;
+  public void handleFileUpload(FileUploadEvent event) throws Exception {
+        if (event != null) {
+            excelControl = new ManejoExcel();
+            try {
+                fis = (InputStream) event.getFile().getInputStream();  //obtener el Stream del archivo escogido
+                wb = WorkbookFactory.create(fis);
+                sh = wb.getSheetAt(0);
+
+                List<Clases> clasesHorario = excelControl.importDataClases(sh);
+
+                if (!clasesHorario.isEmpty()) {
+                    for (Clases clase : clasesHorario) {
+                      //  this.addRowSearching(clase);
+                      clase.setId(BigDecimal.valueOf(i));
+                      i++;
+                      clasesFacade.create(clase);
+                    }
+                }
+
+            } catch (IOException | InvalidFormatException | EncryptedDocumentException ex) {
+                Logger.getLogger(BeanHorarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public UploadedFile getClasesFile() {
+        return clasesFile;
     }
 
-    public void setPlatillaClase(StreamedContent platillaClase) {
-        this.platillaClase = platillaClase;
+    public void setclasesFile(UploadedFile clasesFile) {
+        this.clasesFile = clasesFile;
     }
-
+    
     public String[] getActividadPrincipal() {
         return actividadPrincipal;
     }
