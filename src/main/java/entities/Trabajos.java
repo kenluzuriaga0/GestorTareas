@@ -42,15 +42,15 @@ public class Trabajos implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private BigDecimal id;
     @Size(max = 40)
-    @Column(name = "EMPRESA")
+    @Column(name = "EMPRESA", length = 40)
     private String empresa;
     @Column(name = "HORAS_LABORALES")
     private BigInteger horasLaborales;
     @Size(max = 40)
-    @Column(name = "ESTADO")
+    @Column(name = "ESTADO", length = 40)
     private String estado;
     @OneToMany(mappedBy = "idTrabajo")
     private List<HorariosOcup> horariosOcupList;

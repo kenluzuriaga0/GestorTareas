@@ -28,11 +28,14 @@
 
                         <p:outputLabel style="margin-left: 60px"> <h3>Horas Ocupadas en el dia</h3></p:outputLabel>
 
-                        <div style="height: 350px"></div>
-
+                        <p:chart type="pie"
+                                 responsive="true"
+                                 model="#{beanResultados.model}" style="width: 100%; height: 500px;"  />
                         <p:outputLabel style="margin-left: 60px"> <h3>Avance actividades productivas </h3></p:outputLabel>
 
-                        <div style="height: 350px"></div>
+                        <p:chart type="pie"
+                                 responsive="true"
+                                 model="#{beanResultados.model}" style="width: 100%; height: 500px;" />
 
                     </h:form>
                 </div>

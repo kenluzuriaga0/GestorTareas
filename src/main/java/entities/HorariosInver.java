@@ -44,7 +44,7 @@ public class HorariosInver implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private BigDecimal id;
     @Column(name = "HORAS_INVERTIDAS")
     private BigInteger horasInvertidas;
@@ -52,7 +52,7 @@ public class HorariosInver implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date gechaGenerada;
     @Size(max = 20)
-    @Column(name = "ESTADO")
+    @Column(name = "ESTADO", length = 20)
     private String estado;
     @JoinColumn(name = "ID_CURSOS", referencedColumnName = "ID")
     @ManyToOne

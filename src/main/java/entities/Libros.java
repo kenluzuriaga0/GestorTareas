@@ -43,18 +43,18 @@ public class Libros implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private BigDecimal id;
     @Size(max = 40)
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBRE", length = 40)
     private String nombre;
     @Size(max = 40)
-    @Column(name = "AUTOR")
+    @Column(name = "AUTOR", length = 40)
     private String autor;
     @Column(name = "PAGINAS")
     private BigInteger paginas;
     @Size(max = 40)
-    @Column(name = "GENERO")
+    @Column(name = "GENERO", length = 40)
     private String genero;
     @OneToMany(mappedBy = "idLibros")
     private List<HorariosInver> horariosInverList;

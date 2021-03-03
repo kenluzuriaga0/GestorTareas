@@ -40,15 +40,15 @@ public class Varios implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private BigDecimal id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBRE", nullable = false, length = 60)
     private String nombre;
     @Size(max = 100)
-    @Column(name = "DETALLE")
+    @Column(name = "DETALLE", length = 100)
     private String detalle;
     @OneToMany(mappedBy = "idVarias")
     private List<HorariosInver> horariosInverList;

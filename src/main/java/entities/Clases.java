@@ -7,19 +7,18 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -49,43 +48,44 @@ public class Clases implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private BigDecimal id;
-    @Size(max = 25)
-    @Column(name = "GRUPO")
+    @Size(max = 50)
+    @Column(name = "GRUPO", length = 50)
     private String grupo;
-    @Size(max = 25)
-    @Column(name = "MATERIA")
+    @Size(max = 50)
+    @Column(name = "MATERIA", length = 50)
     private String materia;
-    @Size(max = 25)
-    @Column(name = "DOCENTE")
+    @Size(max = 50)
+    @Column(name = "DOCENTE", length = 50)
     private String docente;
     @Size(max = 25)
-    @Column(name = "LUNES")
+    @Column(name = "LUNES", length = 25)
     private String lunes;
     @Size(max = 25)
-    @Column(name = "MARTES")
+    @Column(name = "MARTES", length = 25)
     private String martes;
     @Size(max = 25)
-    @Column(name = "MIERCOLES")
+    @Column(name = "MIERCOLES", length = 25)
     private String miercoles;
     @Size(max = 25)
-    @Column(name = "JUEVES")
+    @Column(name = "JUEVES", length = 25)
     private String jueves;
     @Size(max = 25)
-    @Column(name = "VIERNES")
+    @Column(name = "VIERNES", length = 25)
     private String viernes;
     @Size(max = 25)
-    @Column(name = "SABADO")
+    @Column(name = "SABADO", length = 25)
     private String sabado;
     @Size(max = 25)
-    @Column(name = "DOMINGO")
+    @Column(name = "DOMINGO", length = 25)
     private String domingo;
     @Size(max = 25)
-    @Column(name = "ESTADO")
+    @Column(name = "ESTADO", length = 25)
     private String estado;
-    @OneToMany(mappedBy = "idClases")
-    private List<HorariosOcup> horariosOcupList;
+    @JoinColumn(name = "HORARIO_OCUP", referencedColumnName = "ID")
+    @ManyToOne
+    private HorariosOcup horarioOcup;
 
     public Clases() {
     }
@@ -190,13 +190,12 @@ public class Clases implements Serializable {
         this.estado = estado;
     }
 
-    @XmlTransient
-    public List<HorariosOcup> getHorariosOcupList() {
-        return horariosOcupList;
+    public HorariosOcup getHorarioOcup() {
+        return horarioOcup;
     }
 
-    public void setHorariosOcupList(List<HorariosOcup> horariosOcupList) {
-        this.horariosOcupList = horariosOcupList;
+    public void setHorarioOcup(HorariosOcup horarioOcup) {
+        this.horarioOcup = horarioOcup;
     }
 
     @Override

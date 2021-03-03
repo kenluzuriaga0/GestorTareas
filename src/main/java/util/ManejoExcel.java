@@ -87,7 +87,13 @@ public class ManejoExcel {
     }
     
     
-    
+     public boolean esExcel(String archivo) {
+        if (archivo.substring(archivo.length() - 4).equals("xlsx")) {
+            return true;
+        } else {
+            return false;
+        }
+     }
     
     
 }

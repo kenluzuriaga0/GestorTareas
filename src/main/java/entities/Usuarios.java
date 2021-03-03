@@ -9,18 +9,21 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -50,48 +53,52 @@ public class Usuarios implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private BigDecimal id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
-    @Column(name = "PRIMER_NOMBRE")
+    @Column(name = "PRIMER_NOMBRE", nullable = false, length = 40)
     private String primerNombre;
     @Size(max = 40)
-    @Column(name = "SEGUNDO_NOMBRE")
+    @Column(name = "SEGUNDO_NOMBRE", length = 40)
     private String segundoNombre;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
-    @Column(name = "PRIMER__APELLIDO")
+    @Column(name = "PRIMER__APELLIDO", nullable = false, length = 40)
     private String primerApellido;
     @Size(max = 40)
-    @Column(name = "SEGUNDO_APELLIDO")
+    @Column(name = "SEGUNDO_APELLIDO", length = 40)
     private String segundoApellido;
     @Size(max = 40)
-    @Column(name = "ACTIV_PRINCIPAL")
+    @Column(name = "ACTIV_PRINCIPAL", length = 40)
     private String activPrincipal;
     @Column(name = "FECHA_NAC")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaNac;
     @Size(max = 40)
-    @Column(name = "CORREO")
+    @Column(name = "CORREO", length = 40)
     private String correo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME", nullable = false, length = 40)
     private String username;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
-    @Column(name = "PASSWORD")
+    @Column(name = "PASSWORD", nullable = false, length = 40)
     private String password;
     @Column(name = "TIEMPO_TRANS")
     private BigInteger tiempoTrans;
     @Size(max = 40)
-    @Column(name = "ACTIV_PRODUCTIVA")
+    @Column(name = "ACTIV_PRODUCTIVA", length = 40)
     private String activProductiva;
+    @OneToMany(mappedBy = "idUsuarios")
+    private List<HorariosInver> horariosInverList;
+    @OneToMany(mappedBy = "idUsuario")
+    private List<HorariosOcup> horariosOcupList;
 
     public Usuarios() {
     }
@@ -202,6 +209,24 @@ public class Usuarios implements Serializable {
 
     public void setActivProductiva(String activProductiva) {
         this.activProductiva = activProductiva;
+    }
+
+    @XmlTransient
+    public List<HorariosInver> getHorariosInverList() {
+        return horariosInverList;
+    }
+
+    public void setHorariosInverList(List<HorariosInver> horariosInverList) {
+        this.horariosInverList = horariosInverList;
+    }
+
+    @XmlTransient
+    public List<HorariosOcup> getHorariosOcupList() {
+        return horariosOcupList;
+    }
+
+    public void setHorariosOcupList(List<HorariosOcup> horariosOcupList) {
+        this.horariosOcupList = horariosOcupList;
     }
 
     @Override

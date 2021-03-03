@@ -46,23 +46,24 @@ public class BeanInversion implements Serializable {
     Varios varios;
     Usuarios usuario;
 
-     int num=0;
-     GoogleBooks google;
+    int num = 0;
+    GoogleBooks google;
+
     public BeanInversion() {
 
         usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
         curso = new Cursos();
         libro = new Libros();
         varios = new Varios();
-        
+
         google = new GoogleBooks();
-        num=0;
+        num = 0;
         actividadProductiva = new String[0];
     }
 
     @PostConstruct
     public void init() {
-num=0;
+        num = 0;
     }
 
     public void definirInversion() {
@@ -88,38 +89,36 @@ num=0;
     }
 
     private void agregarCursoYLibroYVarios() {
-        curso.setId(BigDecimal.valueOf(1 + cursosFacade.getMaxId()));
-        cursosFacade.create(curso);
+        if (obtenerBoxSeleccionados("Lectura")) {
 
-        varios.setId(BigDecimal.valueOf(1 + variosFacade.getMaxId()));
-        variosFacade.create(varios);
+        }
+        if (this.varios.getNombre() != null) {
+
+            varios.setId(BigDecimal.valueOf(1 + variosFacade.getMaxId()));
+            variosFacade.create(varios);
+        }
+        if (obtenerBoxSeleccionados("Cursos")) {
+            curso.setId(BigDecimal.valueOf(1 + cursosFacade.getMaxId()));
+            cursosFacade.create(curso);
+        }
+
     }
 
-    
-    public void cambiarEstadoCheck(ValueChangeEvent e){
-        String [] ex = (String[]) e.getNewValue();
+    public void cambiarEstadoCheck(ValueChangeEvent e) {
+        String[] ex = (String[]) e.getNewValue();
         this.setActividadProductiva(ex);
     }
-    
-    public boolean obtenerBoxSeleccionados(String texto){
+
+    public boolean obtenerBoxSeleccionados(String texto) {
         boolean seleccionado = false;
-        for(String box : this.actividadProductiva){
-            if(box.trim().equalsIgnoreCase(texto.trim()))
+        for (String box : this.actividadProductiva) {
+            if (box.trim().equalsIgnoreCase(texto.trim())) {
                 seleccionado = true;
+            }
         }
-            return seleccionado;
+        return seleccionado;
     }
 
-
-   
-    
-    
-    
-    
-    
-    
-    
-    
     public GoogleBooks getGoogle() {
         return google;
     }
@@ -127,16 +126,16 @@ num=0;
     public void setGoogle(GoogleBooks google) {
         this.google = google;
     }
+
     public int getNum() {
-        
+
         return num++;
     }
 
     public void setNum(int num) {
         this.num = num;
     }
-    
-    
+
     public String[] getActividadProductiva() {
         return actividadProductiva;
     }

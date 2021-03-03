@@ -39,7 +39,7 @@ public class Sueno implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private BigDecimal id;
     @Column(name = "HORAS_SUENO")
     private BigInteger horasSueno;

@@ -41,18 +41,18 @@ public class Cursos implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private BigDecimal id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBRE", nullable = false, length = 60)
     private String nombre;
     @Size(max = 60)
-    @Column(name = "PLATAFORMA")
+    @Column(name = "PLATAFORMA", length = 60)
     private String plataforma;
     @Size(max = 100)
-    @Column(name = "URL")
+    @Column(name = "URL", length = 100)
     private String url;
     @OneToMany(mappedBy = "idCursos")
     private List<HorariosInver> horariosInverList;

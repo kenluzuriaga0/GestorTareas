@@ -8,6 +8,7 @@ package entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,10 +17,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -40,16 +43,15 @@ public class HorariosOcup implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private BigDecimal id;
     @Column(name = "HORAS_OCUPADAS")
     private BigInteger horasOcupadas;
     @Size(max = 40)
-    @Column(name = "ESTADO")
+    @Column(name = "ESTADO", length = 40)
     private String estado;
-    @JoinColumn(name = "ID_CLASES", referencedColumnName = "ID")
-    @ManyToOne
-    private Clases idClases;
+    @OneToMany(mappedBy = "horarioOcup")
+    private List<Clases> clasesList;
     @JoinColumn(name = "ID_SUENO", referencedColumnName = "ID")
     @ManyToOne
     private Sueno idSueno;
@@ -91,12 +93,13 @@ public class HorariosOcup implements Serializable {
         this.estado = estado;
     }
 
-    public Clases getIdClases() {
-        return idClases;
+    @XmlTransient
+    public List<Clases> getClasesList() {
+        return clasesList;
     }
 
-    public void setIdClases(Clases idClases) {
-        this.idClases = idClases;
+    public void setClasesList(List<Clases> clasesList) {
+        this.clasesList = clasesList;
     }
 
     public Sueno getIdSueno() {
