@@ -7,10 +7,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/template/bienvenida.xhtml">
-        <h:head>
+        
+        <ui:define name="content">
+            <h:head>
             <title>Resultados</title>
         </h:head>
-        <ui:define name="content">
             <h:body>
                 <div class="contenedor">
                     <div class="jumbotron">

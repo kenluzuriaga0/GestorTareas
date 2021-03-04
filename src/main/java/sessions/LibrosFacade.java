@@ -34,7 +34,12 @@ public class LibrosFacade extends AbstractFacade<Libros> implements LibrosFacade
 
     @Override
     public int getMaxId() {
-        return (em.createQuery("SELECT MAX(l.id) FROM Libros l", BigDecimal.class).getSingleResult()).intValue();
+        try {
+            return (em.createQuery("SELECT MAX(l.id) FROM Libros l", BigDecimal.class).getSingleResult()).intValue();
+        } catch (NullPointerException nullo) {
+            return 0;
+        }
+
     }
 
 }

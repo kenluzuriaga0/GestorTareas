@@ -31,8 +31,15 @@ public class HorariosOcupFacade extends AbstractFacade<HorariosOcup> implements 
     public HorariosOcupFacade() {
         super(HorariosOcup.class);
     }
-        @Override
+
+    @Override
     public int getMaxId() {
-        return (em.createQuery("SELECT MAX(o.id) FROM HORARIOS_OCUP o", BigDecimal.class).getSingleResult()).intValue();
+
+        try {
+            return (em.createQuery("SELECT MAX(o.id) FROM HorariosOcup o", BigDecimal.class).getSingleResult()).intValue();
+        } catch (NullPointerException nullo) {
+            return 0;
+        }
+
     }
 }

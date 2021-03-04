@@ -30,6 +30,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 import sessions.Local.ClasesFacadeLocal;
+import sessions.Local.HorariosOcupFacadeLocal;
 import sessions.Local.SuenoFacadeLocal;
 import sessions.Local.TrabajosFacadeLocal;
 import sessions.Local.UsuariosFacadeLocal;
@@ -51,6 +52,8 @@ public class BeanHorarios implements Serializable {
     private SuenoFacadeLocal suenoFacade;
     @EJB
     private ClasesFacadeLocal clasesFacade;
+    @EJB
+    private HorariosOcupFacadeLocal horaOcupFacade;
 
     private String[] actividadPrincipal; //para setear
     private UploadedFile clasesFile;
@@ -61,19 +64,18 @@ public class BeanHorarios implements Serializable {
     private Usuarios usuario;
     private Trabajos trabajos;
     private Clases clases;
-    private HorariosOcup horarioOcupado;
+    private HorariosOcup horaOcup;
 
     public BeanHorarios() {
         usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
         trabajos = new Trabajos();
         suenito = new Sueno();
-        actividadPrincipal = new String[0];
-
+        horaOcup = new HorariosOcup();
     }
 
     @PostConstruct
     public void init() {
-
+        actividadPrincipal = new String[0];
     }
 
     public void definirHorarios() {
@@ -82,7 +84,9 @@ public class BeanHorarios implements Serializable {
             updateActivTrans(); //merge a usuario
 
             agregarSuenoYtrabajo();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado y Actualizado", "Guardado y Actualizado con exito"));
+            agregarHorarioOcup();
+            
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado y Actualizado", "Guardado y Actualizado con exito"));
 
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar", e.getMessage()));
@@ -102,6 +106,19 @@ public class BeanHorarios implements Serializable {
 
         trabajos.setEstado("activo");
         trabajosFacade.create(trabajos);
+    }
+
+    private void agregarHorarioOcup() {
+        horaOcup.setId(BigDecimal.valueOf(1+horaOcupFacade.getMaxId()));
+        horaOcup.setIdUsuario(usuario);
+        horaOcup.setIdSueno(suenito);
+        horaOcup.setIdTrabajo(trabajos);
+        //horaOcup.setHorasOcupadas(BigDecimal.valueOf(calcularHorasOcup()));
+
+        horaOcup.setEstado("activo");
+        
+        horaOcupFacade.create(horaOcup);
+
     }
 
     private void setearActividad() {
@@ -131,7 +148,6 @@ public class BeanHorarios implements Serializable {
         }
         return seleccionado;
     }
-
 
 // CARGAR EL EXCEL CLASES 
     public StreamedContent descargarArchivo() throws Exception {
@@ -240,12 +256,12 @@ public class BeanHorarios implements Serializable {
         this.clases = clases;
     }
 
-    public HorariosOcup getHorarioOcupado() {
-        return horarioOcupado;
+    public HorariosOcup getHoraOcup() {
+        return horaOcup;
     }
 
-    public void setHorarioOcupado(HorariosOcup horarioOcupado) {
-        this.horarioOcupado = horarioOcupado;
+    public void setHoraOcup(HorariosOcup horaOcup) {
+        this.horaOcup = horaOcup;
     }
 
 }

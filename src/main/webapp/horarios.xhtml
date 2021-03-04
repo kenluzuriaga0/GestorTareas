@@ -36,7 +36,7 @@
                         <p:panelGrid   styleClass="panelcito" >
                             <p:row >
                                 <p:column colspan="1" >
-                                    <h2>Actividad Principal</h2>
+                                    <h3>Actividad Principal</h3>
                                 </p:column>
 
                                 <p:column colspan="1">
@@ -59,7 +59,7 @@
                             </p:row>
                             <p:row >
                                 <p:column >
-                                    <h2>Horas de Sueño *</h2>
+                                    <h3>Horas de Sueño *</h3>
                                 </p:column>
                                 <p:column  >
                                     <p:spinner value="#{beanHorarios.suenito.horasSueno}" suffix=" Horas" styleClass="spinnercisco" min="1" max="12"/>
@@ -74,7 +74,7 @@
                             </p:row>
                             <p:row >
                                 <p:column >
-                                    <h2>Tiempo de Transporte</h2>
+                                    <h3>Tiempo de Transporte</h3>
                                 </p:column>
                                 <p:column >
                                     <p:spinner value="#{beanHorarios.usuario.tiempoTrans}" suffix=" Minutos" min="0"/>
@@ -96,7 +96,7 @@
                             <p:row>
 
                                 <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
-                                    <h2>Razon Social </h2>
+                                    <h3>Razon Social </h3>
                                 </p:column>
                                 <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
                                     <p:inputText placeholder="Empresa S.A" value="#{beanHorarios.trabajos.empresa}"/>
@@ -111,7 +111,7 @@
                             </p:row>
                             <p:row>
                                 <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">
-                                    <h2>Jornada Laboral </h2>
+                                    <h3>Jornada Laboral </h3>
                                 </p:column>
 
                                 <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Trabajar')}">

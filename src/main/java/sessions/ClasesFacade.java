@@ -33,6 +33,10 @@ public class ClasesFacade extends AbstractFacade<Clases> implements ClasesFacade
     }
         @Override
     public int getMaxId() {
+        try{
         return (em.createQuery("SELECT MAX(e.id) FROM Clases e", BigDecimal.class).getSingleResult()).intValue();
+        } catch (NullPointerException nullo) {
+            return 0;
+        }
     }
 }

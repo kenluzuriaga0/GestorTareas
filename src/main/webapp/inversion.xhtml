@@ -33,7 +33,7 @@
                         <p:panelGrid id="panelboy" columnClasses="ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3" styleClass="panelcito" >
                             <p:row >
                                 <p:column colspan="1">
-                                    <h2>Actividad productiva</h2>
+                                    <h3>Actividad productiva</h3>
                                 </p:column>
 
                                 <p:column colspan="1">
@@ -54,7 +54,7 @@
                             </p:row>
                             <p:row >
                                 <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Lectura')}">
-                                    <h2>Buscar Libro a leer</h2>
+                                    <h3>Buscar Libro a leer</h3>
                                 </p:column>
 
                                 <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Lectura')}" >
@@ -70,7 +70,7 @@
                             </p:row> 
                             <p:row >
                                 <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Cursos')}" >
-                                    <h2>Digite el curso online a realizar</h2>
+                                    <h3>Digite el curso online a realizar</h3>
                                 </p:column>
 
                                 <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Cursos')}" >
@@ -84,8 +84,23 @@
 
                             </p:row> 
                             <p:row >
+                                <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Cursos')}" >
+                                    <h3>Elija el tiempo que le dedicará al curso</h3>
+                                </p:column>
+
+                                <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Cursos')}" >
+                                    <p:spinner value="#{beanInversion.curso.tiempo}" suffix=" Horas" styleClass="spinnercisco" min="1" max="12"/>
+                                </p:column>
+                                <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Cursos')}">
+                                    <div class="observaciones" >
+                                        <h5> Digite el detalle del <b>tiempo en horas</b> que le dedica al curso</h5>
+                                    </div>
+                                </p:column>
+
+                            </p:row>
+                            <p:row >
                                 <p:column colspan="1">
-                                    <h2>Detalle alguna otra actividad</h2>
+                                    <h3>Detalle alguna otra actividad </h3>
                                 </p:column>
 
                                 <p:column colspan="1">
@@ -100,10 +115,10 @@
                             </p:row> 
                         </p:panelGrid>
 
-                        <div class="boton-definirHorario">
+                        <div class="boton-definirHorario" >
                             <p:commandButton update="growlcito" styleClass="boton-definirHorario" value="Definir Inversion" process="contenido" actionListener="#{beanInversion.definirInversion()}" />
                         </div>
-                        <div style="height: 80px;"></div>
+                        <div style="height: 80px ; margin: 0 auto;"></div>
                     </b:panelGrid>
                         <b:modal title="Buscar Libros" styleClass="modalConfirmClass5" size="modal-lg">
                             <b:panelGrid id="pnlbooks" colSpans="12" size="lg" >

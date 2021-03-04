@@ -31,9 +31,14 @@ public class HorariosInverFacade extends AbstractFacade<HorariosInver> implement
     public HorariosInverFacade() {
         super(HorariosInver.class);
     }
-        @Override
+
+    @Override
     public int getMaxId() {
-        return (em.createQuery("SELECT MAX(h.id) FROM Horarios_inver h", BigDecimal.class).getSingleResult()).intValue();
+        try {
+            return (em.createQuery("SELECT MAX(h.id) FROM Horarios_inver h", BigDecimal.class).getSingleResult()).intValue();
+        } catch (NullPointerException nullo) {
+            return 0;
+        }
     }
-    
+
 }

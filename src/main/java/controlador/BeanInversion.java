@@ -1,6 +1,7 @@
 package controlador;
 
 import entities.Cursos;
+import entities.HorariosOcup;
 import entities.Libros;
 import entities.Usuarios;
 import entities.Varios;
@@ -12,7 +13,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import sessions.HorariosOcupFacade;
 import sessions.Local.CursosFacadeLocal;
+import sessions.Local.HorariosOcupFacadeLocal;
 import sessions.Local.LibrosFacadeLocal;
 import sessions.Local.UsuariosFacadeLocal;
 import sessions.Local.VariosFacadeLocal;
@@ -38,6 +41,8 @@ public class BeanInversion implements Serializable {
     @EJB
     private VariosFacadeLocal variosFacade;
 
+    
+
     private String[] actividadProductiva;
 
     //models
@@ -55,15 +60,15 @@ public class BeanInversion implements Serializable {
         curso = new Cursos();
         libro = new Libros();
         varios = new Varios();
+        
 
-        google = new GoogleBooks();
-        num = 0;
-        actividadProductiva = new String[0];
     }
 
     @PostConstruct
     public void init() {
         num = 0;
+        google = new GoogleBooks();
+        actividadProductiva = new String[0];
     }
 
     public void definirInversion() {
@@ -103,6 +108,8 @@ public class BeanInversion implements Serializable {
         }
 
     }
+
+   
 
     public void cambiarEstadoCheck(ValueChangeEvent e) {
         String[] ex = (String[]) e.getNewValue();

@@ -10,6 +10,8 @@ import sessions.Local.SuenoFacadeLocal;
 import entities.Sueno;
 import java.math.BigDecimal;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -31,8 +33,15 @@ public class SuenoFacade extends AbstractFacade<Sueno> implements SuenoFacadeLoc
     public SuenoFacade() {
         super(Sueno.class);
     }
+
     @Override
-    public Integer getMaxId(){
-        return (em.createQuery("SELECT MAX(s.id) FROM Sueno s", BigDecimal.class).getSingleResult()).intValue();
+    public Integer getMaxId() {
+        try {
+            return (em.createQuery("SELECT MAX(s.id) FROM Sueno s", BigDecimal.class).getSingleResult()).intValue();
+
+        } catch (NullPointerException nullo) {
+            return 0;
+        }
+
     }
 }

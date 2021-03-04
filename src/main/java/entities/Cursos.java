@@ -7,19 +7,17 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cursos.findAll", query = "SELECT c FROM Cursos c")
     , @NamedQuery(name = "Cursos.findById", query = "SELECT c FROM Cursos c WHERE c.id = :id")
     , @NamedQuery(name = "Cursos.findByNombre", query = "SELECT c FROM Cursos c WHERE c.nombre = :nombre")
-    , @NamedQuery(name = "Cursos.findByPlataforma", query = "SELECT c FROM Cursos c WHERE c.plataforma = :plataforma")
+    , @NamedQuery(name = "Cursos.findByTiempo", query = "SELECT c FROM Cursos c WHERE c.tiempo = :tiempo")
     , @NamedQuery(name = "Cursos.findByUrl", query = "SELECT c FROM Cursos c WHERE c.url = :url")})
 public class Cursos implements Serializable {
 
@@ -41,21 +39,18 @@ public class Cursos implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID", nullable = false, precision = 38, scale = 0)
+    @Column(name = "ID")
     private BigDecimal id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
-    @Column(name = "NOMBRE", nullable = false, length = 60)
+    @Column(name = "NOMBRE")
     private String nombre;
-    @Size(max = 60)
-    @Column(name = "PLATAFORMA", length = 60)
-    private String plataforma;
+    @Column(name = "TIEMPO")
+    private BigInteger tiempo;
     @Size(max = 100)
-    @Column(name = "URL", length = 100)
+    @Column(name = "URL")
     private String url;
-    @OneToMany(mappedBy = "idCursos")
-    private List<HorariosInver> horariosInverList;
 
     public Cursos() {
     }
@@ -85,12 +80,12 @@ public class Cursos implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getPlataforma() {
-        return plataforma;
+    public BigInteger getTiempo() {
+        return tiempo;
     }
 
-    public void setPlataforma(String plataforma) {
-        this.plataforma = plataforma;
+    public void setTiempo(BigInteger tiempo) {
+        this.tiempo = tiempo;
     }
 
     public String getUrl() {
@@ -99,15 +94,6 @@ public class Cursos implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    @XmlTransient
-    public List<HorariosInver> getHorariosInverList() {
-        return horariosInverList;
-    }
-
-    public void setHorariosInverList(List<HorariosInver> horariosInverList) {
-        this.horariosInverList = horariosInverList;
     }
 
     @Override
