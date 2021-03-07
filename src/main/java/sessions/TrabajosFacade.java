@@ -34,8 +34,13 @@ public class TrabajosFacade extends AbstractFacade<Trabajos> implements Trabajos
     
     @Override
     public Integer getMaxId(){
+        try{
+        
         return (em.createQuery("SELECT MAX(t.id) FROM Trabajos t", BigDecimal.class).getSingleResult()).intValue();
+    }catch(Exception ex){
+        return 0;
     }
+        }
     
     
     

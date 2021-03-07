@@ -45,7 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuarios.findByUsername", query = "SELECT u FROM Usuarios u WHERE u.username = :username")
     , @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password")
     , @NamedQuery(name = "Usuarios.findByTiempoTrans", query = "SELECT u FROM Usuarios u WHERE u.tiempoTrans = :tiempoTrans")
-    , @NamedQuery(name = "Usuarios.findByActivProductiva", query = "SELECT u FROM Usuarios u WHERE u.activProductiva = :activProductiva")})
+    , @NamedQuery(name = "Usuarios.findByActivProductiva", query = "SELECT u FROM Usuarios u WHERE u.activProductiva = :activProductiva")
+    , @NamedQuery(name = "Usuarios.findByHorasSueno", query = "SELECT u FROM Usuarios u WHERE u.horasSueno = :horasSueno")})
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -95,6 +96,8 @@ public class Usuarios implements Serializable {
     @Size(max = 40)
     @Column(name = "ACTIV_PRODUCTIVA", length = 40)
     private String activProductiva;
+    @Column(name = "HORAS_SUENO")
+    private BigInteger horasSueno;
     @OneToMany(mappedBy = "idUsuarios")
     private List<HorariosInver> horariosInverList;
     @OneToMany(mappedBy = "idUsuario")
@@ -209,6 +212,14 @@ public class Usuarios implements Serializable {
 
     public void setActivProductiva(String activProductiva) {
         this.activProductiva = activProductiva;
+    }
+
+    public BigInteger getHorasSueno() {
+        return horasSueno;
+    }
+
+    public void setHorasSueno(BigInteger horasSueno) {
+        this.horasSueno = horasSueno;
     }
 
     @XmlTransient

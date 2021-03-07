@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -42,4 +43,28 @@ public class HorariosOcupFacade extends AbstractFacade<HorariosOcup> implements 
         }
 
     }
+    @Override
+    public void disableStatusbyUser(HorariosOcup horariosOcup){
+        
+        
+        String sql = "UPDATE horarios_ocup SET estado = 'inactivo' WHERE id_usuario = "+BigDecimal.valueOf(horariosOcup.getIdUsuario().getId().longValue()) ;
+        em.createNativeQuery(sql).executeUpdate();
+    }
+    @Override
+    public int getCountByUser(HorariosOcup horariosOcup){
+        
+        try {
+            Query query = em.createQuery("SELECT COUNT(o.id) FROM HorariosOcup o WHERE o.idUsuario = :id_usuario");
+            query.setParameter("id_usuario", horariosOcup.getIdUsuario().getId());
+            
+            Integer total  = (Integer) query.getSingleResult();
+            return total;
+        } catch (Exception e) {
+            return 0;
+
+        }
+
+    }
+
+ 
 }

@@ -32,4 +32,7 @@ public interface HorariosOcupFacadeLocal {
     
      public int getMaxId();
     
+     public void disableStatusbyUser(HorariosOcup horariosOcup);
+     
+     public int getCountByUser(HorariosOcup horariosOcup);
 }

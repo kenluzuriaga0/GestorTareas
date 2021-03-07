@@ -27,13 +27,11 @@ public class ManejoExcel {
                 String error = "";
                 try {
                     filaClase.setGrupo(hoja.getRow(i).getCell(0).toString().trim());
-                    System.out.print(filaClase.getGrupo()+" ");
                 } catch (Exception e) {
                     error += " GRUPO";
                 }
                 try {
                     filaClase.setMateria(hoja.getRow(i).getCell(1).toString().trim());
-                    System.out.print(filaClase.getMateria()+" ");
                 } catch (Exception e) {
                     error += ";MATERIA";
                 }

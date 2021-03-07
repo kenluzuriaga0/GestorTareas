@@ -62,7 +62,7 @@
                                     <h3>Horas de Sueño *</h3>
                                 </p:column>
                                 <p:column  >
-                                    <p:spinner value="#{beanHorarios.suenito.horasSueno}" suffix=" Horas" styleClass="spinnercisco" min="1" max="12"/>
+                                    <p:spinner value="#{beanHorarios.usuario.horasSueno}" suffix=" Horas" styleClass="spinnercisco" required="true" min="1" max="12"/>
 
                                 </p:column>
                                 <p:column>
@@ -130,7 +130,10 @@
                                     <h3>Importe Horario de Clases (automático)</h3>
                                 </p:column>
                                 <p:column colspan="1" rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
-                                    <p:fileUpload update="form:messages" styleClass="boton"  listener="#{beanHorarios.handleFileUpload}" label="Subir Excel" process="@this"  auto="true" mode="simple" allowTypes="/(\.|\/)(xls|xlsx)$/"  dragDropSupport="false" fileLimit="1" skinSimple="true"/>
+                                    <p:fileUpload  update="form:messages" styleClass="boton"  
+                                                   listener="#{beanHorarios.handleFileUpload}" label="Subir Excel"
+                                                   process="@this"  auto="true" allowTypes="/(\.|\/)(xls|xlsx)$/" 
+                                                   mode="advanced" dragDropSupport="true" fileLimit="1" skinSimple="true"/>
                                 </p:column>
                                 <p:column rendered="#{beanHorarios.obtenerBoxSeleccionados('Estudiar')}">
                                     <div class="observaciones" style="margin-top: 10px; width: 41rem;" >
