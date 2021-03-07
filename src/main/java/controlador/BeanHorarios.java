@@ -116,9 +116,11 @@ public class BeanHorarios implements Serializable {
 
         horaOcup.setId(BigDecimal.valueOf(1 + horaOcupFacade.getMaxId()));
         horaOcup.setIdUsuario(usuario);
-        if (horaOcupFacade.getMaxId() == 0) {
+        if (horaOcupFacade.getCountByUser(horaOcup) == 0) {
 //no desactiva nada porque no existe nada
+System.out.println("hay 0 usuarios "+horaOcup.getIdUsuario().getUsername());
         } else {
+System.out.println("hay 0 "+horaOcup.getIdUsuario().getUsername());
             horaOcupFacade.disableStatusbyUser(horaOcup);
         }
 

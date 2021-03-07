@@ -54,12 +54,13 @@ public class HorariosOcupFacade extends AbstractFacade<HorariosOcup> implements 
     public int getCountByUser(HorariosOcup horariosOcup){
         
         try {
-            Query query = em.createQuery("SELECT COUNT(o.id) FROM HorariosOcup o WHERE o.idUsuario = :id_usuario");
-            query.setParameter("id_usuario", horariosOcup.getIdUsuario().getId());
-            
+            Query query = em.createQuery("SELECT COUNT(o.id) FROM HorariosOcup o WHERE o.idUsuario = :id_usuario").setParameter("id_usuario", BigDecimal.valueOf(1).abs());
+                        
             Integer total  = (Integer) query.getSingleResult();
+            System.out.println("total = " + total);
             return total;
         } catch (Exception e) {
+            System.out.println("error mi llave "+e.getMessage());
             return 0;
 
         }
