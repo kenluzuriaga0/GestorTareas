@@ -91,12 +91,12 @@ public class Usuarios implements Serializable {
     @Column(name = "PASSWORD", nullable = false, length = 40)
     private String password;
     @Column(name = "TIEMPO_TRANS")
-    private BigInteger tiempoTrans;
+    private Integer tiempoTrans;
     @Size(max = 40)
     @Column(name = "ACTIV_PRODUCTIVA", length = 40)
     private String activProductiva;
     @Column(name = "HORAS_SUENO")
-    private BigInteger horasSueno;
+    private Integer horasSueno;
     @OneToMany(mappedBy = "idUsuarios")
     private List<HorariosInver> horariosInverList;
     @OneToMany(mappedBy = "idUsuario")
@@ -197,11 +197,11 @@ public class Usuarios implements Serializable {
         this.password = password;
     }
 
-    public BigInteger getTiempoTrans() {
+    public Integer getTiempoTrans() {
         return tiempoTrans;
     }
 
-    public void setTiempoTrans(BigInteger tiempoTrans) {
+    public void setTiempoTrans(Integer tiempoTrans) {
         this.tiempoTrans = tiempoTrans;
     }
 
@@ -213,11 +213,11 @@ public class Usuarios implements Serializable {
         this.activProductiva = activProductiva;
     }
 
-    public BigInteger getHorasSueno() {
+    public Integer getHorasSueno() {
         return horasSueno;
     }
 
-    public void setHorasSueno(BigInteger horasSueno) {
+    public void setHorasSueno(Integer horasSueno) {
         this.horasSueno = horasSueno;
     }
 

@@ -47,7 +47,7 @@ public class Trabajos implements Serializable {
     @Column(name = "EMPRESA", length = 40)
     private String empresa;
     @Column(name = "HORAS_LABORALES")
-    private BigInteger horasLaborales;
+    private Integer horasLaborales;
     @Size(max = 40)
     @Column(name = "ESTADO", length = 40)
     private String estado;
@@ -77,11 +77,11 @@ public class Trabajos implements Serializable {
         this.empresa = empresa;
     }
 
-    public BigInteger getHorasLaborales() {
+    public Integer getHorasLaborales() {
         return horasLaborales;
     }
 
-    public void setHorasLaborales(BigInteger horasLaborales) {
+    public void setHorasLaborales(Integer horasLaborales) {
         this.horasLaborales = horasLaborales;
     }
 

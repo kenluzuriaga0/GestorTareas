@@ -124,11 +124,27 @@ public class BeanHorarios implements Serializable {
 
             horaOcup.setIdTrabajo(trabajos);
         }
-        //horaOcup.setHorasOcupadas(BigDecimal.valueOf(calcularHorasOcup()));
+        horaOcup.setHorasOcupadas(calcularHorasOcup());
         horaOcup.setEstado("activo");
 
         horaOcupFacade.create(horaOcup);
 
+    }
+
+    private Float calcularHorasOcup() {
+        Float total = 0F;
+        try {
+            int sueno = usuario.getHorasSueno();
+            if (obtenerBoxSeleccionados("Trabajar")) {
+                int laboral = trabajos.getHorasLaborales();
+                total = Float.valueOf((usuario.getTiempoTrans() / 60F) + sueno + laboral);
+            } else {
+                total = Float.valueOf((usuario.getTiempoTrans() / 60F) + sueno);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage() + " ojo");
+        }
+        return total;
     }
 
     private void setearActividad() {

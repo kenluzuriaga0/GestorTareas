@@ -42,7 +42,7 @@ public class HorariosOcup implements Serializable {
     @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private Integer id;
     @Column(name = "HORAS_OCUPADAS")
-    private BigInteger horasOcupadas;
+    private Float horasOcupadas;
     @Size(max = 40)
     @Column(name = "ESTADO", length = 40)
     private String estado;
@@ -68,11 +68,11 @@ public class HorariosOcup implements Serializable {
         this.id = id;
     }
 
-    public BigInteger getHorasOcupadas() {
+    public Float getHorasOcupadas() {
         return horasOcupadas;
     }
 
-    public void setHorasOcupadas(BigInteger horasOcupadas) {
+    public void setHorasOcupadas(Float horasOcupadas) {
         this.horasOcupadas = horasOcupadas;
     }
 

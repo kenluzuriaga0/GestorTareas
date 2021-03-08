@@ -39,7 +39,6 @@ public class HorariosOcupFacade extends AbstractFacade<HorariosOcup> implements 
         try {
             return (em.createQuery("SELECT MAX(o.id) FROM HorariosOcup o", Integer.class).getSingleResult()).intValue();
         } catch (Exception nullo) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error MAX(ID) HORARIOS_OCUP", nullo.getMessage()));
 
             return 0;
         }
