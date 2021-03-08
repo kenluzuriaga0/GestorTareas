@@ -6,7 +6,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
@@ -55,7 +54,7 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID", nullable = false, precision = 38, scale = 0)
-    private BigDecimal id;
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
@@ -106,11 +105,11 @@ public class Usuarios implements Serializable {
     public Usuarios() {
     }
 
-    public Usuarios(BigDecimal id) {
+    public Usuarios(Integer id) {
         this.id = id;
     }
 
-    public Usuarios(BigDecimal id, String primerNombre, String primerApellido, String username, String password) {
+    public Usuarios(Integer id, String primerNombre, String primerApellido, String username, String password) {
         this.id = id;
         this.primerNombre = primerNombre;
         this.primerApellido = primerApellido;
@@ -118,11 +117,11 @@ public class Usuarios implements Serializable {
         this.password = password;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

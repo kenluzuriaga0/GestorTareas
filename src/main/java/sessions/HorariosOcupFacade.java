@@ -8,11 +8,11 @@ package sessions;
 import sessions.Local.HorariosOcupFacadeLocal;
 import sessions.Local.AbstractFacade;
 import entities.HorariosOcup;
-import java.math.BigDecimal;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -37,35 +37,36 @@ public class HorariosOcupFacade extends AbstractFacade<HorariosOcup> implements 
     public int getMaxId() {
 
         try {
-            return (em.createQuery("SELECT MAX(o.id) FROM HorariosOcup o", BigDecimal.class).getSingleResult()).intValue();
-        } catch (NullPointerException nullo) {
+            return (em.createQuery("SELECT MAX(o.id) FROM HorariosOcup o", Integer.class).getSingleResult()).intValue();
+        } catch (Exception nullo) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error MAX(ID) HORARIOS_OCUP", nullo.getMessage()));
+
             return 0;
         }
 
     }
+
     @Override
-    public void disableStatusbyUser(HorariosOcup horariosOcup){
-        
-        
-        String sql = "UPDATE horarios_ocup SET estado = 'inactivo' WHERE id_usuario = "+BigDecimal.valueOf(horariosOcup.getIdUsuario().getId().longValue()) ;
+    public void disableStatusbyUser(HorariosOcup horariosOcup) {
+
+        String sql = "UPDATE horarios_ocup SET estado = 'inactivo' WHERE id_usuario = " + horariosOcup.getIdUsuario().getId();
         em.createNativeQuery(sql).executeUpdate();
     }
+
     @Override
-    public int getCountByUser(HorariosOcup horariosOcup){
-        
+    public int getCountByUser(HorariosOcup horariosOcup) {
+
         try {
-            Query query = em.createQuery("SELECT COUNT(o.id) FROM HorariosOcup o WHERE o.idUsuario = :id_usuario").setParameter("id_usuario", BigDecimal.valueOf(1).abs());
-                        
-            Integer total  = (Integer) query.getSingleResult();
-            System.out.println("total = " + total);
+            String sql = "SELECT COUNT(id) FROM horarios_ocup WHERE id_usuario = " + horariosOcup.getIdUsuario().getId();
+            Integer total = Integer.valueOf(String.valueOf(em.createNativeQuery(sql).getSingleResult()));
+
             return total;
         } catch (Exception e) {
-            System.out.println("error mi llave "+e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error COUNT(ID HORARIOS_OCUP)", e.getMessage()));
             return 0;
 
         }
 
     }
 
- 
 }

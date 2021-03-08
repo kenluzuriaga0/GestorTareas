@@ -31,7 +31,7 @@ public class BeanRegistroUser implements Serializable{
     }
     
     public void registrarUsuario(){
-        usuario.setId(BigDecimal.valueOf(1+usuariosFacade.getMaxId()));
+        usuario.setId(1+usuariosFacade.getMaxId());
         usuariosFacade.create(usuario);
         
     }

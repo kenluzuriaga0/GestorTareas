@@ -6,7 +6,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +48,7 @@ public class Clases implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID", nullable = false, precision = 38, scale = 0)
-    private BigDecimal id;
+    private Integer id;
     @Size(max = 50)
     @Column(name = "GRUPO", length = 50)
     private String grupo;
@@ -90,15 +89,15 @@ public class Clases implements Serializable {
     public Clases() {
     }
 
-    public Clases(BigDecimal id) {
+    public Clases(Integer id) {
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

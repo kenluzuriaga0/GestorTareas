@@ -6,7 +6,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -41,7 +40,7 @@ public class Varios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID", nullable = false, precision = 38, scale = 0)
-    private BigDecimal id;
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
@@ -56,20 +55,20 @@ public class Varios implements Serializable {
     public Varios() {
     }
 
-    public Varios(BigDecimal id) {
+    public Varios(Integer id) {
         this.id = id;
     }
 
-    public Varios(BigDecimal id, String nombre) {
+    public Varios(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

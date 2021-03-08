@@ -6,8 +6,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -45,9 +43,9 @@ public class HorariosInver implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID", nullable = false, precision = 38, scale = 0)
-    private BigDecimal id;
+    private Integer id;
     @Column(name = "HORAS_INVERTIDAS")
-    private BigInteger horasInvertidas;
+    private Double horasInvertidas;
     @Column(name = "GECHA_GENERADA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date gechaGenerada;
@@ -70,23 +68,23 @@ public class HorariosInver implements Serializable {
     public HorariosInver() {
     }
 
-    public HorariosInver(BigDecimal id) {
+    public HorariosInver(Integer id) {
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public BigInteger getHorasInvertidas() {
+    public Double getHorasInvertidas() {
         return horasInvertidas;
     }
 
-    public void setHorasInvertidas(BigInteger horasInvertidas) {
+    public void setHorasInvertidas(Double horasInvertidas) {
         this.horasInvertidas = horasInvertidas;
     }
 

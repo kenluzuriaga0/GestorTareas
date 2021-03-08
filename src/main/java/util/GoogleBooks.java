@@ -61,7 +61,7 @@ public class GoogleBooks {
     }
 
     public void guardarLibro() {
-//        libro.setId(BigDecimal.valueOf(1 + librosFacade.getMaxId()));
+//        libro.setId(Integer.valueOf(1 + librosFacade.getMaxId()));
 //
 //        libro.setNombre(arrayDeJson.get(index).getVolumeInfoObject().getTitle());
 //        libro.setAutor(arrayDeJson.get(index).getVolumeInfoObject().getAuthors().get(0));

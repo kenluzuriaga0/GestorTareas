@@ -6,7 +6,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -41,7 +40,7 @@ public class HorariosOcup implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID", nullable = false, precision = 38, scale = 0)
-    private BigDecimal id;
+    private Integer id;
     @Column(name = "HORAS_OCUPADAS")
     private BigInteger horasOcupadas;
     @Size(max = 40)
@@ -57,15 +56,15 @@ public class HorariosOcup implements Serializable {
     public HorariosOcup() {
     }
 
-    public HorariosOcup(BigDecimal id) {
+    public HorariosOcup(Integer id) {
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

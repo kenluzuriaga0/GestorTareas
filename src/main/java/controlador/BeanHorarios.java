@@ -7,7 +7,6 @@ import entities.Usuarios;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -103,7 +102,7 @@ public class BeanHorarios implements Serializable {
     private void agregarTrabajo() {
 
         if (obtenerBoxSeleccionados("Trabajar")) {
-            trabajos.setId(BigDecimal.valueOf(1 + trabajosFacade.getMaxId()));
+            trabajos.setId(1 + trabajosFacade.getMaxId());
             trabajos.setEstado("activo");
             trabajosFacade.create(trabajos);
         } else {
@@ -114,14 +113,11 @@ public class BeanHorarios implements Serializable {
 
     private void agregarHorarioOcup() {
 
-        horaOcup.setId(BigDecimal.valueOf(1 + horaOcupFacade.getMaxId()));
+        horaOcup.setId(1 + horaOcupFacade.getMaxId());
         horaOcup.setIdUsuario(usuario);
-        if (horaOcupFacade.getCountByUser(horaOcup) == 0) {
-//no desactiva nada porque no existe nada
-System.out.println("hay 0 usuarios "+horaOcup.getIdUsuario().getUsername());
-        } else {
-System.out.println("hay 0 "+horaOcup.getIdUsuario().getUsername());
+        if (horaOcupFacade.getCountByUser(horaOcup) != 0) {
             horaOcupFacade.disableStatusbyUser(horaOcup);
+
         }
 
         if (obtenerBoxSeleccionados("Trabajar")) {
@@ -176,8 +172,8 @@ System.out.println("hay 0 "+horaOcup.getIdUsuario().getUsername());
 
                         if (!clasesHorario.isEmpty()) {
                             for (Clases clase : clasesHorario) {
-                                clase.setId(BigDecimal.valueOf(1 + clasesFacade.getMaxId()));
-                                //  clase.setHorarioOcup();
+                                clase.setId(1 + clasesFacade.getMaxId());
+                                clase.setEstado("activo");
                                 clasesFacade.create(clase);
                             }
                         }

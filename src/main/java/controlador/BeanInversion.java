@@ -97,11 +97,11 @@ public class BeanInversion implements Serializable {
         }
         if (this.varios.getNombre() != null) {
 
-            varios.setId(BigDecimal.valueOf(1 + variosFacade.getMaxId()));
+            varios.setId(1 + variosFacade.getMaxId());
             variosFacade.create(varios);
         }
         if (obtenerBoxSeleccionados("Cursos")) {
-            curso.setId(BigDecimal.valueOf(1 + cursosFacade.getMaxId()));
+            curso.setId(1 + cursosFacade.getMaxId());
             cursosFacade.create(curso);
         }
 

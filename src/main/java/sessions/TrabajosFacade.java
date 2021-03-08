@@ -8,7 +8,6 @@ package sessions;
 import sessions.Local.TrabajosFacadeLocal;
 import sessions.Local.AbstractFacade;
 import entities.Trabajos;
-import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,7 +35,7 @@ public class TrabajosFacade extends AbstractFacade<Trabajos> implements Trabajos
     public Integer getMaxId(){
         try{
         
-        return (em.createQuery("SELECT MAX(t.id) FROM Trabajos t", BigDecimal.class).getSingleResult()).intValue();
+        return (em.createQuery("SELECT MAX(t.id) FROM Trabajos t", Integer.class).getSingleResult()).intValue();
     }catch(Exception ex){
         return 0;
     }

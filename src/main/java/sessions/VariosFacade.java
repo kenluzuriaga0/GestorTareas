@@ -8,7 +8,6 @@ package sessions;
 import sessions.Local.AbstractFacade;
 import sessions.Local.VariosFacadeLocal;
 import entities.Varios;
-import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,7 +35,7 @@ public class VariosFacade extends AbstractFacade<Varios> implements VariosFacade
     public Integer getMaxId() {
         try{
         
- return (em.createQuery("SELECT MAX(c.id) FROM Varios c", BigDecimal.class).getSingleResult()).intValue();
+ return (em.createQuery("SELECT MAX(c.id) FROM Varios c", Integer.class).getSingleResult()).intValue();
       }catch(Exception ex){
             System.out.println(ex.getMessage()+" Error en getMaxId de Varios");
             return 0;
