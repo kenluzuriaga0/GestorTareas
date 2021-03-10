@@ -28,9 +28,10 @@
                         </div>
                     </div>
                     <h:form id="frmcontent">
-                         <p:growl id="growlcito" for="sticky-key" showDetail="true" sticky="true" />
+                       
                         <b:panelGrid colSpans="12" id="contenido" >
                         <p:panelGrid id="panelboy" columnClasses="ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-3" styleClass="panelcito" >
+                            <p:growl id="growlcito" for="sticky-key" showDetail="true" sticky="true" />
                             <p:row >
                                 <p:column colspan="1">
                                     <h3>Actividad productiva</h3>
@@ -153,7 +154,12 @@
                                         </p:dataList>
                                     </b:dataTableColumn> 
                                     <b:dataTableColumn label="Seleccionar">
-                                        <b:commandButton iconAwesome="fa-check" update="@Form:panelboy" oncomplete="$('.tableBook').modal('hide')" actionListener="#{beanInversion.google.guardarLibro()}" />
+                                        <b:commandButton iconAwesome="fa-check" update="@Form:panelboy" ajax="true"
+                                                         oncomplete="$('.modalConfirmClass5').modal('hide')"
+                                                         onclick="ajax:beanInversion.guardarLibro" 
+                                                         action="#{beanInversion.guardarLibro()}" >
+                                        <f:ajax event="click" listener="#{beanInversion.guardarLibro()}" />
+                                        </b:commandButton>
                                     </b:dataTableColumn>
                                 </b:dataTable>
 

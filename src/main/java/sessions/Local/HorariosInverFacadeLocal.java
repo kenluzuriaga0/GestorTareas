@@ -6,6 +6,7 @@
 package sessions.Local;
 
 import entities.HorariosInver;
+import entities.HorariosOcup;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,8 @@ public interface HorariosInverFacadeLocal {
     List<HorariosInver> findRange(int[] range);
 
     int count();
-    public int getMaxId();
+    public Integer getMaxId();
+    public void disableStatusbyUser(HorariosInver horariosInver);
+     
+     public int getCountByUser(HorariosInver horariosInver);
 }

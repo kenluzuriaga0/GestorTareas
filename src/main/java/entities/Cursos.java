@@ -6,7 +6,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -49,7 +48,7 @@ public class Cursos implements Serializable {
     @Column(name = "NOMBRE", nullable = false, length = 60)
     private String nombre;
     @Column(name = "TIEMPO")
-    private BigInteger tiempo;
+    private Integer tiempo;
     @Size(max = 100)
     @Column(name = "URL", length = 100)
     private String url;
@@ -84,11 +83,11 @@ public class Cursos implements Serializable {
         this.nombre = nombre;
     }
 
-    public BigInteger getTiempo() {
+    public Integer getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(BigInteger tiempo) {
+    public void setTiempo(Integer tiempo) {
         this.tiempo = tiempo;
     }
 

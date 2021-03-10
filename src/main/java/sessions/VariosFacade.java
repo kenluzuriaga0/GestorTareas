@@ -40,7 +40,7 @@ public class VariosFacade extends AbstractFacade<Varios> implements VariosFacade
             System.out.println(ex.getMessage()+" Error en getMaxId de Varios");
             return 0;
         }
-
+     
     }
     
 }

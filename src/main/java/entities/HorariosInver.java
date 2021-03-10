@@ -45,7 +45,7 @@ public class HorariosInver implements Serializable {
     @Column(name = "ID", nullable = false, precision = 38, scale = 0)
     private Integer id;
     @Column(name = "HORAS_INVERTIDAS")
-    private Double horasInvertidas;
+    private Float horasInvertidas;
     @Column(name = "GECHA_GENERADA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date gechaGenerada;
@@ -80,11 +80,11 @@ public class HorariosInver implements Serializable {
         this.id = id;
     }
 
-    public Double getHorasInvertidas() {
+    public Float getHorasInvertidas() {
         return horasInvertidas;
     }
 
-    public void setHorasInvertidas(Double horasInvertidas) {
+    public void setHorasInvertidas(Float horasInvertidas) {
         this.horasInvertidas = horasInvertidas;
     }
 

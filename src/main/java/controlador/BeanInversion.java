@@ -1,19 +1,22 @@
 package controlador;
 
 import entities.Cursos;
+import entities.HorariosInver;
 import entities.HorariosOcup;
 import entities.Libros;
 import entities.Usuarios;
 import entities.Varios;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import sessions.Local.CursosFacadeLocal;
+import sessions.Local.HorariosInverFacadeLocal;
+import sessions.Local.HorariosOcupFacadeLocal;
 import sessions.Local.LibrosFacadeLocal;
 import sessions.Local.UsuariosFacadeLocal;
 import sessions.Local.VariosFacadeLocal;
@@ -29,17 +32,16 @@ public class BeanInversion implements Serializable {
 
     @EJB
     private UsuariosFacadeLocal usuariosFacade;
-
     @EJB
     private CursosFacadeLocal cursosFacade;
-
     @EJB
     private LibrosFacadeLocal librosFacade;
-
     @EJB
     private VariosFacadeLocal variosFacade;
-
-    
+    @EJB
+    private HorariosInverFacadeLocal horaInverFacade;
+    @EJB
+    private HorariosOcupFacadeLocal horaOcupFacade;
 
     private String[] actividadProductiva;
 
@@ -48,6 +50,8 @@ public class BeanInversion implements Serializable {
     Libros libro;
     Varios varios;
     Usuarios usuario;
+    HorariosInver horaInver;
+    HorariosOcup horaOcup;
 
     int num = 0;
     GoogleBooks google;
@@ -58,12 +62,13 @@ public class BeanInversion implements Serializable {
         curso = new Cursos();
         libro = new Libros();
         varios = new Varios();
-        
-
+        horaInver = new HorariosInver();
+        horaOcup = new HorariosOcup();
     }
 
     @PostConstruct
     public void init() {
+        horaOcup.setIdUsuario(usuario);
         num = 0;
         google = new GoogleBooks();
         actividadProductiva = new String[0];
@@ -71,14 +76,49 @@ public class BeanInversion implements Serializable {
 
     public void definirInversion() {
         updateActivProductiva(); //merge a usuario
-
         agregarCursoYLibroYVarios();
+        agregarHorariosInver();
+    }
+
+    private void agregarHorariosInver() {
+        horaInver.setId(1 + horaInverFacade.getMaxId());
+        horaInver.setIdUsuarios(usuario);
+        if (horaInverFacade.getCountByUser(horaInver) != 0) {
+            horaInverFacade.disableStatusbyUser(horaInver);
+        }
+        if (obtenerBoxSeleccionados("Cursos")) {
+
+            horaInver.setIdCursos(curso);
+        }
+        
+        horaInver.setHorasInvertidas(calcularHorasInver());
+        horaInver.setEstado("activo");
+        
+        try {
+            horaInverFacade.create(horaInver);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Guardado Exitosamente", "Guardado Exitosamente"));
+
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error COUNT(ID HORARIOS_INVER", ex.getMessage()));
+
+        }
+
     }
 
     private void updateActivProductiva() {
         setearActividad(); //array a String de tabla usuario
         usuariosFacade.edit(usuario);
 
+    }
+
+    private Float calcularHorasInver() {
+        Float total = 0F;
+        try {
+            total = 24 - horaOcupFacade.find(usuario.getId()).getHorasOcupadas();
+        } catch (Exception e) {
+            System.out.println(e.getMessage() + " ojo");
+        }
+        return total;
     }
 
     private void setearActividad() {
@@ -107,8 +147,6 @@ public class BeanInversion implements Serializable {
 
     }
 
-   
-
     public void cambiarEstadoCheck(ValueChangeEvent e) {
         String[] ex = (String[]) e.getNewValue();
         this.setActividadProductiva(ex);
@@ -122,6 +160,15 @@ public class BeanInversion implements Serializable {
             }
         }
         return seleccionado;
+    }
+
+    public void guardarLibro() {
+//        libro.setId(Integer.valueOf(1 + librosFacade.getMaxId()));
+//
+//        libro.setNombre(arrayDeJson.get(index).getVolumeInfoObject().getTitle());
+//        libro.setAutor(arrayDeJson.get(index).getVolumeInfoObject().getAuthors().get(0));
+        System.out.println("keeeeeeeeeeeeeeeeeeen");
+
     }
 
     public GoogleBooks getGoogle() {

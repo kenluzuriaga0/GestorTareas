@@ -68,4 +68,16 @@ public class HorariosOcupFacade extends AbstractFacade<HorariosOcup> implements 
 
     }
 
+    @Override
+    public Integer getHorasOcupadasActivo(HorariosOcup horaOcup) {
+        try {
+            return ((Long) em.createQuery("SELECT o.horasOcupadas FROM HorariosOcup o WHERE estado = 'activo' AND id_usuario = :idUsuario ")
+                    .setParameter("idUsuario", horaOcup.getIdUsuario().getId()).getSingleResult()).intValue();
+
+        } catch (Exception nullo) {
+            System.out.println(nullo.getMessage() + " ERROR");
+            return 0;
+        }
+    }
+
 }

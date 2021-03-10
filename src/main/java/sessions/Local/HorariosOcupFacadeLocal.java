@@ -35,4 +35,6 @@ public interface HorariosOcupFacadeLocal {
      public void disableStatusbyUser(HorariosOcup horariosOcup);
      
      public int getCountByUser(HorariosOcup horariosOcup);
+     
+      public Integer getHorasOcupadasActivo(HorariosOcup horaOcup);
 }
