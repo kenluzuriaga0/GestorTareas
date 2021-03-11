@@ -7,6 +7,9 @@ import entities.Usuarios;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -24,6 +27,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
+import sessions.CursosFacade;
 import sessions.Local.ClasesFacadeLocal;
 import sessions.Local.HorariosOcupFacadeLocal;
 import sessions.Local.TrabajosFacadeLocal;
@@ -74,6 +78,7 @@ public class BeanHorarios implements Serializable {
             agregarTrabajo();
             agregarHorarioOcup();
             updateClases(); // añadir la foranea
+            obtenerHoras();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado y Actualizado", "Guardado y Actualizado con exito"));
 
         } catch (Exception e) {
@@ -145,6 +150,47 @@ public class BeanHorarios implements Serializable {
             System.out.println(e.getMessage() + " ojo");
         }
         return total;
+    }
+
+    private void obtenerHoras() {
+        List<String> dias = new ArrayList<>();
+        try {
+            dias = clasesFacade.getHorasLunes(horaOcup);
+            picarHoras(dias);
+            dias = clasesFacade.getHorasMartes(horaOcup);
+            picarHoras(dias);
+            dias = clasesFacade.getHorasMiercoles(horaOcup);
+            picarHoras(dias);
+            dias = clasesFacade.getHorasJueves(horaOcup);
+            picarHoras(dias);
+            dias = clasesFacade.getHorasViernes(horaOcup);
+            picarHoras(dias);
+            dias = clasesFacade.getHorasSabado(horaOcup);
+            picarHoras(dias);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    private void picarHoras(List<String> dias) throws Exception {
+        SimpleDateFormat formatito = new SimpleDateFormat("HH:mm");
+        Date hora1 = null;
+        Date hora2 = null;
+        String[] horaSeparados = new String[2];
+
+        for (String day : dias) {
+            horaSeparados = day.split("-");
+            hora1 = formatito.parse(horaSeparados[0].trim()); //7
+            hora2 = formatito.parse(horaSeparados[1].trim());//9
+
+            long inicio = hora1.getTime();
+            long fin = hora2.getTime();
+            long diferencia = (fin - inicio) / 3600000;
+            System.out.println("fin - inicio: " + fin +" - "+ inicio);
+            System.out.println("diferencia: " + diferencia);
+
+        }
     }
 
     private void setearActividad() {

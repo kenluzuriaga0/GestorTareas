@@ -79,5 +79,6 @@ public class HorariosOcupFacade extends AbstractFacade<HorariosOcup> implements 
             return 0;
         }
     }
+    
 
 }

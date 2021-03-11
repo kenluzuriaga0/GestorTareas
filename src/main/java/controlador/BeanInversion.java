@@ -75,9 +75,16 @@ public class BeanInversion implements Serializable {
     }
 
     public void definirInversion() {
-        updateActivProductiva(); //merge a usuario
-        agregarCursoYLibroYVarios();
-        agregarHorariosInver();
+        try {
+
+            updateActivProductiva(); //merge a usuario
+            agregarCursoYLibroYVarios();
+            agregarHorariosInver();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado y Actualizado", "Guardado y Actualizado con exito"));
+
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar", e.getMessage()));
+        }
     }
 
     private void agregarHorariosInver() {
@@ -90,18 +97,11 @@ public class BeanInversion implements Serializable {
 
             horaInver.setIdCursos(curso);
         }
-        
+
         horaInver.setHorasInvertidas(calcularHorasInver());
         horaInver.setEstado("activo");
-        
-        try {
-            horaInverFacade.create(horaInver);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Guardado Exitosamente", "Guardado Exitosamente"));
 
-        } catch (Exception ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error COUNT(ID HORARIOS_INVER", ex.getMessage()));
-
-        }
+        horaInverFacade.create(horaInver);
 
     }
 

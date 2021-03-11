@@ -41,6 +41,7 @@ public class BeanResultados implements Serializable {
         model.set("Horas sueño", 62);//jobs in thousands
         model.set("Horas clases", 46);
         model.set("Horas trabajo", 38);
+        model.set("Horas transporte", 10);
 
         //followings are some optional customizations:
         //set title

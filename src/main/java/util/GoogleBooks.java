@@ -36,7 +36,6 @@ public class GoogleBooks {
     }
 
     public void verLibros() throws IOException {
-        System.out.println("neeeekk ");
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://www.googleapis.com/books/v1/volumes?q=" + this.getBusqueda() + "&maxResults=40&key=" + this.getApi_key())

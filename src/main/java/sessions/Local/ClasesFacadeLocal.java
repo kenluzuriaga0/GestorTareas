@@ -6,6 +6,7 @@
 package sessions.Local;
 
 import entities.Clases;
+import entities.HorariosOcup;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,4 +31,10 @@ public interface ClasesFacadeLocal {
 
     int count();
     public int getMaxId();
+    public List<String> getHorasLunes(HorariosOcup horaOcup) throws Exception;
+    public List<String> getHorasMartes(HorariosOcup horaOcup) throws Exception;
+    public List<String> getHorasMiercoles(HorariosOcup horaOcup) throws Exception;
+    public List<String> getHorasJueves(HorariosOcup horaOcup) throws Exception;
+    public List<String> getHorasViernes(HorariosOcup horaOcup) throws Exception;
+    public List<String> getHorasSabado(HorariosOcup horaOcup) throws Exception;
 }
