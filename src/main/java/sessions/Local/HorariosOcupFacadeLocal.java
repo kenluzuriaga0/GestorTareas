@@ -36,5 +36,5 @@ public interface HorariosOcupFacadeLocal {
      
      public int getCountByUser(HorariosOcup horariosOcup);
      
-      public Integer getHorasOcupadasActivo(HorariosOcup horaOcup);
+      public Float getHorasOcupadasActivo(HorariosOcup horaOcup);
 }

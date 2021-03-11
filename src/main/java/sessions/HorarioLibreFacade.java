@@ -30,5 +30,12 @@ public class HorarioLibreFacade extends AbstractFacade<HorarioLibre> implements 
     public HorarioLibreFacade() {
         super(HorarioLibre.class);
     }
-    
+    @Override
+    public int getMaxId() {
+        try {
+            return (em.createQuery("SELECT MAX(h.id) FROM HorarioLibre h", Integer.class).getSingleResult()).intValue();
+        } catch (NullPointerException nullo) {
+            return 0;
+        }
+    }
 }

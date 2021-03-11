@@ -49,24 +49,18 @@ public class HorarioLibre implements Serializable {
     @JoinColumn(name = "HORARIO_OCUP", referencedColumnName = "ID")
     @ManyToOne
     private HorariosOcup horarioOcup;
-    @Size(max = 30)
     @Column(name = "LUNES", length = 30)
-    private String lunes;
-    @Size(max = 30)
+    private Float lunes;
     @Column(name = "MARTES", length = 30)
-    private String martes;
-    @Size(max = 30)
+    private Float martes;
     @Column(name = "MIERCOLES", length = 30)
-    private String miercoles;
-    @Size(max = 30)
+    private Float miercoles;
     @Column(name = "JUEVES", length = 30)
-    private String jueves;
-    @Size(max = 30)
+    private Float jueves;
     @Column(name = "VIERNES", length = 30)
-    private String viernes;
-    @Size(max = 30)
+    private Float viernes;
     @Column(name = "SABADO", length = 30)
-    private String sabado;
+    private Float sabado;
     
     public HorarioLibre() {
     }
@@ -91,51 +85,51 @@ public class HorarioLibre implements Serializable {
         this.horarioOcup = horarioOcup;
     }
 
-    public String getLunes() {
+    public Float getLunes() {
         return lunes;
     }
 
-    public void setLunes(String lunes) {
+    public void setLunes(Float lunes) {
         this.lunes = lunes;
     }
 
-    public String getMartes() {
+    public Float getMartes() {
         return martes;
     }
 
-    public void setMartes(String martes) {
+    public void setMartes(Float martes) {
         this.martes = martes;
     }
 
-    public String getMiercoles() {
+    public Float getMiercoles() {
         return miercoles;
     }
 
-    public void setMiercoles(String miercoles) {
+    public void setMiercoles(Float miercoles) {
         this.miercoles = miercoles;
     }
 
-    public String getJueves() {
+    public Float getJueves() {
         return jueves;
     }
 
-    public void setJueves(String jueves) {
+    public void setJueves(Float jueves) {
         this.jueves = jueves;
     }
 
-    public String getViernes() {
+    public Float getViernes() {
         return viernes;
     }
 
-    public void setViernes(String viernes) {
+    public void setViernes(Float viernes) {
         this.viernes = viernes;
     }
 
-    public String getSabado() {
+    public Float getSabado() {
         return sabado;
     }
 
-    public void setSabado(String sabado) {
+    public void setSabado(Float sabado) {
         this.sabado = sabado;
     }
 

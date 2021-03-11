@@ -29,5 +29,8 @@ public interface HorarioLibreFacadeLocal {
     List<HorarioLibre> findRange(int[] range);
 
     int count();
+    public int getMaxId();
+    
+    
     
 }

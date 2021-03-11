@@ -1,6 +1,7 @@
 package controlador;
 
 import entities.Clases;
+import entities.HorarioLibre;
 import entities.HorariosOcup;
 import entities.Trabajos;
 import entities.Usuarios;
@@ -27,8 +28,8 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
-import sessions.CursosFacade;
 import sessions.Local.ClasesFacadeLocal;
+import sessions.Local.HorarioLibreFacadeLocal;
 import sessions.Local.HorariosOcupFacadeLocal;
 import sessions.Local.TrabajosFacadeLocal;
 import sessions.Local.UsuariosFacadeLocal;
@@ -50,6 +51,8 @@ public class BeanHorarios implements Serializable {
     private ClasesFacadeLocal clasesFacade;
     @EJB
     private HorariosOcupFacadeLocal horaOcupFacade;
+    @EJB
+    private HorarioLibreFacadeLocal horaLibreFacade;
 
     private String[] actividadPrincipal; //para setear
     private UploadedFile clasesFile;
@@ -60,11 +63,13 @@ public class BeanHorarios implements Serializable {
     private Trabajos trabajos;
     private Clases clases;
     private HorariosOcup horaOcup;
+    private HorarioLibre horaLib;
 
     public BeanHorarios() {
         usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggeado");
         trabajos = new Trabajos();
         horaOcup = new HorariosOcup();
+        horaLib = new HorarioLibre();
     }
 
     @PostConstruct
@@ -153,31 +158,43 @@ public class BeanHorarios implements Serializable {
     }
 
     private void obtenerHoras() {
-        List<String> dias = new ArrayList<>();
-        try {
-            dias = clasesFacade.getHorasLunes(horaOcup);
-            picarHoras(dias);
-            dias = clasesFacade.getHorasMartes(horaOcup);
-            picarHoras(dias);
-            dias = clasesFacade.getHorasMiercoles(horaOcup);
-            picarHoras(dias);
-            dias = clasesFacade.getHorasJueves(horaOcup);
-            picarHoras(dias);
-            dias = clasesFacade.getHorasViernes(horaOcup);
-            picarHoras(dias);
-            dias = clasesFacade.getHorasSabado(horaOcup);
-            picarHoras(dias);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        if (obtenerBoxSeleccionados("Estudiar")) {
 
+            List<String> dias = new ArrayList<>();
+            try {
+                dias = clasesFacade.getHorasLunes(horaOcup);
+                horaLib.setLunes(picarHoras(dias)+horaOcupFacade.getHorasOcupadasActivo(horaOcup));
+                
+                dias = clasesFacade.getHorasMartes(horaOcup);
+                horaLib.setMartes(picarHoras(dias)+horaOcupFacade.getHorasOcupadasActivo(horaOcup));
+                
+                dias = clasesFacade.getHorasMiercoles(horaOcup);
+                horaLib.setMiercoles(picarHoras(dias)+horaOcupFacade.getHorasOcupadasActivo(horaOcup));
+                
+                dias = clasesFacade.getHorasJueves(horaOcup);
+                horaLib.setJueves(picarHoras(dias)+horaOcupFacade.getHorasOcupadasActivo(horaOcup));
+                
+                dias = clasesFacade.getHorasViernes(horaOcup);
+                horaLib.setViernes(picarHoras(dias)+horaOcupFacade.getHorasOcupadasActivo(horaOcup));
+                
+                dias = clasesFacade.getHorasSabado(horaOcup);
+                horaLib.setSabado(picarHoras(dias));
+                
+                horaLib.setId(1 + horaLibreFacade.getMaxId());
+                horaLib.setHorarioOcup(horaOcup);
+                horaLibreFacade.create(horaLib);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private void picarHoras(List<String> dias) throws Exception {
+    private float picarHoras(List<String> dias) throws Exception {
         SimpleDateFormat formatito = new SimpleDateFormat("HH:mm");
         Date hora1 = null;
         Date hora2 = null;
         String[] horaSeparados = new String[2];
+        float diferencia = 0;
 
         for (String day : dias) {
             horaSeparados = day.split("-");
@@ -186,11 +203,15 @@ public class BeanHorarios implements Serializable {
 
             long inicio = hora1.getTime();
             long fin = hora2.getTime();
-            long diferencia = (fin - inicio) / 3600000;
-            System.out.println("fin - inicio: " + fin +" - "+ inicio);
-            System.out.println("diferencia: " + diferencia);
+
+            diferencia = diferencia + ((fin - inicio) / 3600000);
+            System.out.println("fin - inicio: " + fin + " - " + inicio);
+            // horaLib.setLunes(diferencia);
 
         }
+
+        System.out.println("diferencia: " + diferencia);
+        return diferencia;
     }
 
     private void setearActividad() {
