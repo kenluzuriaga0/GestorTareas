@@ -48,6 +48,13 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuarios.findByHorasSueno", query = "SELECT u FROM Usuarios u WHERE u.horasSueno = :horasSueno")})
 public class Usuarios implements Serializable {
 
+    @Column(name = "TIEMPO_TRANS")
+    private Integer tiempoTrans;
+    @Column(name = "HORAS_SUENO")
+    private Integer horasSueno;
+    @OneToMany(mappedBy = "idUsuario")
+    private List<Libro> libroList;
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -90,13 +97,9 @@ public class Usuarios implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "PASSWORD", nullable = false, length = 40)
     private String password;
-    @Column(name = "TIEMPO_TRANS")
-    private Integer tiempoTrans;
     @Size(max = 40)
     @Column(name = "ACTIV_PRODUCTIVA", length = 40)
     private String activProductiva;
-    @Column(name = "HORAS_SUENO")
-    private Integer horasSueno;
     @OneToMany(mappedBy = "idUsuarios")
     private List<HorariosInver> horariosInverList;
     @OneToMany(mappedBy = "idUsuario")
@@ -262,6 +265,16 @@ public class Usuarios implements Serializable {
     @Override
     public String toString() {
         return "entities.Usuarios[ id=" + id + " ]";
+    }
+
+ 
+    @XmlTransient
+    public List<Libro> getLibroList() {
+        return libroList;
+    }
+
+    public void setLibroList(List<Libro> libroList) {
+        this.libroList = libroList;
     }
     
 }

@@ -33,7 +33,8 @@ public interface UsuariosFacadeLocal {
     Integer getMaxId();
     
     Usuarios iniciarSesion(Usuarios user);
-    
+    public int getSueno(Usuarios usuario);
+    public Float getTransporte(Usuarios usuario);
     
     
 }

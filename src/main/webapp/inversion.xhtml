@@ -14,7 +14,6 @@
                 <title>Inversion</title>
             </h:head>
             <h:body>
-
                 <div class="contenedor">
                     <div class="jumbotron">
                         <div class="titulo">
@@ -59,9 +58,11 @@
                                 </p:column>
 
                                 <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Lectura')}" >
-                                    <b:commandButton  iconAwesome="fa-search" value="Buscar" title="Buscar Libros " look="danger" 
+                                    <b:commandButton  iconAwesome="fa-search" value="Consultar" title="Consultar Libros " look="danger" 
                                                      update="frmcontent:pnlbooks" oncomplete="$('.modalConfirmClass5').modal();"/>
                                     #{beanInversion.libro.nombre} 
+                                   <p:link outcome="elegirLibro.xhtml" value="Agregar Nuevo Libro" />
+                                                        
                                 </p:column>
                                 <p:column rendered="#{beanInversion.obtenerBoxSeleccionados('Lectura')}" >
                                     <div class="observaciones" >
@@ -153,14 +154,14 @@
                                             #{volumen.categories} 
                                         </p:dataList>
                                     </b:dataTableColumn> 
-                                    <b:dataTableColumn label="Seleccionar">
+                                    <!--b:dataTableColumn label="Seleccionar">
                                         <b:commandButton iconAwesome="fa-check" update="@Form:panelboy" ajax="true"
                                                          oncomplete="$('.modalConfirmClass5').modal('hide')"
                                                          onclick="ajax:beanInversion.guardarLibro" 
                                                          action="#{beanInversion.guardarLibro()}" >
                                         <f:ajax event="click" listener="#{beanInversion.guardarLibro()}" />
                                         </b:commandButton>
-                                    </b:dataTableColumn>
+                                    </b:dataTableColumn-->
                                 </b:dataTable>
 
                             </b:panelGrid>

@@ -6,6 +6,7 @@
 package sessions.Local;
 
 import entities.HorariosOcup;
+import entities.Usuarios;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -37,4 +38,5 @@ public interface HorariosOcupFacadeLocal {
      public int getCountByUser(HorariosOcup horariosOcup);
      
       public Float getHorasOcupadasActivo(HorariosOcup horaOcup);
+      public HorariosOcup getTodoActivo(Usuarios usuario);
 }

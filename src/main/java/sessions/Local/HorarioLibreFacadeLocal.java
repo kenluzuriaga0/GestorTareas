@@ -6,6 +6,7 @@
 package sessions.Local;
 
 import entities.HorarioLibre;
+import entities.HorariosOcup;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,7 +31,7 @@ public interface HorarioLibreFacadeLocal {
 
     int count();
     public int getMaxId();
-    
+    public HorarioLibre getTodoActivo(HorariosOcup horaOcup);
     
     
 }

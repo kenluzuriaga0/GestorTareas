@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html           xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template/bienvenida.xhtml">
+
+        <ui:define name="content">
+            <h:head>
+                <title>Elegir Libro</title>
+            </h:head>
+            <h:body>
+                <div class="contenedor">
+                    <h3>Elija su libro </h3>
+
+                    <h:form enctype="multipart/form-data" id="form">
+
+                        <div style="display: flex; color: #457B9D; align-items: center; margin: 5px">
+                            <p:outputLabel for="txtTitulo" value="TITULO!" style="margin: 5px"/>
+                            <p:inputText id="txtTitulo" value="#{beanLibrito.libro.titulo}"/> 
+                        </div>  
+
+                        <div style="display: flex; color: #457B9D; align-items: center; margin: 5px">
+                            <p:outputLabel for="txtAutor" value="AUTOR!" style="margin: 5px"/>
+                            <p:inputText id="txtAutor" value="#{beanLibrito.libro.autor}"/> 
+                        </div>  
+
+                        <p:fileUpload mode="simple" value="#{beanLibrito.uploaded_file}"/>
+                        <p:commandButton value="CARGAR IMAGEN!"  actionListener="#{beanLibrito.insertar()}" ajax="false"/>
+                        <p:commandButton value="GUARDAR CAMBIOS!" action="#{beanLibrito.guardarDatos()}" style="background: red; margin-left: 10px" disabled="#{!(beanLibrito.array_libros.size()>0)}" />   
+
+                    </h:form>
+                    <p:panel id="panel">
+
+                        <h:form id="form-ciclo">
+
+                            <ui:repeat value="#{beanLibrito.listarLibrosEnGrid()}" var="e">
+                                <div style=" display: inline-flex;border:  #000 medium solid; margin: 50px; border-radius: 5px 5px; background: #20BFAB; flex-direction: column; align-items: center">
+                                    <div style=" margin: 30px 30px 0 30px ;display: inline-flex; padding: 20px; border:  #457B9D medium solid; flex-direction: column; border-radius: 5px 5px;background: #fff">
+
+
+                                        <h:inputTextarea  value="#{e.titulo}" readonly="#{facesContext.released}"  disabled="true" style="border: none; text-align: center; color:#000; width: 180px; height: 70px; font-size: 20px; " />
+                                        <p:graphicImage url="#" library="images" height="220px" width="180px" style="border:  #457B9D thin solid; border-radius: 10px"/>
+
+                                        <div style="text-align: left; display: flex; flex-direction: column">
+                                            <p:outputLabel value="Autor: #{e.autor}" style="color: #000"/>
+                                            #{beanLibrito.setLeido(e.leido)}
+                                            <p:selectOneRadio layout="pageDirection" value="#{beanLibrito.leido}" valueChangeListener="#{beanLibrito.cambioLeido}">
+                                                <f:selectItem itemLabel="Leido" itemValue="1"/>
+                                                <f:selectItem itemLabel="No Leido" itemValue="0"/>
+                                                <p:commandButton id="idLibro" label="#{e.id}" style="display: none"/>
+                                                <f:ajax execute="@form"/>
+                                            </p:selectOneRadio>
+
+                                        </div>
+                                    </div>
+                                    <!--      <p:spinner maxlength="4" min="0" style="margin: 5px" value="{BeanLibro.libro.pagina}"/>  -->
+                                    <p:commandButton id="boton" value="Actualizar Pag!" actionListener="#{beanLibrito.updateData}">
+                                        <p:outputLabel id="labelpagina" value="Ultima Pagina: #{e.pagina}" style="font-size: 25px"/>
+
+                                        <p:inputText id="input" maxlength="4"/>
+
+                                        <p:commandButton id="boton_hijo" value="#{e}" style="display: none"/>
+
+                                        <f:ajax execute="@form" render="form-ciclo"/>
+                                    </p:commandButton>
+
+
+                                </div>
+
+
+                            </ui:repeat>
+                        </h:form>
+
+                    </p:panel>
+                </div>
+            </h:body>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

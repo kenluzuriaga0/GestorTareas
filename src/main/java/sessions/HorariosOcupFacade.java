@@ -8,6 +8,7 @@ package sessions;
 import sessions.Local.HorariosOcupFacadeLocal;
 import sessions.Local.AbstractFacade;
 import entities.HorariosOcup;
+import entities.Usuarios;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -77,6 +78,17 @@ public class HorariosOcupFacade extends AbstractFacade<HorariosOcup> implements 
         } catch (Exception nullo) {
             System.out.println(nullo.getMessage() + " ERROR");
             return 0f;
+        }
+    }
+    @Override
+    public HorariosOcup getTodoActivo(Usuarios usuario) {
+        try {
+            return em.createQuery("SELECT o FROM HorariosOcup o WHERE o.estado = :estado AND o.idUsuario = :idUsuario ",HorariosOcup.class)
+                    .setParameter("idUsuario", usuario).setParameter("estado", "activo").setMaxResults(1).getSingleResult();
+
+        } catch (Exception nullo) {
+            System.out.println(nullo.getMessage() + " ERROR");
+            return null;
         }
     }
     

@@ -5,20 +5,21 @@
  */
 package sessions;
 
-import sessions.Local.HorarioLibreFacadeLocal;
-import entities.HorarioLibre;
 import entities.HorariosOcup;
+import sessions.Local.LibroFacadeLocal;
+import entities.Libro;
+import entities.Usuarios;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import sessions.Local.AbstractFacade;
 
 /**
  *
  * @author kenlu
  */
 @Stateless
-public class HorarioLibreFacade extends AbstractFacade<HorarioLibre> implements HorarioLibreFacadeLocal {
+public class LibroFacade extends AbstractFacade<Libro> implements LibroFacadeLocal {
 
     @PersistenceContext(unitName = "nek_G1_GestorTareas_war_1.0PU")
     private EntityManager em;
@@ -28,24 +29,25 @@ public class HorarioLibreFacade extends AbstractFacade<HorarioLibre> implements 
         return em;
     }
 
-    public HorarioLibreFacade() {
-        super(HorarioLibre.class);
+    public LibroFacade() {
+        super(Libro.class);
     }
-
-    @Override
+        @Override
     public int getMaxId() {
+
         try {
-            return (em.createQuery("SELECT MAX(h.id) FROM HorarioLibre h", Integer.class).getSingleResult()).intValue();
-        } catch (NullPointerException nullo) {
+            return (em.createQuery("SELECT MAX(o.id) FROM Libro o", Integer.class).getSingleResult()).intValue();
+        } catch (Exception nullo) {
+
             return 0;
         }
-    }
 
-    @Override
-    public HorarioLibre getTodoActivo(HorariosOcup horaOcup) {
+    }
+     @Override
+    public List<Libro> getTodoActivo(Usuarios usuario) {
         try {
-            return em.createQuery("SELECT o FROM HorarioLibre o WHERE o.horarioOcup = :hora ", HorarioLibre.class)
-                    .setParameter("hora", horaOcup).setMaxResults(1).getSingleResult();
+            return em.createQuery("SELECT o FROM Libro o WHERE o.idUsuario = :idUsuario ",Libro.class)
+                    .setParameter("idUsuario", usuario).getResultList();
 
         } catch (Exception nullo) {
             System.out.println(nullo.getMessage() + " ERROR");

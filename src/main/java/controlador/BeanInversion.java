@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.servlet.ServletContext;
 import sessions.Local.CursosFacadeLocal;
 import sessions.Local.HorariosInverFacadeLocal;
 import sessions.Local.HorariosOcupFacadeLocal;
@@ -162,15 +163,8 @@ public class BeanInversion implements Serializable {
         return seleccionado;
     }
 
-    public void guardarLibro() {
-//        libro.setId(Integer.valueOf(1 + librosFacade.getMaxId()));
-//
-//        libro.setNombre(arrayDeJson.get(index).getVolumeInfoObject().getTitle());
-//        libro.setAutor(arrayDeJson.get(index).getVolumeInfoObject().getAuthors().get(0));
-        System.out.println("keeeeeeeeeeeeeeeeeeen");
 
-    }
-
+   
     public GoogleBooks getGoogle() {
         return google;
     }

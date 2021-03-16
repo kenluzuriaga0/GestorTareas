@@ -12,6 +12,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import sessions.UsuariosFacade;
 import sessions.Local.UsuariosFacadeLocal;
@@ -66,6 +67,8 @@ public class BeanIndex implements Serializable {
             } else {
                 FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Datos ingresados son incorrectos"));
             }
+            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+          System.out.println(servletContext.getRealPath("/resources/images") + "/");
 
         } catch (Exception e) {
             System.out.println("OjoH " + e.getMessage());
